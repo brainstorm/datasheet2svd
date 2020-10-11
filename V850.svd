@@ -28,6 +28,734 @@
   <resetMask>0xFFFFFFFF</resetMask>                               <!-- by default all 32Bits of the registers are used -->
 
   <peripherals>
+    <!-- Programmable Peripheral I/O (16KB area), Chapter 4, page 113 -->
+    <peripheral>
+      <name>Programmable Peripheral I/O (16KB area)</name>
+      <version>1.0</version>
+      <description>Programmable Peripheral I/O (16KB area)</description>
+      <groupName>PPA</groupName>
+      <baseAddress>0xFFFF3000</baseAddress>
+      <size>16</size>
+      <access>read-write</access>
+
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x4000</size>
+        <usage>registers</usage>
+      </addressBlock>
+
+      <registers>
+      <!-- Peripheral area selection control register (BPC) -->
+        <register>
+          <name>BPC</name>
+          <description>Peripheral area selection control register (BPC)</description>
+          <addressOffset>0xFFFFF064</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0x0000</resetValue>
+          <resetMask>0xFFFF</resetMask>
+
+          <fields>
+            <!-- PA0-PA13: Specifies the bit 27 to bit 14 of the starting address of the programmable peripheral I/O area (The other bits are fixed at zero). -->
+            <field>
+              <name>PA0-PA13</name>
+              <description>Specifies the bit 27 to bit 14 of the starting address of the programmable peripheral I/O area (The other bits are fixed at zero).</description>
+              <bitRange>[0:13]</bitRange>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>PA15</name>
+              <description>Enables/disables usage of programmable peripheral I/O area</description>
+              <bitRange>[15:15]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>disable</name>
+                  <description>Disables usage of programmable peripheral I/O area</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>enable</name>
+                  <description>Enables usage of programmable peripheral I/O area</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+
+        <!-- Bus cycle configuration register 0 (BCT0) -->
+        <register>
+          <name>BCT0</name>
+          <description>Bus cycle configuration registers 0 (BCT0)</description>
+          <addressOffset>0xFFFFF480</addressOffset>
+          <size>16</size>
+          <access>read-write</access>
+          <resetValue>0x8888</resetValue>
+          <resetMask>0x9999</resetMask>
+
+          <fields>
+            <!-- BCT0 -->
+            <field>
+              <name>ME3</name>
+              <description>Memory Controller Enable 3</description>
+              <bitRange>[15:15]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>disable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS3</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>enable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS3</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BT30</name>
+              <description>Bus Cycle Type 30</description>
+              <bitRange>[12:12]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRAM, external I/O</name>
+                  <description>Specifies the device to be connected to the CS3 signal.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Page ROM</name>
+                  <description>Specifies the device to be connected to the CS3 signal.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>ME2</name>
+              <description>Memory Controller Enable 2</description>
+              <bitRange>[11:11]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>disable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS2</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>enable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS2</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BT20</name>
+              <description>Bus Cycle Type 20</description>
+              <bitRange>[8:8]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRAM, external I/O</name>
+                  <description>Specifies the device to be connected to the CS2 signal.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Page ROM</name>
+                  <description>Specifies the device to be connected to the CS2 signal.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>ME1</name>
+              <description>Memory Controller Enable 1</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>disable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS1</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>enable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS1</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BT10</name>
+              <description>Bus Cycle Type 10</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRAM, external I/O</name>
+                  <description>Specifies the device to be connected to the CS1 signal.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Page ROM</name>
+                  <description>Specifies the device to be connected to the CS1 signal.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>ME0</name>
+              <description>Memory Controller Enable 0</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>disable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS0</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>enable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS0</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BT00</name>
+              <description>Bus Cycle Type 00</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRAM, external I/O</name>
+                  <description>Specifies the device to be connected to the CS0 signal.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Page ROM</name>
+                  <description>Specifies the device to be connected to the CS0 signal.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+
+        <!-- Bus cycle configuration register 0 (BCT1) -->
+        <register>
+          <name>BCT1</name>
+          <description>Bus cycle configuration registers 1 (BCT1)</description>
+          <addressOffset>0xFFFFF482</addressOffset>
+          <size>16</size>
+          <access>read-write</access>
+          <resetValue>0x8888</resetValue>
+          <resetMask>0x9999</resetMask>
+
+          <fields>
+            <!-- BCT1 -->
+            <field>
+              <name>ME7</name>
+              <description>Memory Controller Enable 7</description>
+              <bitRange>[15:15]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>disable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS7</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>enable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS7</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BT70</name>
+              <description>Bus Cycle Type 70</description>
+              <bitRange>[12:12]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRAM, external I/O</name>
+                  <description>Specifies the device to be connected to the CS7 signal.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Page ROM</name>
+                  <description>Specifies the device to be connected to the CS7 signal.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>ME6</name>
+              <description>Memory Controller Enable 6</description>
+              <bitRange>[11:11]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>disable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS6</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>enable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS6</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BT60</name>
+              <description>Bus Cycle Type 60</description>
+              <bitRange>[8:8]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRAM, external I/O</name>
+                  <description>Specifies the device to be connected to the CS6 signal.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Page ROM</name>
+                  <description>Specifies the device to be connected to the CS6 signal.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>ME5</name>
+              <description>Memory Controller Enable 5</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>disable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS5</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>enable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS5</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BT50</name>
+              <description>Bus Cycle Type 50</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRAM, external I/O</name>
+                  <description>Specifies the device to be connected to the CS5 signal.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Page ROM</name>
+                  <description>Specifies the device to be connected to the CS5 signal.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>ME4</name>
+              <description>Memory Controller Enable 4</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>disable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS4</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>enable</name>
+                  <description>Sets memory controller operation enable for each chip select signal CS4</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BT40</name>
+              <description>Bus Cycle Type 40</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>SRAM, external I/O</name>
+                  <description>Specifies the device to be connected to the CS4 signal.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Page ROM</name>
+                  <description>Specifies the device to be connected to the CS4 signal.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- Bus size configuration register (BSC) -->
+        <register>
+          <name>BSC</name>
+          <description>Bus size configuration register (BSC)</description>
+          <addressOffset>0xFFFFF066</addressOffset>
+          <size>16</size>
+          <access>read-write</access>
+          <resetValue>0x5555</resetValue>
+          <resetMask>0x5555</resetMask>
+          <fields>
+            <!-- BSC -->
+            <field>
+              <name>BS70</name>
+              <description>Data Bus Width</description>
+              <bitRange>[14:14]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>8 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>16 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BS60</name>
+              <description>Data Bus Width</description>
+              <bitRange>[12:12]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>8 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>16 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BS50</name>
+              <description>Data Bus Width</description>
+              <bitRange>[10:10]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>8 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>16 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BS40</name>
+              <description>Data Bus Width</description>
+              <bitRange>[8:8]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>8 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>16 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BS30</name>
+              <description>Data Bus Width</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>8 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>16 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BS20</name>
+              <description>Data Bus Width</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>8 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>16 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BS10</name>
+              <description>Data Bus Width</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>8 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>16 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BS00</name>
+              <description>Data Bus Width</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>8 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>16 bit bus</name>
+                  <description>Sets the data bus width of CSn area.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- Endian configuration register (BEC) -->
+        <register>
+          <name>BEC</name>
+          <description>Endian configuration register (BEC)</description>
+          <addressOffset>0xFFFFF068</addressOffset>
+          <size>16</size>
+          <access>read-write</access>
+          <resetValue>0x0000</resetValue>
+          <resetMask>0x5555</resetMask>
+          <fields>
+          <!-- BEC -->
+            <field>
+              <name>BE70</name>
+              <description>Specifies the endianness of CS7.</description>
+              <bitRange>[14:14]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>little endian</name>
+                  <description>Little Endian method</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>big endian</name>
+                  <description>Big Endian method</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BE60</name>
+              <description>Specifies the endianness of CS6.</description>
+              <bitRange>[12:12]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>little endian</name>
+                  <description>Little Endian method</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>big endian</name>
+                  <description>Big Endian method</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BE50</name>
+              <description>Specifies the endianness of CS5.</description>
+              <bitRange>[10:10]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>little endian</name>
+                  <description>Little Endian method</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>big endian</name>
+                  <description>Big Endian method</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BE40</name>
+              <description>Specifies the endianness of CS4.</description>
+              <bitRange>[8:8]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>little endian</name>
+                  <description>Little Endian method</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>big endian</name>
+                  <description>Big Endian method</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BE30</name>
+              <description>Specifies the endianness of CS3.</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>little endian</name>
+                  <description>Little Endian method</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>big endian</name>
+                  <description>Big Endian method</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BE20</name>
+              <description>Specifies the endianness of CS2.</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>little endian</name>
+                  <description>Little Endian method</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>big endian</name>
+                  <description>Big Endian method</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BE10</name>
+              <description>Specifies the endianness of CS1.</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>little endian</name>
+                  <description>Little Endian method</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>big endian</name>
+                  <description>Big Endian method</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>BE00</name>
+              <description>Specifies the endianness of CS0.</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>little endian</name>
+                  <description>Little Endian method</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>big endian</name>
+                  <description>Big Endian method</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <!-- TODO (page 119): Cache configuration register (BHC) -->
+        <!-- TODO (page 131): Data wait control registers 0, 1 (DWC0, DWC1) -->
+      </registers>
+    </peripheral>
+
+    <!-- Memory access control: Chapter 5, page 149 -->
+    <peripheral>
+      <name>MEMORY</name>
+      <version>1.0</version>
+      <description>SRAM, External ROM, External I/O Interface</description>
+      <groupName>MEM</groupName>
+      <baseAddress>0xFFFFF49A</baseAddress>
+      <size>16</size>
+      <access>read</access>
+
+      <registers>
+      <!-- PRC: Page ROM Configuration Register -->
+        <register>
+          <name>PRC</name>
+          <description>Page ROM Configuration Register</description>
+          <addressOffset>0xFFFFF49A</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0x7000</resetValue>
+          <resetMask>0x7000</resetMask>
+
+          <fields>
+            <!-- TODO: MA3 to MA6: Mask Address -->
+            <field>
+              <name>MA3</name>
+              <description>Controls the internal count clock</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+
     <!-- Timer C -->
     <peripheral>
       <name>TIMERC</name>
@@ -36,7 +764,7 @@
       <groupName>TIMER</groupName>
       <baseAddress>0xFFFFF600</baseAddress>
       <size>16</size>
-      <access>read</access>
+      <access>read-write</access>
 
       <addressBlock>
         <offset>0</offset>
