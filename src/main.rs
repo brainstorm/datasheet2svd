@@ -84,9 +84,9 @@ struct XmlRoot {
 
 fn main() {
 
-    let vec_peripherals: Vec<Peripheral> = Vec::new();
-    let vec_registers: Vec<Register> =  Vec::new();
-    let vec_fields: Vec<Field> = Vec::new();
+    let mut vec_peripherals: Vec<Peripheral> = Vec::new();
+    let mut vec_registers: Vec<Register> =  Vec::new();
+    let mut vec_fields: Vec<Field> = Vec::new();
 
     let register = Register {
         name: "PRCMD".to_string(),
@@ -98,6 +98,7 @@ fn main() {
         resetmask: "0xFFFF".to_string(),
         fields: vec_fields
     };
+    vec_registers.push(register);
 
     let peripheral = Peripheral {
         name: "Specific Registers".to_string(),
@@ -109,6 +110,7 @@ fn main() {
         access: "read-write".to_string(),
         registers: vec_registers
     };
+    vec_peripherals.push(peripheral);
 
     let cpu_def = CpuDef {
         name: "V850".to_string(),
@@ -150,8 +152,4 @@ fn main() {
                         };
     
     println!("{:?}", to_xml(&xml_str).ok().unwrap());
-    //let html: Html = from_str(xml)?;
-    //assert_eq!(&html.head.title, "crates.io: Rust Package Registry");
-
-    //crates_io().map_err(|err| println!("{:?}", err)).ok();
 }
