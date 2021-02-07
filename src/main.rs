@@ -1,85 +1,119 @@
-extern crate serde;
-extern crate quick_xml;
+use yaserde_derive::YaSerialize;
 
-use serde::Serialize;
-use quick_xml::se::to_string as to_xml;
-
-#[derive(Debug, Serialize, PartialEq)]
+#[derive(Default, PartialEq, Debug, YaSerialize)]
 struct CpuDef {
+    #[yaserde(child)]
     name: String,
+    #[yaserde(child)]
     revision: String,
+    #[yaserde(child)]
     endian: String, // enum {LE, BE, ME}
+    #[yaserde(child)]
     mpupresent: bool,
+    #[yaserde(child)]
     fpupresent: bool,
+    //#[yaserde(child)]
     //nvicpriobits: enum {8, 16, 32, 64, 128},
+    #[yaserde(child)]
     vendorsystickconfig: bool
 }
 
-#[derive(Debug, Serialize, PartialEq)]
+#[derive(Default, PartialEq, Debug, YaSerialize)]
 struct Field {
     name: String,
+    #[yaserde(child)]
     description: String,
+    #[yaserde(child)]
     bitrange: String,
+    #[yaserde(child)]
     access: String,
 }
 
-#[derive(Debug, Serialize, PartialEq)]
+#[derive(Default, PartialEq, Debug, YaSerialize)]
 struct Register {
+    #[yaserde(child)]
     name: String,
+    #[yaserde(child)]
     description: String,
+    #[yaserde(child)]
     addressoffset: String,
+    #[yaserde(child)]
     size: u8,
+    #[yaserde(child)]
     access: String,
+    #[yaserde(child)]
     resetvalue: String,
+    #[yaserde(child)]
     resetmask: String,
+    #[yaserde(child)]
     fields: Vec<Field>
 }
 
-#[derive(Debug, Serialize, PartialEq)]
+#[derive(Default, PartialEq, Debug, YaSerialize)]
 struct Peripheral {
+    #[yaserde(child)]
     name: String,
+    #[yaserde(child)]
     version: String,
+    #[yaserde(child)]
     description: String,
+    #[yaserde(child)]
     groupname: String,
+    #[yaserde(child)]
     baseaddress: String,
+    #[yaserde(child)]
     size: u8,
+    #[yaserde(child)]
     access: String,
+    #[yaserde(child)]
     registers: Vec<Register>
 }
 
-#[derive(Debug, Serialize, PartialEq)]
+#[derive(Default, PartialEq, Debug, YaSerialize)]
 struct DevAttrs {
+    #[yaserde(child)]
     vendor: String,
+    #[yaserde(child)]
     vendorid: String,
+    #[yaserde(child)]
     name: String,
+    #[yaserde(child)]
     series: String,
+    #[yaserde(child)]
     version: String,
+    #[yaserde(child)]
     description: String,
+    #[yaserde(child)]
     licensetext: String,
+    #[yaserde(child)]
     cpu: CpuDef,
+    #[yaserde(child)]
     addressunitbits: u8,
+    #[yaserde(child)]
     width: u8,
+    #[yaserde(child)]
     size: u8,
+    #[yaserde(child)]
     access: String,
+    #[yaserde(child)]
     resetvalue: String,
+    #[yaserde(child)]
     resetmask: String,
+    #[yaserde(child)]
     peripherals: Vec<Peripheral>
 }
 
-#[derive(Debug, Serialize, PartialEq)]
+#[derive(Default, PartialEq, Debug, YaSerialize)]
+#[yaserde(rename = "device")]
 struct Device {
+    #[yaserde(attribute)]
     schemaversion: String,
+    #[yaserde(attribute)]
     xmlns: String,
+    #[yaserde(attribute)]
     xsnonamespaceschemalocation: String,
+    #[yaserde(child)]
     devattributes: DevAttrs
-}
-
-#[derive(Debug, Serialize, PartialEq)]
-#[serde(rename = "xml", default)]
-struct XmlRoot {
-    version: String,
-    encoding: String,
-    device: Device
 }
 
 fn main() {
@@ -145,11 +179,6 @@ fn main() {
                         xsnonamespaceschemalocation: "CMSIS-SVD.xsd".to_string(),
                         devattributes: dev_attrs
                     };
-
-    let xml_str = XmlRoot { version: "1.0".to_string(),
-                            encoding: "utf-8".to_string(),
-                            device: dev
-                        };
     
-    println!("{:?}", to_xml(&xml_str).ok().unwrap());
+    println!("{:?}", yaserde::ser::to_string(&dev).ok().unwrap());
 }
