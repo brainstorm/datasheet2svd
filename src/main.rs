@@ -86,7 +86,7 @@ fn main() {
 
     let mut vec_peripherals: Vec<Peripheral> = Vec::new();
     let mut vec_registers: Vec<Register> =  Vec::new();
-    let mut vec_fields: Vec<Field> = Vec::new();
+    let vec_fields: Vec<Field> = Vec::new();
 
     let register = Register {
         name: "PRCMD".to_string(),
