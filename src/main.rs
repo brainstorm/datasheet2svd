@@ -116,6 +116,10 @@ struct Device {
     devattributes: DevAttrs
 }
 
+// fn peripherals() -> Vec<Peripheral> {
+
+// }
+
 fn main() {
 
     let mut vec_peripherals: Vec<Peripheral> = Vec::new();
@@ -180,5 +184,10 @@ fn main() {
                         devattributes: dev_attrs
                     };
     
-    println!("{:?}", yaserde::ser::to_string(&dev).ok().unwrap());
+    // Display pretty printed XML
+    let yaserde_cfg = yaserde::ser::Config{
+        perform_indent: true,
+        .. Default::default()
+    };
+    println!("{}", yaserde::ser::to_string_with_config(&dev, &yaserde_cfg).ok().unwrap());
 }
