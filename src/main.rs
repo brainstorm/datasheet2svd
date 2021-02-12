@@ -79,6 +79,7 @@ fn populate_svd_struct() -> Result<String, String> {
 fn main() {
     // Get information from datasheet
     let peripherals = run_tabula("76-82", "datasheets/nec-μPD703128.pdf");
+    //let clean = clean_device_attrs(&peripherals);
     println!("{:#?}", &peripherals);
 
     // Serialize it into a well-formed SVD

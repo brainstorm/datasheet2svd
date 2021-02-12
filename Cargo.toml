@@ -1,5 +1,5 @@
 [package]
-name = "v850-svd"
+name = "datasheet2svd"
 version = "0.1.0"
 authors = ["Roman Valls Guimera <brainstorm@nopcode.org>"]
 edition = "2018"

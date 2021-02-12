@@ -35,15 +35,15 @@ pub fn run_tabula(page_range: &str, pdf: &str) -> io::Result<()> {
     return io::stdout().write_all(&output.stdout);
 }
 
-pub fn clean_device_attrs() -> Result<(), Box<dyn Error>> {
-    let mut rdr = csv::Reader::from_reader(io::stdin());
-    for result in rdr.deserialize() {
-        let record: Record = result?;
+// pub fn clean_device_attrs(csv_data: io::Read) -> Result<(), Box<dyn Error>> {
+//     let mut rdr = csv::Reader::from_reader(&csv_data);
+//     for result in rdr.deserialize() {
+//         let record: Record = result?;
 
-        // Full address, i.e: FFFF EEEE to FFFFEEEE
-        let mut addr = record.address;
-        addr.retain(|ch| !ch.is_whitespace());
-        dbg!(&addr);
-    }
-    Ok(())
-}
+//         // Full address, i.e: FFFF EEEE to FFFFEEEE
+//         let mut addr = record.address;
+//         addr.retain(|ch| !ch.is_whitespace());
+//         dbg!(&addr);
+//     }
+//     Ok(())
+// }
