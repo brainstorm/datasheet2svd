@@ -1,7 +1,15 @@
+# Description
+
+This is the missing piece between IC manufacturers that just publish datasheets without SVDs and [svd2rust][svd2rust].
+
+It can also be seen as the ideal companion for reverse engineering tools such as Radare2 or Ghidra SVD loaders. 
+
 # Quickstart
 
+WIP! But when finished this tool will generate a correct SVD definition ready to be loaded into either radare2, Ghidra and/or generate a HAL or PAC via svd2rust. 
+
 ```shell
-$ cargo run -q | sed -e s'#\\##'g
+$ cargo run -q
 ```
 
 ## Rust XML state of the nation
@@ -28,7 +36,9 @@ The XML above is inconsistent with CMSIS-SVD since most of the information is en
 
 Unfortunately it lacks good examples.
 
-YaSerDe on the other hand, it's intuitive and just works. Every member of the struct gets labeled as either attribute or child.
+YaSerDe on the other hand, it's intuitive and just works. Every member of the struct gets labeled as either attribute or child [and it has good docs][yaserde_docs].
 
 [xml_prettyprint]: https://www.samltool.com/prettyprint.php
 [quickxml_serde_shortcomings]: https://github.com/tafia/quick-xml/issues/245
+[svd2rust]: https://github.com/rust-embedded/svd2rust
+[yaserde_docs]: https://github.com/media-io/yaserde/pull/106
