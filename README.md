@@ -6,7 +6,18 @@ It can also be seen as the ideal companion for reverse engineering tools such as
 
 # Quickstart
 
-WIP! But when finished this tool will generate a correct SVD definition ready to be loaded into either radare2, Ghidra and/or generate a HAL or PAC via svd2rust. 
+WIP! WIP! WIP!
+
+But when finished this tool will generate a correct SVD definition ready to be loaded into either radare2, Ghidra and/or generate a HAL or PAC via svd2rust. 
+
+TODO:
+
+* [ ]: Finish up the parsing and cleaning of the tabula peripherals IO CSV file.
+* [ ]: Identify other parts of the datasheet where @'s can be useful for the SVD.
+* [ ]: Validate via XSD?
+* [ ]: Make sure it loads well on r2.
+* [ ]: Cleanup/generalize for other ICs (RL78, Espressif ICs, etc...)
+
 
 ```shell
 $ cargo run -q
