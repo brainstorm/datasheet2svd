@@ -1,9 +1,10 @@
 mod svd;
+mod datasheet;
 
 use svd::{Register, Peripheral, Field, CpuDef, DevAttrs, Device};
+use datasheet::{run_tabula};
 
-fn main() {
-
+fn populate_svd_struct() -> Result<String, String> {
     let mut vec_peripherals: Vec<Peripheral> = Vec::new();
     let mut vec_registers: Vec<Register> =  Vec::new();
     let vec_fields: Vec<Field> = Vec::new();
@@ -66,10 +67,21 @@ fn main() {
                         devattributes: dev_attrs
                     };
     
-    // Display pretty printed XML
+    // Return pretty printed XML
     let yaserde_cfg = yaserde::ser::Config{
         perform_indent: true,
         .. Default::default()
     };
-    println!("{}", yaserde::ser::to_string_with_config(&dev, &yaserde_cfg).ok().unwrap());
+
+    return yaserde::ser::to_string_with_config(&dev, &yaserde_cfg);
+}
+
+fn main() {
+    // Get information from datasheet
+    let peripherals = run_tabula("76-82", "datasheets/nec-μPD703128.pdf");
+    println!("{:#?}", &peripherals);
+
+    // Serialize it into a well-formed SVD
+    // let svd_res = populate_svd_struct();
+    // println!("{}", &svd_res.ok().unwrap());
 }

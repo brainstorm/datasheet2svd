@@ -8,7 +8,7 @@ $ cargo run -q | sed -e s'#\\##'g
 
 This blogpost from simplabs explains a few of the [pain points of XML with Rust in 2021](https://simplabs.com/blog/2020/12/31/xml-and-rust/). There's also a matrix of what's [supported and what is not on different crates](https://github.com/RazrFalcon/roxmltree#alternatives), which gives a more detailed idea on Rust's maturity w.r.t XML (de)serializing.
 
-Default serde structs do not seem to be aware of the desired serialized structure (i.e child vs attrs):
+Default serde structs do not seem to be aware of the desired serialized structure (i.e child vs attrs) so we end up with **an incorrect CMSIS-SVD definition**:
 
 ```xml
 <?xml version="1.0"?>

@@ -1,6 +1,6 @@
 use std::error::Error;
-use std::io;
-use std::process;
+use std::io::{self, Write};
+use std::process::Command;
 
 use csv;
 use serde::{ Serialize, Deserialize };
@@ -19,7 +19,23 @@ struct Record {
     initial: String,
 }
 
-fn clean_device_attrs() -> Result<(), Box<dyn Error>> {
+/// Runs tabula PDF OCR
+/// tabula.jar:
+// wget https://github.com/tabulapdf/tabula-java/releases/download/v1.0.4/tabula-1.0.4-jar-with-dependencies.jar
+
+pub fn run_tabula(page_range: &str, pdf: &str) -> io::Result<()> {
+    let output = Command::new("java")
+            .args(&["-jar", "bin/tabula.jar", "-p", page_range, pdf])
+            .output()
+            .expect("Fail");
+
+    //println!("status: {}", output.status);
+    //io::stderr().write_all(&output.stderr).unwrap();
+        
+    return io::stdout().write_all(&output.stdout);
+}
+
+pub fn clean_device_attrs() -> Result<(), Box<dyn Error>> {
     let mut rdr = csv::Reader::from_reader(io::stdin());
     for result in rdr.deserialize() {
         let record: Record = result?;
