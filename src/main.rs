@@ -2,7 +2,7 @@ mod svd;
 mod datasheet;
 
 use svd::{Register, Peripheral, Field, CpuDef, DevAttrs, Device};
-use datasheet::{run_tabula};
+use datasheet::{run_tabula, clean_device_attrs};
 
 fn populate_svd_struct() -> Result<String, String> {
     let mut vec_peripherals: Vec<Peripheral> = Vec::new();
@@ -78,9 +78,9 @@ fn populate_svd_struct() -> Result<String, String> {
 
 fn main() {
     // Get information from datasheet
-    let peripherals = run_tabula("76-82", "datasheets/nec-μPD703128.pdf");
-    //let clean = clean_device_attrs(&peripherals);
-    println!("{:#?}", &peripherals);
+    let peripherals = run_tabula("datasheets/nec-μPD703128.pdf", "76-82");
+    let clean = clean_device_attrs(peripherals);
+    println!("{:#?}", &clean);
 
     // Serialize it into a well-formed SVD
     // let svd_res = populate_svd_struct();
