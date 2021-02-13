@@ -1,8 +1,10 @@
 use std::error::Error;
-use std::process::{Command, Output};
+use std::process::{ Command, Output };
 
-use csv::{Reader, StringRecord};
+use csv::{ Reader, StringRecord };
 use serde::{ Serialize, Deserialize };
+
+use crate::svd::{ Register, Peripheral };
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Record {
@@ -33,9 +35,20 @@ pub fn run_tabula(datasheet: &str, page_range: &str) -> Output {
     return output;
 }
 
-pub fn clean_device_attrs(csv_data: Output) -> Result<(), Box<dyn Error>> {
+/// Read datasheet information needed to build the SVD from tabula's output or
+/// provided manually.
+// fn read_device_attrs_from_csv() {
+//     unimplemented!();
+// }
+
+pub fn clean_peripherals(csv_data: Output) -> Result<Vec<Peripheral>, Box<dyn Error>> {
     let mut rdr = Reader::from_reader(&*csv_data.stdout);
-    rdr.set_headers(StringRecord::from(vec!["address", "description", "name", "mode", "manip_1_bit", "manip_8_bit", "manip_16_bit", "reset_value"]));
+    rdr.set_headers(StringRecord::from(vec!["address", "description", "name", "mode", 
+                                            "manip_1_bit", "manip_8_bit", "manip_16_bit",
+                                            "reset_value"]));
+
+    let mut peripherals: Vec<Peripheral> = Vec::new();
+    let mut registers: Vec<Register> =  Vec::new();
 
     for result in rdr.deserialize() {
         let record: Record = result?;
@@ -51,33 +64,14 @@ pub fn clean_device_attrs(csv_data: Output) -> Result<(), Box<dyn Error>> {
             continue;
         }
 
-        // Handle multi-row descriptions for registers
+        // Multi-row datasheet table register definitions
         if &addr == "" {
-            if &name == "" { continue; } // beginning?
-            dbg!("WARNING: Multi-row register definition");
-            dbg!(&name);
-            dbg!(&mode);
-            dbg!(&reset_value);
+            if &name == "" { continue; } // beginning of table, discard
             continue;
         }
 
         // Full address, i.e: FFFF EEEE to FFFFEEEE
         addr.retain(|ch| !ch.is_whitespace());
-
-        dbg!(&addr);
-        dbg!(&name); // TODO: Disambiguate cases like "SIRB2/ SIRBL2" ... why two regs in one row?
-        dbg!(&descr);
-
-        // TODO: Turn mode field into static' str...
-        // error: implementation of `datasheet::_::_serde::Deserialize` is not general enough
-        //     = note: `Record` must implement `datasheet::_::_serde::Deserialize<'0>`, for any lifetime `'0`...
-        // = note: ...but `Record` actually implements `datasheet::_::_serde::Deserialize<'1>`, for some specific lifetime `'1`
-        //
-        // let mode = match mode {
-        //     "R/W" => "read-write",
-        //     "R/O" => "read-only",
-        //     "W" => "write-only"
-        // };
 
         if &mode == "R/W" {
             mode = "read-write".to_string();
@@ -87,8 +81,61 @@ pub fn clean_device_attrs(csv_data: Output) -> Result<(), Box<dyn Error>> {
             mode = "write-only".to_string();
         }
 
-        dbg!(&mode);
-        dbg!(&reset_value); // TODO: Disambiguate cases like "00H/01H" ... what does that mean?
+        // Populate struct w/ attributes
+        let peripheral = Peripheral {
+            name: name,
+            version: "1.0".to_string(),
+            description: descr,
+            groupname: "MCU".to_string(),
+            baseaddress: addr,
+            size: 16,
+            access: mode,
+            registers: vec![] // TODO: empty for now
+        };
+    
+        peripherals.push(peripheral);
     }
-    Ok(())
+
+    return Result::Ok(peripherals);
 }
+
+// fn debug_parse_peripherals() {
+//     // Handle multi-row descriptions for registers
+//     // TODO: Handle shifting of values even more gracefully, i.e:
+//     //
+//     // FFFF F640,Timer mode register,TMGM0,R/W,×,×,×,0000H
+//     // "",,TMGM0L,R/W,×,×,,00H
+//     // FFFF F641,TMGM0H,R/W,×,×,,00H,   <--- Detect this and remember previous record
+//     // FFFF F642,Channel mode register,TMGCM0,R/W,×,×,×,0000H
+//     // "",,TMGCM0L,R/W,×,×,,00H
+//     // FFFF F643,TMGCM0H,R/W,×,×,,00H,
+//     //
+
+//     if &addr == "" {
+//         if &name == "" { continue; } // beginning of table, discard
+//         dbg!("WARNING: Multi-row register definition");
+//         dbg!(&name);
+//         dbg!(&descr);
+//         dbg!(&mode);
+//         dbg!(&reset_value);
+//         continue;
+//     }
+
+//     dbg!(&addr);
+//     dbg!(&name); // TODO: Disambiguate cases like "SIRB2/ SIRBL2" ... why two regs in one row?
+//     dbg!(&descr);
+
+//     // TODO: Turn mode field into static' str...
+//     // error: implementation of `datasheet::_::_serde::Deserialize` is not general enough
+//     //     = note: `Record` must implement `datasheet::_::_serde::Deserialize<'0>`, for any lifetime `'0`...
+//     // = note: ...but `Record` actually implements `datasheet::_::_serde::Deserialize<'1>`, for some specific lifetime `'1`
+//     //
+//     // let mode = match mode {
+//     //     "R/W" => "read-write",
+//     //     "R/O" => "read-only",
+//     //     "W" => "write-only"
+//     // };
+
+//     dbg!(&mode);
+//     dbg!(&reset_value); // TODO: Disambiguate cases like "00H/01H" ... what does that mean?
+// }
