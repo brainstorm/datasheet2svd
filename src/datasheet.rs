@@ -48,7 +48,6 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Vec<Peripheral>, Box<dyn Er
                                             "reset_value"]));
 
     let mut peripherals: Vec<Peripheral> = Vec::new();
-    let mut registers: Vec<Register> =  Vec::new();
 
     for result in rdr.deserialize() {
         let record: Record = result?;
@@ -81,18 +80,30 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Vec<Peripheral>, Box<dyn Er
             mode = "write-only".to_string();
         }
 
-        // Populate struct w/ attributes
+        // Populate register and peripheral structs w/ attributes from datasheet
+        // TODO: PeripheralIO and Register is a 1-1 relationship right now. Explore how to generalize and improve this.
+        let register = Register {
+            name: name.clone(),
+            description: descr.clone(),
+            addressoffset: addr.clone(),
+            size: 8,
+            access: mode.clone(),
+            resetvalue: reset_value.clone(),
+            resetmask: "0xFFFF".to_string(),
+            fields: vec![] // TODO: Not bothering about bitfields for now
+        };
+
         let peripheral = Peripheral {
             name: name,
             version: "1.0".to_string(),
             description: descr,
-            groupname: "MCU".to_string(),
+            groupname: "io".to_string(),
             baseaddress: addr,
             size: 16,
             access: mode,
-            registers: vec![] // TODO: empty for now
+            registers: vec![register]
         };
-    
+
         peripherals.push(peripheral);
     }
 
