@@ -8,14 +8,15 @@ It can also be seen as the ideal companion for reverse engineering tools such as
 
 WIP! WIP! WIP!
 
-But when finished this tool will generate a correct SVD definition ready to be loaded into either radare2, Ghidra and/or generate a HAL or PAC via svd2rust. 
+But when finished this tool will generate a correct SVD definition ready to be loaded into either radare2, Ghidra and/or generate a HAL or PAC via svd2rust.
 
 TODO:
 
 * [x]: Finish up the parsing and cleaning of the tabula peripherals IO CSV file.
 * [x]: Identify other parts of the datasheet where @'s can be useful for the SVD.
-* [ ]: Validate via XSD?
-* [ ]: Make sure it loads well on r2.
+* [ ]: Pass minimal validation through cmsis-svd python parser/model.py.
+* [ ]: Make sure it loads well on radare2 and Ghidra's SVD-Loader.
+* [ ]: Validate more thoroughly via XSD with https://github.com/lumeohq/xsd-parser-rs ?
 * [ ]: Cleanup/generalize for other ICs (RL78, Espressif ICs, etc...)
 
 
