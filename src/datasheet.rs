@@ -82,6 +82,7 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Vec<Peripheral>, Box<dyn Er
 
         // Populate register and peripheral structs w/ attributes from datasheet
         // TODO: PeripheralIO and Register is a 1-1 relationship right now. Explore how to generalize and improve this.
+        // For instance, MCU registers have a 1-many (MCU-many regs) relationship, accomodate this function for those too?
         let register = Register {
             name: name.clone(),
             description: descr.clone(),

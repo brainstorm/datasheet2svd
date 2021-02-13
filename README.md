@@ -12,8 +12,8 @@ But when finished this tool will generate a correct SVD definition ready to be l
 
 TODO:
 
-* [ ]: Finish up the parsing and cleaning of the tabula peripherals IO CSV file.
-* [ ]: Identify other parts of the datasheet where @'s can be useful for the SVD.
+* [x]: Finish up the parsing and cleaning of the tabula peripherals IO CSV file.
+* [x]: Identify other parts of the datasheet where @'s can be useful for the SVD.
 * [ ]: Validate via XSD?
 * [ ]: Make sure it loads well on r2.
 * [ ]: Cleanup/generalize for other ICs (RL78, Espressif ICs, etc...)
