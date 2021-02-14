@@ -30,6 +30,7 @@ pub struct Field {
 }
 
 #[derive(Default, PartialEq, Debug, YaSerialize)]
+#[yaserde(rename = "register")]
 pub struct Register {
     #[yaserde(child)]
     pub name: String,
@@ -44,7 +45,7 @@ pub struct Register {
     #[yaserde(child)]
     pub resetvalue: i64,
     #[yaserde(child)]
-    pub resetmask: i64,
+    pub resetmask: String,
     #[yaserde(child)]
     pub fields: Vec<Field>
 }
@@ -67,13 +68,19 @@ pub struct Peripheral {
     #[yaserde(child)]
     pub access: String,
     #[yaserde(child)]
-    pub registers: Vec<Register>
+    pub registers: Registers
 }
 
 #[derive(Default, PartialEq, Debug, YaSerialize)]
 #[yaserde(rename = "peripheral")]
 pub struct Peripherals {
     pub peripheral: Vec<Peripheral>,
+}
+
+#[derive(Default, PartialEq, Debug, YaSerialize)]
+#[yaserde(rename = "register")]
+pub struct Registers {
+    pub register: Vec<Register>,
 }
 
 #[derive(Default, PartialEq, Debug, YaSerialize)]
@@ -120,7 +127,7 @@ pub struct Device {
     #[yaserde(child)]
     pub resetvalue: i64,
     #[yaserde(child)]
-    pub resetmask: i64,
+    pub resetmask: String,
     #[yaserde(child)]
     pub peripherals: Peripherals
 }

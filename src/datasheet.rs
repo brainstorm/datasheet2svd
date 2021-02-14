@@ -4,7 +4,7 @@ use std::process::{ Command, Output };
 use csv::{ Reader, StringRecord };
 use serde::{ Serialize, Deserialize };
 
-use crate::svd::{ Register, Peripheral, Peripherals };
+use crate::svd::{ Register, Registers, Peripheral, Peripherals };
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Record {
@@ -36,7 +36,7 @@ pub fn run_tabula(datasheet: &str, page_range: &str) -> Output {
 }
 
 /// Read datasheet information needed to build the SVD from tabula's output or
-/// provided manually.
+/// provided manually (speeds up dev iteration loop, tabula is slooow).
 // fn read_device_attrs_from_csv() {
 //     unimplemented!();
 // }
@@ -64,13 +64,13 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
         };
 
         // Skip repeated headers over pages
-        if &addr == "Address" {
+        if addr == "Address" {
             continue;
         }
 
         // Multi-row datasheet table register definitions
-        if &addr == "" {
-            if &name == "" { continue; } // beginning of table, discard
+        if addr == "" {
+            if name == "" { continue; } // beginning of table, discard
             continue;
         }
 
@@ -78,15 +78,14 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
         addr.retain(|ch| !ch.is_whitespace());
         addr = String::from("0x") + &addr;
 
-        if &mode == "R/W" {
+        if mode == "R/W" {
             mode = "read-write".to_string();
-        } else if &mode == "R/O" || &mode == "R" {
+        } else if mode == "R/O" || mode == "R" {
             mode = "read-only".to_string();
-        } else if &mode == "W" {
+        } else if mode == "W" {
             mode = "write-only".to_string();
         }
 
-        // Populate register and peripheral structs w/ attributes from datasheet
         // TODO: PeripheralIO and Register is a 1-1 relationship right now. Explore how to generalize and improve this.
         // For instance, MCU registers have a 1-many (MCU-many regs) relationship, accomodate this function for those too?
         let register = Register {
@@ -96,21 +95,25 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
             size: 8,
             access: mode.clone(),
             resetvalue: reset_value,
-            resetmask: 0xFFFFFFFF,
+            resetmask: "0xFFFFFFFF".to_string(),
             fields: vec![] // TODO: Not bothering about bitfields for now
         };
 
+        // TODO: Again, just 1-1 peripheral to register here for MMIO, must be refactored for 1-many
+        let registers = Registers { register: vec![register] };
+
         let peripheral = Peripheral {
-            name: name,
+            name: name.to_string(),
             version: "1.0".to_string(),
-            description: descr,
+            description: descr.to_string(),
             groupname: "mmio".to_string(),
-            baseaddress: addr,//.trim().parse::<i64>().unwrap(),
+            baseaddress: addr.to_string(),
             size: 16,
-            access: mode,
-            registers: vec![register]
+            access: mode.to_string(),
+            registers: registers // TODO: Still 1-1 for now, for loop for 1-many on other datasheet tables
         };
 
+        // Accumulate peripheral entries
         peripherals_vec.push(peripheral);
     }
 

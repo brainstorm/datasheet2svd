@@ -29,7 +29,7 @@ fn generate_svd(peripherals: Peripherals) -> Result<String, String> {
         size: 0x20,
         access: "read-write".to_string(),
         resetvalue: 0x0,
-        resetmask: 0xFFFFFFFF,
+        resetmask: "0xFFFFFFFF".to_string(),
         peripherals: peripherals
     };
     
