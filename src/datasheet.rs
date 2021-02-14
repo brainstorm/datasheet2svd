@@ -4,7 +4,7 @@ use std::process::{ Command, Output };
 use csv::{ Reader, StringRecord };
 use serde::{ Serialize, Deserialize };
 
-use crate::svd::{ Register, Peripheral };
+use crate::svd::{ Register, Peripheral, Peripherals };
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Record {
@@ -41,13 +41,13 @@ pub fn run_tabula(datasheet: &str, page_range: &str) -> Output {
 //     unimplemented!();
 // }
 
-pub fn clean_peripherals(csv_data: Output) -> Result<Vec<Peripheral>, Box<dyn Error>> {
+pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>> {
     let mut rdr = Reader::from_reader(&*csv_data.stdout);
     rdr.set_headers(StringRecord::from(vec!["address", "description", "name", "mode", 
                                             "manip_1_bit", "manip_8_bit", "manip_16_bit",
                                             "reset_value"]));
 
-    let mut peripherals: Vec<Peripheral> = Vec::new();
+    let mut peripherals_vec: Vec<Peripheral> = Vec::new();
 
     for result in rdr.deserialize() {
         let record: Record = result?;
@@ -56,7 +56,12 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Vec<Peripheral>, Box<dyn Er
         let descr = record.description;
         let name = record.name;
         let mut mode = record.mode;
-        let reset_value = record.reset_value;
+
+        // Puts things to 0 if reset_value is not parsed correctly (Error kind: Empty)
+        let reset_value: i64 = match record.reset_value.trim().parse::<i64>() {
+            Ok(value) => value,
+            Err(_err) => 0,
+        };
 
         // Skip repeated headers over pages
         if &addr == "Address" {
@@ -69,8 +74,9 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Vec<Peripheral>, Box<dyn Er
             continue;
         }
 
-        // Full address, i.e: FFFF EEEE to FFFFEEEE
+        // Full address, i.e: FFFF EEEE to 0xFFFFEEEE
         addr.retain(|ch| !ch.is_whitespace());
+        addr = String::from("0x") + &addr;
 
         if &mode == "R/W" {
             mode = "read-write".to_string();
@@ -89,8 +95,8 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Vec<Peripheral>, Box<dyn Er
             addressoffset: addr.clone(),
             size: 8,
             access: mode.clone(),
-            resetvalue: reset_value.clone(),
-            resetmask: "0xFFFF".to_string(),
+            resetvalue: reset_value,
+            resetmask: 0xFFFFFFFF,
             fields: vec![] // TODO: Not bothering about bitfields for now
         };
 
@@ -98,15 +104,20 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Vec<Peripheral>, Box<dyn Er
             name: name,
             version: "1.0".to_string(),
             description: descr,
-            groupname: "io".to_string(),
-            baseaddress: addr,
+            groupname: "mmio".to_string(),
+            baseaddress: addr,//.trim().parse::<i64>().unwrap(),
             size: 16,
             access: mode,
             registers: vec![register]
         };
 
-        peripherals.push(peripheral);
+        peripherals_vec.push(peripheral);
     }
+
+    // Wrap on struct before shipping
+    let peripherals = Peripherals {
+        peripheral: peripherals_vec
+    };
 
     return Result::Ok(peripherals);
 }
@@ -135,6 +146,11 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Vec<Peripheral>, Box<dyn Er
 
 //     dbg!(&addr);
 //     dbg!(&name); // TODO: Disambiguate cases like "SIRB2/ SIRBL2" ... why two regs in one row?
+                    // Also it messes up later on with the XML:
+                    //    </peripherals>
+                    //    <peripherals>
+                    //      SIRBL0</name>IRB0/   <---- !!!
+                    //    <version>1.0</version>
 //     dbg!(&descr);
 
 //     // TODO: Turn mode field into static' str...
