@@ -51,6 +51,17 @@ pub struct Register {
 }
 
 #[derive(Default, PartialEq, Debug, YaSerialize)]
+#[yaserde(rename = "addressBlock")]
+pub struct AddrBlock {
+    #[yaserde(child)]
+    pub offset: String,
+    #[yaserde(child)]
+    pub size: String,
+    #[yaserde(child)]
+    pub usage: String
+}
+
+#[derive(Default, PartialEq, Debug, YaSerialize)]
 #[yaserde(rename = "peripheral")]
 pub struct Peripheral {
     #[yaserde(child)]
@@ -63,10 +74,8 @@ pub struct Peripheral {
     pub groupname: String,
     #[yaserde(child, rename="baseAddress")]
     pub baseaddress: String,
-    #[yaserde(child)]
-    pub size: u8,
-    #[yaserde(child)]
-    pub access: String,
+    #[yaserde(child, rename="addressBlock")]
+    pub addressblock: AddrBlock,
     #[yaserde(child)]
     pub registers: Registers
 }

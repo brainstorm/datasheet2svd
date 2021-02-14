@@ -4,7 +4,7 @@ use std::process::{ Command, Output };
 use csv::{ Reader, StringRecord };
 use serde::{ Serialize, Deserialize };
 
-use crate::svd::{ Register, Registers, Peripheral, Peripherals };
+use crate::svd::{ AddrBlock, Register, Registers, Peripheral, Peripherals };
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Record {
@@ -93,7 +93,7 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
             description: descr.clone(),
             addressoffset: addr.clone(),
             size: 8,
-            access: mode.clone(),
+            access: mode.to_string(),
             resetvalue: reset_value,
             resetmask: "0xFFFFFFFF".to_string(),
             fields: vec![] // TODO: Not bothering about bitfields for now
@@ -102,14 +102,21 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
         // TODO: Again, just 1-1 peripheral to register here for MMIO, must be refactored for 1-many
         let registers = Registers { register: vec![register] };
 
+        let addressblock = AddrBlock {
+            offset: "0x0".to_string(),
+            size: "0x400".to_string(), // TODO: 0x400 ???
+            usage: "registers".to_string()
+        };
+
         let peripheral = Peripheral {
             name: name.to_string(),
             version: "1.0".to_string(),
             description: descr.to_string(),
             groupname: "mmio".to_string(),
             baseaddress: addr.to_string(),
-            size: 16,
-            access: mode.to_string(),
+            addressblock: addressblock,
+            // size: 16,
+            // access: mode.to_string(),
             registers: registers // TODO: Still 1-1 for now, for loop for 1-many on other datasheet tables
         };
 
