@@ -54,7 +54,7 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
 
         let mut addr = record.address;
         let descr = record.description;
-        let name = record.name;
+        let name = record.name.replace("\r", &"");
         let mut mode = record.mode;
 
         // Puts things to 0 if reset_value is not parsed correctly (Error kind: Empty)
