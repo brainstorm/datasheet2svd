@@ -1,19 +1,19 @@
 mod svd;
 mod datasheet;
 
-use svd::{Peripherals, Device};
+use svd::{Peripherals, Device, CpuDef};
 use datasheet::{run_tabula, clean_peripherals};
 
 fn generate_svd(peripherals: Peripherals) -> Result<String, String> {
-    // let cpu_def = CpuDef {
-    //     name: "V850".to_string(),
-    //     revision: "r1".to_string(),
-    //     endian: "LE".to_string(), // TODO: enum {LE, BE, ME}?
-    //     mpupresent: false,
-    //     fpupresent: false,
-    //     nvicpriobits: 32,
-    //     vendorsystickconfig: false    
-    // };
+    let cpu_def = CpuDef {
+        name: "V850".to_string(),
+        revision: "r1".to_string(),
+        endian: "LE".to_string(), // TODO: enum {LE, BE, ME}?
+        mpupresent: false,
+        fpupresent: false,
+        nvicpriobits: 32,
+        vendorsystickconfig: false    
+    };
 
     let dev = Device {  
         vendor: "Renesas".to_string(),
@@ -23,7 +23,7 @@ fn generate_svd(peripherals: Peripherals) -> Result<String, String> {
         version: "1.2".to_string(),
         description: "NEC/Renesas V850 automotive grade ICs".to_string(),
         //licensetext: "GPLv3".to_string(),
-        //cpu: cpu_def,
+        cpu: cpu_def,
         addressunitbits: 8,
         width: 32,
         size: 0x20,

@@ -1,22 +1,22 @@
 use yaserde_derive::YaSerialize;
 
-// #[derive(Default, PartialEq, Debug, YaSerialize)]
-// pub struct CpuDef {
-//     #[yaserde(child)]
-//     pub name: String,
-//     #[yaserde(child)]
-//     pub revision: String,
-//     #[yaserde(child)]
-//     pub endian: String, // enum {LE, BE, ME}
-//     #[yaserde(child)]
-//     pub mpupresent: bool,
-//     #[yaserde(child)]
-//     pub fpupresent: bool,
-//     #[yaserde(child)]
-//     pub nvicpriobits: u8,
-//     #[yaserde(child)]
-//     pub vendorsystickconfig: bool
-// }
+#[derive(Default, PartialEq, Debug, YaSerialize)]
+pub struct CpuDef {
+    #[yaserde(child)]
+    pub name: String,
+    #[yaserde(child)]
+    pub revision: String,
+    #[yaserde(child)]
+    pub endian: String, // TODO: enum {LE, BE, ME}
+    #[yaserde(child)]
+    pub mpupresent: bool,
+    #[yaserde(child)]
+    pub fpupresent: bool,
+    #[yaserde(child)]
+    pub nvicpriobits: u8,
+    #[yaserde(child)]
+    pub vendorsystickconfig: bool
+}
 
 #[derive(Default, PartialEq, Debug, YaSerialize)]
 pub struct Field {
@@ -107,8 +107,8 @@ pub struct Device {
     pub description: String,
     // #[yaserde(child)]
     // pub licensetext: String,
-    // #[yaserde(child)]
-    // pub cpu: CpuDef,
+    #[yaserde(child)]
+    pub cpu: CpuDef,
     #[yaserde(child, rename = "addressUnitBits")]
     pub addressunitbits: u8,
     #[yaserde(child)]
