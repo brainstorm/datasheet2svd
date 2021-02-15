@@ -104,7 +104,7 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
 
         let addressblock = AddrBlock {
             offset: "0x0".to_string(),
-            size: "0x400".to_string(), // TODO: 0x400 ???
+            size: "0x2".to_string(), // TODO: Adjust to actual length of the register/mmio
             usage: "registers".to_string()
         };
 

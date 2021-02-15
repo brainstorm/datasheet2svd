@@ -26,7 +26,7 @@ fn generate_svd(peripherals: Peripherals) -> Result<String, String> {
         cpu: cpu_def,
         addressunitbits: 8,
         width: 32,
-        size: 0x20,
+        size: 0x1,
         access: "read-write".to_string(),
         resetvalue: 0x0,
         resetmask: "0xFFFFFFFF".to_string(),

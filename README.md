@@ -15,9 +15,10 @@ TODO:
 * [x]: Finish up the parsing and cleaning of the tabula peripherals IO CSV file.
 * [x]: Identify other parts of the datasheet where @'s can be useful for the SVD.
 * [x]: Pass minimal validation through cmsis-svd python parser/model.py.
+* [x]: Validate more thoroughly via XSD with https://github.com/lumeohq/xsd-parser-rs ? WONTFIX: Current state of the art on this is horrible in Rust :/
 * [ ]: Make sure it loads well on radare2 and Ghidra's SVD-Loader.
-* [ ]: Validate more thoroughly via XSD with https://github.com/lumeohq/xsd-parser-rs ?
 * [ ]: Cleanup/generalize for other ICs (RL78, Espressif ICs, etc...)
+* [ ]: I should have used https://crates.io/crates/xml-schema-derive instead of manual structs, maybe?
 
 
 ```shell
