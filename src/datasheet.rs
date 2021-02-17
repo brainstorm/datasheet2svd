@@ -1,3 +1,4 @@
+//use std::fs;
 use std::error::Error;
 use std::process::{ Command, Output };
 
@@ -18,15 +19,25 @@ struct Record {
     reset_value: String,
 }
 
-/// Runs tabula PDF OCR
+/// Runs tabula PDF OCR or uses a precomputed CSV file (cached=true)
 /// tabula.jar:
 // wget https://github.com/tabulapdf/tabula-java/releases/download/v1.0.4/tabula-1.0.4-jar-with-dependencies.jar
-
-pub fn run_tabula(datasheet: &str, page_range: &str) -> Output {
-    let output = Command::new("java")
-            .args(&["-jar", "bin/tabula.jar", "-p", page_range, datasheet])
-            .output()
-            .expect("Fail");
+pub fn run_tabula(datasheet: &str, page_range: &str, cached: bool) -> Output {
+    let output;
+    if cached {
+        output = Command::new("java")
+                    .args(&["-jar", "bin/tabula.jar", "-p", page_range, datasheet])
+                    .output()
+                    .expect("Fail");
+    } else {
+        output = Command::new("cat")
+                    .args(&["build/peripherals.csv"])
+                    .output()
+                    .expect("Fail");
+        // output = fs::read_to_string("build/peripherals.csv")
+        //                 .expect("Something went wrong reading the file");
+        // TODO: types... Output vs String...
+    }
 
     // TODO: Error ctrl
     //println!("status: {}", output.status);
@@ -35,12 +46,6 @@ pub fn run_tabula(datasheet: &str, page_range: &str) -> Output {
     return output;
 }
 
-/// Read datasheet information needed to build the SVD from tabula's output or
-/// provided manually (speeds up dev iteration loop, tabula is slooow).
-// fn read_device_attrs_from_csv() {
-//     unimplemented!();
-// }
-
 pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>> {
     let mut rdr = Reader::from_reader(&*csv_data.stdout);
     rdr.set_headers(StringRecord::from(vec!["address", "description", "name", "mode", 
@@ -48,6 +53,7 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
                                             "reset_value"]));
 
     let mut peripherals_vec: Vec<Peripheral> = Vec::new();
+    let mut manipsize = 8;
 
     for result in rdr.deserialize() {
         let record: Record = result?;
@@ -56,6 +62,9 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
         let descr = record.description;
         let name = record.name.replace("\r", &"");
         let mut mode = record.mode;
+        let _manip_1_bit = record.manip_1_bit;
+        let manip_8_bit = record.manip_8_bit;
+        let manip_16_bit = record.manip_16_bit;
 
         // Puts things to 0 if reset_value is not parsed correctly (Error kind: Empty)
         let reset_value: i64 = match record.reset_value.trim().parse::<i64>() {
@@ -78,6 +87,7 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
         addr.retain(|ch| !ch.is_whitespace());
         addr = String::from("0x") + &addr;
 
+        // SVD-friendly read/write format
         if mode == "R/W" {
             mode = "read-write".to_string();
         } else if mode == "R/O" || mode == "R" {
@@ -85,6 +95,12 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
         } else if mode == "W" {
             mode = "write-only".to_string();
         }
+
+        // TODO: How can we access this register?
+        //let manip_bits = ManipBits { false, false, false };
+        //if manip_1_bit == "×" { manipsize = 1; }
+        if manip_8_bit == "×" { manipsize = 8; }
+        if manip_16_bit == "×" { manipsize = 16; }
 
         // TODO: PeripheralIO and Register is a 1-1 relationship right now. Explore how to generalize and improve this.
         // For instance, MCU registers have a 1-many (MCU-many regs) relationship, accomodate this function for those too?
@@ -103,8 +119,8 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
         let registers = Registers { register: vec![register] };
 
         let addressblock = AddrBlock {
-            offset: "0x0".to_string(),
-            size: "0x2".to_string(), // TODO: Adjust to actual length of the register/mmio
+            offset: addr.to_string(),
+            size: manipsize.to_string(),
             usage: "registers".to_string()
         };
 
@@ -122,6 +138,9 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
 
         // Accumulate peripheral entries
         peripherals_vec.push(peripheral);
+
+        // Reset manip bits for next register
+        manipsize = 0;
     }
 
     // Wrap on struct before shipping
