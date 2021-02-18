@@ -119,9 +119,9 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
         let registers = Registers { register: vec![register] };
 
         let addressblock = AddrBlock {
-            offset: addr.to_string(),
+            offset: "0x0".to_string(), //addr.to_string(),
             size: manipsize.to_string(),
-            usage: "registers".to_string()
+            usage: "mmio".to_string()
         };
 
         let peripheral = Peripheral {
