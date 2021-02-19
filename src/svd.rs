@@ -36,15 +36,15 @@ pub struct Register {
     pub name: String,
     #[yaserde(child)]
     pub description: String,
-    #[yaserde(child)]
+    #[yaserde(child, rename = "addressOffset")]
     pub addressoffset: String,
     #[yaserde(child)]
     pub size: u8,
     #[yaserde(child)]
     pub access: String,
-    #[yaserde(child)]
+    #[yaserde(child, rename = "resetValue") ]
     pub resetvalue: i64,
-    #[yaserde(child)]
+    #[yaserde(child, rename = "resetMask")]
     pub resetmask: String,
     #[yaserde(child)]
     pub fields: Vec<Field>

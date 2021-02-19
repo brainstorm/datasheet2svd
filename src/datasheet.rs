@@ -99,8 +99,8 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
         // TODO: How can we access this register?
         //let manip_bits = ManipBits { false, false, false };
         //if manip_1_bit == "×" { manipsize = 1; }
-        if manip_8_bit == "×" { manipsize = 8; }
-        if manip_16_bit == "×" { manipsize = 16; }
+        if manip_8_bit == "×" { manipsize = 0x8; }
+        if manip_16_bit == "×" { manipsize = 0x10; }
 
         // TODO: PeripheralIO and Register is a 1-1 relationship right now. Explore how to generalize and improve this.
         // For instance, MCU registers have a 1-many (MCU-many regs) relationship, accomodate this function for those too?
@@ -108,7 +108,7 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
             name: name.clone(),
             description: descr.clone(),
             addressoffset: addr.clone(),
-            size: 8,
+            size: manipsize,
             access: mode.to_string(),
             resetvalue: reset_value,
             resetmask: "0xFFFFFFFF".to_string(),
