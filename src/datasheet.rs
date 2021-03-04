@@ -53,6 +53,7 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
                                             "reset_value"]));
 
     let mut peripherals_vec: Vec<Peripheral> = Vec::new();
+    let mut registers_vec: Vec<Register> = Vec::new();
     let mut manipsize = 8;
 
     for result in rdr.deserialize() {
@@ -96,14 +97,9 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
             mode = "write-only".to_string();
         }
 
-        // TODO: How can we access this register?
-        //let manip_bits = ManipBits { false, false, false };
-        //if manip_1_bit == "×" { manipsize = 1; }
         if manip_8_bit == "×" { manipsize = 0x8; }
         if manip_16_bit == "×" { manipsize = 0x10; }
 
-        // TODO: PeripheralIO and Register is a 1-1 relationship right now. Explore how to generalize and improve this.
-        // For instance, MCU registers have a 1-many (MCU-many regs) relationship, accomodate this function for those too?
         let register = Register {
             name: name.clone(),
             description: descr.clone(),
@@ -115,33 +111,33 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
             fields: vec![] // TODO: Not bothering about bitfields for now
         };
 
-        // TODO: Again, just 1-1 peripheral to register here for MMIO, must be refactored for 1-many
-        let registers = Registers { register: vec![register] };
-
-        let addressblock = AddrBlock {
-            offset: "0x0".to_string(), //addr.to_string(),
-            size: manipsize.to_string(),
-            usage: "mmio".to_string()
-        };
-
-        let peripheral = Peripheral {
-            name: name.to_string(),
-            version: "1.0".to_string(),
-            description: descr.to_string(),
-            groupname: "mmio".to_string(),
-            baseaddress: addr.to_string(),
-            addressblock: addressblock,
-            // size: 16,
-            // access: mode.to_string(),
-            registers: registers // TODO: Still 1-1 for now, for loop for 1-many on other datasheet tables
-        };
-
-        // Accumulate peripheral entries
-        peripherals_vec.push(peripheral);
+        registers_vec.push(register);
 
         // Reset manip bits for next register
         manipsize = 0;
     }
+
+    // TODO: This needs to be updated for each register but cannot be accumulated like registers_vec... how to fix then?
+    let addressblock = AddrBlock {
+        offset: "0x0".to_string(), //addr.to_string(),
+        size: manipsize.to_string(),
+        usage: "mmio".to_string()
+    };
+
+    let peripheral = Peripheral {
+        name: "MMIO".to_string(),
+        version: "1.0".to_string(),
+        description: "Non-io programmable peripherals (static)".to_string(),
+        groupname: "mmio".to_string(),
+        baseaddress: 0xFFFFF000.to_string(),
+        addressblock: addressblock,
+        // size: 16,
+        // access: mode.to_string(),
+        registers: registers // TODO: Still 1-1 for now, for loop for 1-many on other datasheet tables
+    };
+
+    // Accumulate peripheral entries
+    //peripherals_vec.push(peripheral);
 
     // Wrap on struct before shipping
     let peripherals = Peripherals {
