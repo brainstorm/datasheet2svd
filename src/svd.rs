@@ -89,7 +89,8 @@ pub struct Peripherals {
 #[derive(Default, PartialEq, Debug, YaSerialize)]
 #[yaserde(rename = "register")]
 pub struct Registers {
-    pub register: Vec<Register>,
+    #[yaserde(rename = "register")]
+    pub registers: Vec<Register>,
 }
 
 #[derive(Default, PartialEq, Debug, YaSerialize)]

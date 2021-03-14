@@ -1,3 +1,5 @@
+/// This class contains highly specific parsing for datasheet tables (in this case, for Renesas V850 IC)
+
 //use std::fs;
 use std::error::Error;
 use std::process::{ Command, Output };
@@ -129,15 +131,15 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
         version: "1.0".to_string(),
         description: "Non-io programmable peripherals (static)".to_string(),
         groupname: "mmio".to_string(),
-        baseaddress: 0xFFFFF000.to_string(),
+        baseaddress: "0xFFFFF000".to_string(),
         addressblock: addressblock,
         // size: 16,
         // access: mode.to_string(),
-        registers: registers // TODO: Still 1-1 for now, for loop for 1-many on other datasheet tables
+        registers: Registers { registers: registers_vec }
     };
 
     // Accumulate peripheral entries
-    //peripherals_vec.push(peripheral);
+    peripherals_vec.push(peripheral);
 
     // Wrap on struct before shipping
     let peripherals = Peripherals {
