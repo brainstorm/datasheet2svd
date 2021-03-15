@@ -10,7 +10,7 @@ use serde::{ Serialize, Deserialize };
 use crate::svd::{ AddrBlock, Register, Registers, Peripheral, Peripherals };
 
 #[derive(Debug, Serialize, Deserialize)]
-struct Record {
+struct PeripheralDatasheetColumn {
     address: String,
     description: String,
     name: String,
@@ -21,10 +21,17 @@ struct Record {
     reset_value: String,
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+struct InterruptDatasheetColumn {
+    address: String,
+    interrupt_exception_source: String,
+}
+
+
 /// Runs tabula PDF OCR or uses a precomputed CSV file (cached=true)
 /// tabula.jar:
 // wget https://github.com/tabulapdf/tabula-java/releases/download/v1.0.4/tabula-1.0.4-jar-with-dependencies.jar
-pub fn run_tabula(datasheet: &str, page_range: &str, cached: bool) -> Output {
+pub fn parse_datasheet(datasheet: &str, page_range: &str, cached: bool) -> Output {
     let output;
     if cached {
         output = Command::new("java")
@@ -33,7 +40,7 @@ pub fn run_tabula(datasheet: &str, page_range: &str, cached: bool) -> Output {
                     .expect("Fail");
     } else {
         output = Command::new("cat")
-                    .args(&["build/peripherals.csv"])
+                    .args(&[format!("build/{}.csv", page_range)])
                     .output()
                     .expect("Fail");
         // output = fs::read_to_string("build/peripherals.csv")
@@ -48,8 +55,76 @@ pub fn run_tabula(datasheet: &str, page_range: &str, cached: bool) -> Output {
     return output;
 }
 
-pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>> {
-    let mut rdr = Reader::from_reader(&*csv_data.stdout);
+pub fn clean_datasheet_sections(sections: Vec<std::process::Output>) -> Vec<Peripherals>{
+    let interrupts = clean_interrupts(sections[0].clone());
+    let peripherals = clean_peripherals(sections[1].clone());
+
+    return vec!(interrupts.unwrap(), peripherals.unwrap());
+}
+
+pub fn clean_interrupts(section: Output) -> Result<Peripherals, Box<dyn Error>> {
+    let mut rdr = Reader::from_reader(&*section.stdout);
+    //rdr.seek(pos: Position);
+    rdr.set_headers(StringRecord::from(vec!["address", "interrupt_exception_source"]));
+
+    let mut peripherals_vec: Vec<Peripheral> = Vec::new();
+    let mut registers_vec: Vec<Register> = Vec::new();
+
+    for result in rdr.deserialize() {
+        let record: InterruptDatasheetColumn = result?;
+
+        let mut addr = record.address;
+        let interrupt = record.interrupt_exception_source;
+
+        // Full address, i.e: FFFF EEEE to 0xFFFFEEEE
+        addr.retain(|ch| !ch.is_whitespace());
+        addr = String::from("0x") + &addr;
+
+        let register = Register {
+            name: interrupt.clone(),
+            description: interrupt.clone(),
+            addressoffset: addr.clone(),
+            size: 0x10,
+            access: "read-write".to_string(),
+            resetvalue: 0x0,
+            resetmask: "0xFFFFFFFF".to_string(),
+            fields: vec![] // TODO: Not bothering about bitfields for now
+        };
+
+        registers_vec.push(register);
+    }
+
+    let addressblock = AddrBlock {
+        offset: "0x0".to_string(), //addr.to_string(),
+        size: "0x00000470".to_string(),
+        usage: "nvic".to_string()
+    };
+
+    let peripheral = Peripheral {
+        name: "NVIC".to_string(),
+        version: "1.0".to_string(),
+        description: "Interrupt/Exception Table".to_string(),
+        groupname: "nvic".to_string(),
+        baseaddress: "0x00000000".to_string(),
+        addressblock: addressblock,
+        // size: 16,
+        // access: mode.to_string(),
+        registers: Registers { registers: registers_vec }
+    };
+
+    // Accumulate peripheral entries
+    peripherals_vec.push(peripheral);
+
+    // Wrap on struct before shipping
+    let peripherals = Peripherals {
+        peripheral: peripherals_vec
+    };
+
+    return Result::Ok(peripherals);
+}
+
+pub fn clean_peripherals(section: Output) -> Result<Peripherals, Box<dyn Error>> {
+    let mut rdr = Reader::from_reader(&*section.stdout);
     rdr.set_headers(StringRecord::from(vec!["address", "description", "name", "mode", 
                                             "manip_1_bit", "manip_8_bit", "manip_16_bit",
                                             "reset_value"]));
@@ -59,7 +134,7 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
     let mut manipsize = 8;
 
     for result in rdr.deserialize() {
-        let record: Record = result?;
+        let record: PeripheralDatasheetColumn = result?;
 
         let mut addr = record.address;
         let descr = record.description;
