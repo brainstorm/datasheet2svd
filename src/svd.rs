@@ -28,7 +28,7 @@ pub fn generate_svd(peripherals: Vec<Peripherals>) -> Result<String, String> {
         resetmask: "0xFFFFFFFF".to_string(),
         peripherals: peripherals
     };
-    
+
     // Return pretty printed XML
     let yaserde_cfg = yaserde::ser::Config{
         perform_indent: true,

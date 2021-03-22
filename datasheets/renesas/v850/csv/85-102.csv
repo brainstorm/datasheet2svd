@@ -1,0 +1,727 @@
+address, description, register, mode, manip_1_bit, manip_8_bit, manip_16_bit, initial_value
+18000000, CAN message event pointer 000, M_EVT000,R/W,,x,,Undefined
+18000001, CAN message event pointer 001, M_EVT001,R/W,,x,,Undefined
+18000002, CAN message event pointer 002, M_EVT002,R/W,,x,,Undefined
+18000003, CAN message event pointer 003, M_EVT003,R/W,,x,,Undefined
+18000004, CAN message data length register 00, M_DLC00,R/W,,x,,Undefined
+18000005, CAN message control register 00, M_CTRL00,R/W,,x,,Undefined
+18000006, CAN message time stamp register 00, M_TIME00,R/W,,,x,Undefined
+18000008, CAN message data register 000, M_DATA000,R/W,,x,x,Undefined
+18000009, CAN message data register 001, M_DATA001,R/W,,x,,Undefined
+1800000A, CAN message data register 002, M_DATA002,R/W,,x,,Undefined
+1800000B, CAN message data register 003, M_DATA003,R/W,,x,,Undefined
+1800000C, CAN message data register 004, M_DATA004,R/W,,x,,Undefined
+1800000D, CAN message data register 005, M_DATA005,R/W,,x,,Undefined
+1800000E, CAN message data register 006, M_DATA006,R/W,,x,,Undefined
+1800000F, CAN message data register 007, M_DATA007,R/W,,x,,Undefined
+18000010, CAN message ID register L00, M_IDL00,R/W,,,x,Undefined
+18000012, CAN message ID register H00, M_IDH00,R/W,,,x,Undefined
+18000014, CAN message configuration register 00, M_CONF00,R/W,,x,,Undefined
+18000015, CAN message status register 00, M_STAT00,R,,x,,Undefined
+18000016, CAN status set/cancel register 00, SC_STAT00,W,,,x,0000H
+18000020, CAN message event pointer 010, M_EVT010,R/W,,x,,Undefined
+18000021, CAN message event pointer 011, M_EVT011,R/W,,x,,Undefined
+18000022, CAN message event pointer 012, M_EVT012,R/W,,x,,Undefined
+18000023, CAN message event pointer 013, M_EVT013,R/W,,x,,Undefined
+18000024, CAN message data length register 01, M_DLC01,R/W,,x,,Undefined
+18000025, CAN message control register 01, M_CTRL01,R/W,,x,,Undefined
+18000026, CAN message time stamp register 01, M_TIME01,R/W,,,x,Undefined
+18000028, CAN message data register 010, M_DATA010,R/W,,x,,Undefined
+18000029, CAN message data register 011, M_DATA011,R/W,,x,,Undefined
+1800002A, CAN message data register 012, M_DATA012,R/W,,x,,Undefined
+1800002B, CAN message data register 013, M_DATA013,R/W,,x,,Undefined
+1800002C, CAN message data register 014, M_DATA014,R/W,,x,,Undefined
+1800002D, CAN message data register 015, M_DATA015,R/W,,x,,Undefined
+1800002E, CAN message data register 016, M_DATA016,R/W,,x,,Undefined
+1800002F, CAN message data register 017, M_DATA017,R/W,,x,,Undefined
+18000030, CAN message ID register L01, M_IDL01,R/W,,,x,Undefined
+18000032, CAN message ID register H01, M_IDH01,R/W,,,x,Undefined
+18000034, CAN message configuration register 01, M_CONF01,R/W,,x,,Undefined
+18000035, CAN message status register 01, M_STAT01,R,,x,,Undefined
+18000036, CAN status set/cancel register 01, SC_STAT01,W,,,x,0000H
+18000040, CAN message event pointer 020, M_EVT020,R/W,,x,,Undefined
+18000041, CAN message event pointer 021, M_EVT021,R/W,,x,,Undefined
+18000042, CAN message event pointer 022, M_EVT022,R/W,,x,,Undefined
+18000043, CAN message event pointer 023, M_EVT023,R/W,,x,,Undefined
+18000044, CAN message data length register 02,M_DLC02,R/W,,x,,Undefined
+18000045, CAN message control register 02,M_CTRL02,R/W,,x,,Undefined
+18000046, CAN message time stamp register 02,M_TIME02,R/W,,,x,Undefined
+18000048, CAN message data register 020,M_DATA020,R/W,,x,,Undefined
+18000049, CAN message data register 021,M_DATA021,R/W,,x,,Undefined
+1800004A, CAN message data register 022,M_DATA022,R/W,,x,,Undefined
+1800004B, CAN message data register 023,M_DATA023,R/W,,x,,Undefined
+1800004C, CAN message data register 024,M_DATA024,R/W,,x,,Undefined
+1800004D, CAN message data register 025,M_DATA025,R/W,,x,,Undefined
+1800004E, CAN message data register 026,M_DATA026,R/W,,x,,Undefined
+1800004F, CAN message data register 027,M_DATA027,R/W,,x,,Undefined
+18000050, CAN message ID register L02,M_IDL02,R/W,,,x,Undefined
+18000052, CAN message ID register H02,M_IDH02,R/W,,,x,Undefined
+18000054, CAN message configuration register 02,M_CONF02,R/W,,x,,Undefined
+18000055, CAN message status register 02,M_STAT02,R,,x,,Undefined
+18000056, CAN status set/cancel register 02,SC_STAT02,W,,,x,0000H
+18000060, CAN message event pointer 030,M_EVT030,R/W,,x,,Undefined
+18000061, CAN message event pointer 031,M_EVT031,R/W,,x,,Undefined
+18000062, CAN message event pointer 032,M_EVT032,R/W,,x,,Undefined
+18000063, CAN message event pointer 033,M_EVT033,R/W,,x,,Undefined
+18000064, CAN message data length register 03,M_DLC03,R/W,,x,,Undefined
+18000065, CAN message control register 03,M_CTRL03,R/W,,x,,Undefined
+18000066, CAN message time stamp register 03,M_TIME03,R/W,,,x,Undefined
+18000068, CAN message data register 030,M_DATA030,R/W,,x,,Undefined
+18000069, CAN message data register 031,M_DATA031,R/W,,x,,Undefined
+1800006A, CAN message data register 032,M_DATA032,R/W,,x,,Undefined
+1800006B, CAN message data register 033,M_DATA033,R/W,,x,,Undefined
+1800006C, CAN message data register 034,M_DATA034,R/W,,x,,Undefined
+1800006D, CAN message data register 035,M_DATA035,R/W,,x,,Undefined
+1800006E, CAN message data register 036,M_DATA036,R/W,,x,,Undefined
+1800006F, CAN message data register 037,M_DATA037,R/W,,x,,Undefined
+18000070, CAN message ID register L03,M_IDL03,R/W,,,x,Undefined
+18000072, CAN message ID register H03,M_IDH03,R/W,,,x,Undefined
+18000074, CAN message configuration register 03,M_CONF03,R/W,,x,,Undefined
+18000075, CAN message status register 03,M_STAT03,R,,x,,Undefined
+18000076, CAN status set/cancel register 03,SC_STAT03,W,,,x,0000H
+18000080, CAN message event pointer 040,M_EVT040,R/W,,x,,Undefined
+18000081, CAN message event pointer 041,M_EVT041,R/W,,x,,Undefined
+18000082, CAN message event pointer 042,M_EVT042,R/W,,x,,Undefined
+18000083, CAN message event pointer 043,M_EVT043,R/W,,x,,Undefined
+18000084, CAN message data length register 04,M_DLC04,R/W,,x,,Undefined
+18000085, CAN message control register 04,M_CTRL04,R/W,,x,,Undefined
+18000086, CAN message time stamp register 04,M_TIME04,R/W,,,x,Undefined
+18000088, CAN message data register 040,M_DATA040,R/W,,x,,Undefined
+18000089, CAN message data register 041,M_DATA041,R/W,,x,,Undefined
+1800008A, CAN message data register 042,M_DATA042,R/W,,x,,Undefined
+1800008B, CAN message data register 043,M_DATA043,R/W,,x,,Undefined
+1800008C, CAN message data register 044,M_DATA044,R/W,,x,,Undefined
+1800008D, CAN message data register 045,M_DATA045,R/W,,x,,Undefined
+1800008E, CAN message data register 046,M_DATA046,R/W,,x,,Undefined
+1800008F, CAN message data register 047,M_DATA047,R/W,,x,,Undefined
+18000090, CAN message ID register L04,M_IDL04,R/W,,,x,Undefined
+18000092, CAN message ID register H04,M_IDH04,R/W,,,x,Undefined
+18000094, CAN message configuration register 04,M_CONF04,R/W,,x,,Undefined
+18000095, CAN message status register 04,M_STAT04,R,,x,,Undefined
+18000096, CAN status set/cancel register 04,M_STAT04,W,,,x,0000H
+180000A0, CAN message event pointer 050,M_EVT050,R/W,,x,,Undefined
+180000A1, CAN message event pointer 051,M_EVT051,R/W,,x,,Undefined
+180000A2, CAN message event pointer 052,M_EVT052,R/W,,x,,Undefined
+180000A3, CAN message event pointer 053,M_EVT053,R/W,,x,,Undefined
+180000A4, CAN message data length register 05,M_DLC05,R/W,,x,,Undefined
+180000A5, CAN message control register 05,M_DTRL05,R/W,,x,,Undefined
+180000A6, CAN message time stamp register 05,M_TIME05,R/W,,,x,Undefined
+180000A8, CAN message data register 050,M_DATA050,R/W,,x,,Undefined
+180000A9, CAN message data register 051,M_DATA051,R/W,,x,,Undefined
+180000AA, CAN message data register 052,M_DATA052,R/W,,x,,Undefined
+180000AB, CAN message data register 053,M_DATA053,R/W,,x,,Undefined
+180000AC, CAN message data register 054,M_DATA054,R/W,,x,,Undefined
+180000AD, CAN message data register 055,M_DATA055,R/W,,x,,Undefined
+180000AE, CAN message data register 056,M_DATA056,R/W,,x,,Undefined
+180000AF, CAN message data register 057,M_DATA057,R/W,,x,,Undefined
+180000B0, CAN message ID register L05,M_IDL05,R/W,,,x,Undefined
+180000B2, CAN message ID register H05,M_IDH05,R/W,,,x,Undefined
+180000B4, CAN message configuration register 05,M_CONF05,R/W,,x,,Undefined
+180000B5, CAN message status register 05,M_STAT05,R,,x,,Undefined
+180000B6, CAN status set/cancel register 05,SC_STAT05,W,,,x,0000H
+180000C0, CAN message event pointer 060,M_EVT060,R/W,,x,,Undefined
+180000C1, CAN message event pointer 061,M_EVT061,R/W,,x,,Undefined
+180000C2, CAN message event pointer 062,M_EVT062,R/W,,x,,Undefined
+180000C3, CAN message event pointer 063,M_EVT063,R/W,,x,,Undefined
+180000C4, CAN message data length register 06,M_DLC06,R/W,,x,,Undefined
+180000C5, CAN message control register 06,M_DTRL06,R/W,,x,,Undefined
+180000C6, CAN message time stamp register 06,M_TIME06,R/W,,,x,Undefined
+180000C8, CAN message data register 060,M_DATA060,R/W,,x,,Undefined
+180000C9, CAN message data register 061,M_DATA061,R/W,,x,,Undefined
+180000CA, CAN message data register 062,M_DATA062,R/W,,x,,Undefined
+180000CB, CAN message data register 063,M_DATA063,R/W,,x,,Undefined
+180000CC, CAN message data register 064,M_DATA064,R/W,,x,,Undefined
+180000CD, CAN message data register 065,M_DATA065,R/W,,x,,Undefined
+180000CE, CAN message data register 066,M_DATA066,R/W,,x,,Undefined
+180000CF, CAN message data register 067,M_DATA067,R/W,,x,,Undefined
+180000D0, CAN message ID register L06,M_IDL06,R/W,,,x,Undefined
+180000D2, CAN message ID register H06,M_IDH06,R/W,,,x,Undefined
+180000D4, CAN message configuration register 06,M_CONF06,R/W,,x,,Undefined
+180000D5, CAN message status register 06,M_STAT06,R,,x,,Undefined
+180000D6, CAN status set/cancel register 06,SC_STAT06,W,,,x,0000H
+180000E0, CAN message event pointer 070,M_EVT070,R/W,,x,,Undefined
+180000E1, CAN message event pointer 071,M_EVT071,R/W,,x,,Undefined
+180000E2, CAN message event pointer 072,M_EVT072,R/W,,x,,Undefined
+180000E3, CAN message event pointer 073,M_EVT073,R/W,,x,,Undefined
+180000E4, CAN message data length register 07,M_DLC07,R/W,,x,,Undefined
+180000E5, CAN message control register 07,M_CTRL07,R/W,,x,,Undefined
+180000E6, CAN message time stamp register 07,M_TIME07,R/W,,,x,Undefined
+180000E8, CAN message data register 070,M_DATA070,R/W,,x,,Undefined
+180000E9, CAN message data register 071,M_DATA071,R/W,,x,,Undefined
+180000EA, CAN message data register 072,M_DATA072,R/W,,x,,Undefined
+180000EB, CAN message data register 073,M_DATA073,R/W,,x,,Undefined
+180000EC, CAN message data register 074,M_DATA074,R/W,,x,,Undefined
+180000ED, CAN message data register 075,M_DATA075,R/W,,x,,Undefined
+180000EE, CAN message data register 076,M_DATA076,R/W,,x,,Undefined
+180000EF, CAN message data register 077,M_DATA077,R/W,,x,,Undefined
+180000F0, CAN message ID register L07,M_IDL07,R/W,,,x,Undefined
+180000F2, CAN message ID register H07,M_IDH07,R/W,,,x,Undefined
+180000F4, CAN message configuration register 07,M_CONF07,R/W,,x,,Undefined
+180000F5, CAN message status register 07,M_STAT07,R,,x,,Undefined
+180000F6, CAN status set/cancel register 07,SC_STAT07,W,,,x,0000H
+18000100, CAN message event pointer 080,M_EVT080,R/W,,x,,Undefined
+18000101, CAN message event pointer 081,M_EVT081,R/W,,x,,Undefined
+18000102, CAN message event pointer 082,M_EVT082,R/W,,x,,Undefined
+18000103, CAN message event pointer 083,M_EVT083,R/W,,x,,Undefined
+18000104, CAN message data length register 08,M_DLC08,R/W,,x,,Undefined
+18000105, CAN message control register 08,M_CTRL08,R/W,,x,,Undefined
+18000106, CAN message time stamp register 08,M_TIME08,R/W,,,x,Undefined
+18000108, CAN message data register 080,M_DATA080,R/W,,x,,Undefined
+18000109, CAN message data register 081,M_DATA081,R/W,,x,,Undefined
+1800010A, CAN message data register 082,M_DATA082,R/W,,x,,Undefined
+1800010B, CAN message data register 083,M_DATA083,R/W,,x,,Undefined
+1800010C, CAN message data register 084,M_DATA084,R/W,,x,,Undefined
+1800010D, CAN message data register 085,M_DATA085,R/W,,x,,Undefined
+1800010E, CAN message data register 086,M_DATA086,R/W,,x,,Undefined
+1800010F, CAN message data register 087,M_DATA087,R/W,,x,,Undefined
+18000110, CAN message ID register L08,M_IDL08,R/W,,,x,Undefined
+18000112, CAN message ID register H08,M_IDH08,R/W,,,x,Undefined
+18000114, CAN message configuration register 08,M_CONF08,R/W,,x,,Undefined
+18000115, CAN message status register 08,M_STAT08,R,,x,,Undefined
+18000116, CAN status set/cancel register 08,SC_STAT08,W,,,x,0000H
+18000120, CAN message event pointer 090,M_EVT090,R/W,,x,,Undefined
+18000121, CAN message event pointer 091,M_EVT091,R/W,,x,,Undefined
+18000122, CAN message event pointer 092,M_EVT092,R/W,,x,,Undefined
+18000123, CAN message event pointer 093,M_EVT093,R/W,,x,,Undefined
+18000124, CAN message data length register 09,M_DLC09,R/W,,x,,Undefined
+18000125, CAN message control register 09,M_CTRL09,R/W,,x,,Undefined
+18000126, CAN message time stamp register 09,M_TIME09,R/W,,,x,Undefined
+18000128, CAN message data register 090,M_DATA090,R/W,,x,,Undefined
+18000129, CAN message data register 091,M_DATA091,R/W,,x,,Undefined
+1800012A, CAN message data register 092,M_DATA092,R/W,,x,,Undefined
+1800012B, CAN message data register 093,M_DATA093,R/W,,x,,Undefined
+1800012C, CAN message data register 094,M_DATA094,R/W,,x,,Undefined
+1800012D, CAN message data register 095,M_DATA095,R/W,,x,,Undefined
+1800012E, CAN message data register 096,M_DATA096,R/W,,x,,Undefined
+1800012F, CAN message data register 097,M_DATA097,R/W,,x,,Undefined
+18000130, CAN message ID register L09,M_IDL09,R/W,,,x,Undefined
+18000132, CAN message ID register H09,M_IDH09,R/W,,,x,Undefined
+18000134, CAN message configuration register 09,M_CONF09,R/W,,x,,Undefined
+18000135, CAN message status register 09,M_STAT09,R,,x,,Undefined
+18000136, CAN status set/cancel register 09,SC_STAT09,W,,,x,0000H
+18000140, CAN message event pointer 100,M_EVT100,R/W,,x,,Undefined
+18000141, CAN message event pointer 101,M_EVT101,R/W,,x,,Undefined
+18000142, CAN message event pointer 102,M_EVT102,R/W,,x,,Undefined
+18000143, CAN message event pointer103,M_EVT103,R/W,,x,,Undefined
+18000144, CAN message data length register 10,M_DLC10,R/W,,x,,Undefined
+18000145, CAN message control register 10,M_CTRL10,R/W,,x,,Undefined
+18000146, CAN message time stamp register 10,M_TIME10,R/W,,,x,Undefined
+18000148, CAN message data register 100,M_DATA100,R/W,,x,,Undefined
+18000149, CAN message data register 101,M_DATA101,R/W,,x,,Undefined
+1800014A, CAN message data register 102,M_DATA102,R/W,,x,,Undefined
+1800014B, CAN message data register 103,M_DATA103,R/W,,x,,Undefined
+1800014C, CAN message data register 104,M_DATA104,R/W,,x,,Undefined
+1800014D, CAN message data register 105,M_DATA105,R/W,,x,,Undefined
+1800014E, CAN message data register 106,M_DATA106,R/W,,x,,Undefined
+1800014F, CAN message data register 107,M_DATA107,R/W,,x,,Undefined
+18000150, CAN message ID register L10,M_IDL10,R/W,,,x,Undefined
+18000152, CAN message ID register H10,M_IDH10,R/W,,,x,Undefined
+18000154, CAN message configuration register 10,M_CONF10,R/W,,x,,Undefined
+18000155, CAN message status register 10,M_STAT10,R,,x,,Undefined
+18000156, CAN status set/cancel register 10,SC_STAT10,W,,,x,0000H
+18000160, CAN message event pointer 110,M_EVT110,R/W,,x,,Undefined
+18000161, CAN message event pointer111,M_EVT111,R/W,,x,,Undefined
+18000162, CAN message event pointer 112,M_EVT112,R/W,,x,,Undefined
+18000163, CAN message event pointer 113,M_EVT113,R/W,,x,,Undefined
+18000164, CAN message data length register 11,M_DLC11,R/W,,x,,Undefined
+18000165, CAN message control register 11,M_CTRL11,R/W,,x,,Undefined
+18000166, CAN message time stamp register 11,M_TIME11,R/W,,,x,Undefined
+18000168, CAN message data register 110,M_DATA110,R/W,,x,,Undefined
+18000169, CAN message data register 111,M_DATA111,R/W,,x,,Undefined
+1800016A, CAN message data register 112,M_DATA112,R/W,,x,,Undefined
+1800016B, CAN message data register 113,M_DATA113,R/W,,x,,Undefined
+1800016C, CAN message data register 114,M_DATA114,R/W,,x,,Undefined
+1800016D, CAN message data register 115,M_DATA115,R/W,,x,,Undefined
+1800016E, CAN message data register 116,M_DATA116,R/W,,x,,Undefined
+1800016F, CAN message data register 117,M_DATA117,R/W,,x,,Undefined
+18000170, CAN message ID register L11,M_IDL11,R/W,,,x,Undefined
+18000172, CAN message ID register H11,M_IDH11,R/W,,,x,Undefined
+18000174, CAN message configuration register 11,M_CONF11,R/W,,x,,Undefined
+18000175, CAN message status register 11,M_STAT11,R,,x,,Undefined
+18000176, CAN status set/cancel register 11,SC_STAT11,W,,,x,0000H
+18000180, CAN message event pointer 120,M_EVT120,R/W,,x,,Undefined
+18000181, CAN message event pointer 121,M_EVT121,R/W,,x,,Undefined
+18000182, CAN message event pointer 122,M_EVT122,R/W,,x,,Undefined
+18000183, CAN message event pointer 123,M_EVT123,R/W,,x,,Undefined
+18000184, CAN message data length register 12,M_DLC12,R/W,,x,,Undefined
+18000185, CAN message control register 12,M_CTRL12,R/W,,x,,Undefined
+18000186, CAN message time stamp register 12,M_TIME12,R/W,,,x,Undefined
+18000188, CAN message data register 120,M_DATA120,R/W,,x,,Undefined
+18000189, CAN message data register 121,M_DATA121,R/W,,x,,Undefined
+1800018A, CAN message data register 122,M_DATA122,R/W,,x,,Undefined
+1800018B, CAN message data register 123,M_DATA123,R/W,,x,,Undefined
+1800018C, CAN message data register 124,M_DATA124,R/W,,x,,Undefined
+1800018D, CAN message data register 125,M_DATA125,R/W,,x,,Undefined
+1800018E, CAN message data register 126,M_DATA126,R/W,,x,,Undefined
+1800018F, CAN message data register 127,M_DATA127,R/W,,x,,Undefined
+18000190, CAN message ID register L12,M_IDL12,R/W,,,x,Undefined
+18000192, CAN message ID register H12,M_IDH12,R/W,,,x,Undefined
+18000194, CAN message configuration register 12,M_CONF12,R/W,,x,,Undefined
+18000195, CAN message status register 12,M_STAT12,R,,x,,Undefined
+18000196, CAN status set/cancel register 12,SC_STAT12,W,,,x,0000H
+180001A0, CAN message event pointer 130,M_EVT130,R/W,,x,,Undefined
+180001A1, CAN message event pointer 131,M_EVT131,R/W,,x,,Undefined
+180001A2, CAN message event pointer 132,M_EVT132,R/W,,x,,Undefined
+180001A3, CAN message event pointer 133,M_EVT133,R/W,,x,,Undefined
+180001A4, CAN message data length register 13,M_DLC13,R/W,,x,,Undefined
+180001A5, CAN message control register 13,M_CTRL13,R/W,,x,,Undefined
+180001A6, CAN message time stamp register 13,M_TIME13,R/W,,,x,Undefined
+180001A8, CAN message data register 130,M_DATA130,R/W,,x,,Undefined
+180001A9, CAN message data register 131,M_DATA131,R/W,,x,,Undefined
+180001AA, CAN message data register 132,M_DATA132,R/W,,x,,Undefined
+180001AB, CAN message data register 133,M_DATA133,R/W,,x,,Undefined
+180001AC, CAN message data register 134,M_DATA134,R/W,,x,,Undefined
+180001AD, CAN message data register 135,M_DATA135,R/W,,x,,Undefined
+180001AE, CAN message data register 136,M_DATA136,R/W,,x,,Undefined
+180001AF, CAN message data register 137,M_DATA137,R/W,,x,,Undefined
+180001B0, CAN message ID register L13,M_IDL13,R/W,,,x,Undefined
+180001B2, CAN message ID register H13,M_IDH13,R/W,,,x,Undefined
+180001B4, CAN message configuration register 13,M_CONF13,R/W,,x,,Undefined
+180001B5, CAN message status register 13,M_STAT13,R,,x,,Undefined
+180001B6, CAN status set/cancel register 13,SC_STAT13,W,,,x,0000H
+180001C0, CAN message event pointer 140,M_EVT140,R/W,,x,,Undefined
+180001C1, CAN message event pointer 141,M_EVT141,R/W,,x,,Undefined
+180001C2, CAN message event pointer 142,M_EVT142,R/W,,x,,Undefined
+180001C3, CAN message event pointer 143,M_EVT143,R/W,,x,,Undefined
+180001C4, CAN message data length register 14,M_DLC14,R/W,,x,,Undefined
+180001C5, CAN message control register 14,M_CTRL14,R/W,,x,,Undefined
+180001C6, CAN message time stamp register 14,M_TIME14,R/W,,,x,Undefined
+180001C8, CAN message data register 140,M_DATA140,R/W,,x,,Undefined
+180001C9, CAN message data register 141,M_DATA141,R/W,,x,,Undefined
+180001CA, CAN message data register 142,M_DATA142,R/W,,x,,Undefined
+180001CB, CAN message data register 143,M_DATA143,R/W,,x,,Undefined
+180001CC, CAN message data register 144,M_DATA144,R/W,,x,,Undefined
+180001CD, CAN message data register 145,M_DATA145,R/W,,x,,Undefined
+180001CE, CAN message data register 146,M_DATA146,R/W,,x,,Undefined
+180001CF, CAN message data register 147,M_DATA147,R/W,,x,,Undefined
+180001D0, CAN message ID register L14,M_IDL14,R/W,,,x,Undefined
+180001D2, CAN message ID register H14,M_IDH14,R/W,,,x,Undefined
+180001D4, CAN message configuration register 14,M_CONF14,R/W,,x,,Undefined
+180001D5, CAN message status register 14,M_STAT14,R,,x,,Undefined
+180001D6, CAN status set/cancel register 14,SC_STAT14,W,,,x,0000H
+180001E0, CAN message event pointer 150,M_EVT150,R/W,,x,,Undefined
+180001E1, CAN message event pointer 151,M_EVT151,R/W,,x,,Undefined
+180001E2, CAN message event pointer 152,M_EVT152,R/W,,x,,Undefined
+180001E3, CAN message event pointer 153,M_EVT153,R/W,,x,,Undefined
+180001E4, CAN message data length register 15,M_DLC15,R/W,,x,,Undefined
+180001E5, CAN message control register 15,M_CTRL15,R/W,,x,,Undefined
+180001E6, CAN message time stamp register 15,M_TIME15,R/W,,,x,Undefined
+180001E8, CAN message data register 150,M_DATA150,R/W,,x,,Undefined
+180001E9, CAN message data register 151,M_DATA151,R/W,,x,,Undefined
+180001EA, CAN message data register 152,M_DATA152,R/W,,x,,Undefined
+180001EB, CAN message data register 153,M_DATA153,R/W,,x,,Undefined
+180001EC, CAN message data register 154,M_DATA154,R/W,,x,,Undefined
+180001ED, CAN message data register 155,M_DATA155,R/W,,x,,Undefined
+180001EE, CAN message data register 156,M_DATA156,R/W,,x,,Undefined
+180001EF, CAN message data register 157,M_DATA157,R/W,,x,,Undefined
+180001F0, CAN message ID register L15,M_IDL15,R/W,,,x,Undefined
+180001F2, CAN message ID register H15,M_IDH15,R/W,,,x,Undefined
+180001F4, CAN message configuration register 15,M_CONF15,R/W,,x,,Undefined
+180001F5, CAN message status register 15,M_STAT15,R,,x,,Undefined
+180001F6, CAN status set/cancel register 15,SC_STAT15,W,,,x,0000H
+18000200, CAN message event pointer 160,M_EVT160,R/W,,x,,Undefined
+18000201, CAN message event pointer 161,M_EVT161,R/W,,x,,Undefined
+18000202, CAN message event pointer 162,M_EVT162,R/W,,x,,Undefined
+18000203, CAN message event pointer 163,M_EVT163,R/W,,x,,Undefined
+18000204, CAN message data length register 16,M_DLC16,R/W,,x,,Undefined
+18000205, CAN message control register 16,M_CTRL16,R/W,,x,,Undefined
+18000206, CAN message time stamp register 16,M_TIME16,R/W,,,x,Undefined
+18000208, CAN message data register 160,M_DATA160,R/W,,x,,Undefined
+18000209, CAN message data register 161,M_DATA161,R/W,,x,,Undefined
+1800020A, CAN message data register 162,M_DATA162,R/W,,x,,Undefined
+1800020B, CAN message data register 163,M_DATA163,R/W,,x,,Undefined
+1800020C, CAN message data register 164,M_DATA164,R/W,,x,,Undefined
+1800020D, CAN message data register 165,M_DATA165,R/W,,x,,Undefined
+1800020E, CAN message data register 166,M_DATA166,R/W,,x,,Undefined
+1800020F, CAN message data register 167,M_DATA167,R/W,,x,,Undefined
+18000210, CAN message ID register L16,M_IDL16,R/W,,,x,Undefined
+18000212, CAN message ID register H16,M_IDH16,R/W,,,x,Undefined
+18000214, CAN message configuration register 16,M_CONF16,R/W,,x,,Undefined
+18000215, CAN message status register 16,M_STAT16,R,,x,,Undefined
+18000216, CAN status set/cancel register 16,SC_STAT16,W,,,x,0000H
+18000220, CAN message event pointer 170,M_EVT170,R/W,,x,,Undefined
+18000221, CAN message event pointer 171,M_EVT171,R/W,,x,,Undefined
+18000222, CAN message event pointer 172,M_EVT172,R/W,,x,,Undefined
+18000223, CAN message event pointer 173,M_EVT173,R/W,,x,,Undefined
+18000224, CAN message data length register 17,M_DLC17,R/W,,x,,Undefined
+18000225, CAN message control register 17,M_CTRL17,R/W,,x,,Undefined
+18000226, CAN message time stamp register 17,M_TIME17,R/W,,,x,Undefined
+18000228, CAN message data register 170,M_DATA170,R/W,,x,,Undefined
+18000229, CAN message data register 171,M_DATA171,R/W,,x,,Undefined
+1800022A, CAN message data register 172,M_DATA172,R/W,,x,,Undefined
+1800022B, CAN message data register 173,M_DATA173,R/W,,x,,Undefined
+1800022C, CAN message data register 174,M_DATA174,R/W,,x,,Undefined
+1800022D, CAN message data register 175,M_DATA175,R/W,,x,,Undefined
+1800022E, CAN message data register 176,M_DATA176,R/W,,x,,Undefined
+1800022F, CAN message data register 177,M_DATA177,R/W,,x,,Undefined
+18000230, CAN message ID register L17,M_IDL17,R/W,,,x,Undefined
+18000232, CAN message ID register H17,M_IDH17,R/W,,,x,Undefined
+18000234, CAN message configuration register 17,M_CONF17,R/W,,x,,Undefined
+18000235, CAN message status register 17,M_STAT17,R,,x,,Undefined
+18000236, CAN status set/cancel register 17,SC_STAT17,W,,,x,0000H
+18000240, CAN message event pointer 180,M_EVT180,R/W,,x,,Undefined
+18000241, CAN message event pointer 181,M_EVT181,R/W,,x,,Undefined
+18000242, CAN message event pointer 182,M_EVT182,R/W,,x,,Undefined
+18000243, CAN message event pointer 183,M_EVT183,R/W,,x,,Undefined
+18000244, CAN message data length register 18,M_DLC18,R/W,,x,,Undefined
+18000245, CAN message control register 18,M_CTRL18,R/W,,x,,Undefined
+18000246, CAN message time stamp register 18,M_TIME18,R/W,,,x,Undefined
+18000248, CAN message data register 180,M_DATA180,R/W,,x,,Undefined
+18000249, CAN message data register 181,M_DATA181,R/W,,x,,Undefined
+1800024A, CAN message data register 182,M_DATA182,R/W,,x,,Undefined
+1800024B, CAN message data register 183,M_DATA183,R/W,,x,,Undefined
+1800024C, CAN message data register 184,M_DATA184,R/W,,x,,Undefined
+1800024D, CAN message data register 185,M_DATA185,R/W,,x,,Undefined
+1800024E, CAN message data register 186,M_DATA186,R/W,,x,,Undefined
+1800024F, CAN message data register 187,M_DATA187,R/W,,x,,Undefined
+18000250, CAN message ID register L18,M_IDL18,R/W,,,x,Undefined
+18000252, CAN message ID register H18,M_IDH18,R/W,,,x,Undefined
+18000254, CAN message configuration register 18,M_CONF18,R/W,,x,,Undefined
+18000255, CAN message status register 18,M_STAT18,R,,x,,Undefined
+18000256, CAN status set/cancel register 18,SC_STAT18,W,,,x,0000H
+18000260, CAN message event pointer 260,M_EVT260,R/W,,x,,Undefined
+18000261, CAN message event pointer 261,M_EVT261,R/W,,x,,Undefined
+18000262, CAN message event pointer 262,M_EVT262,R/W,,x,,Undefined
+18000263, CAN message event pointer 263,M_EVT263,R/W,,x,,Undefined
+18000264, CAN message data length register 19,M_DLC19,R/W,,x,,Undefined
+18000265, CAN message control register 19,M_CTRL19,R/W,,x,,Undefined
+18000266, CAN message time stamp register 19,M_TIME19,R/W,,,x,Undefined
+18000268, CAN message data register 190,M_DATA190,R/W,,x,,Undefined
+18000269, CAN message data register 191,M_DATA191,R/W,,x,,Undefined
+1800026A, CAN message data register 192,M_DATA192,R/W,,x,,Undefined
+1800026B, CAN message data register 193,M_DATA193,R/W,,x,,Undefined
+1800026C, CAN message data register 194,M_DATA194,R/W,,x,,Undefined
+1800026D, CAN message data register 195,M_DATA195,R/W,,x,,Undefined
+1800026E, CAN message data register 196,M_DATA196,R/W,,x,,Undefined
+1800026F, CAN message data register 197,M_DATA197,R/W,,x,,Undefined
+18000270, CAN message ID register L19,M_IDL19,R/W,,,x,Undefined
+18000272, CAN message ID register H19,M_IDH19,R/W,,,x,Undefined
+18000274, CAN message configuration register 19,M_CONF19,R/W,,x,,Undefined
+18000275, CAN message status register 19,M_STAT19,R,,x,,Undefined
+18000276, CAN status set/cancel register 19,SC_STAT19,W,,,x,0000H
+18000280, CAN message event pointer 200,M_EVT200,R/W,,x,,Undefined
+18000281, CAN message event pointer 201,M_EVT201,R/W,,x,,Undefined
+18000282, CAN message event pointer 202,M_EVT202,R/W,,x,,Undefined
+18000283, CAN message event pointer 203,M_EVT203,R/W,,x,,Undefined
+18000284, CAN message data length register 20,M_DLC20,R/W,,x,,Undefined
+18000285, CAN message control register 20,M_CTRL20,R/W,,x,,Undefined
+18000286, CAN message time stamp register 20,M_TIME20,R/W,,,x,Undefined
+18000288, CAN message data register 200,M_DATA200,R/W,,x,,Undefined
+18000289, CAN message data register 201,M_DATA201,R/W,,x,,Undefined
+1800028A, CAN message data register 202,M_DATA202,R/W,,x,,Undefined
+1800028B, CAN message data register 203,M_DATA203,R/W,,x,,Undefined
+1800028C, CAN message data register 204,M_DATA204,R/W,,x,,Undefined
+1800028D, CAN message data register 205,M_DATA205,R/W,,x,,Undefined
+1800028E, CAN message data register 206,M_DATA206,R/W,,x,,Undefined
+1800028F, CAN message data register 207,M_DATA207,R/W,,x,,Undefined
+18000290, CAN message ID register L20,M_IDL20,R/W,,,x,Undefined
+18000292, CAN message ID register H20,M_IDH20,R/W,,,x,Undefined
+18000294, CAN message configuration register 20,M_CONF20,R/W,,x,,Undefined
+18000295, CAN message status register 20,M_STAT20,R,,x,,Undefined
+18000296, CAN status set/cancel register 20,SC_STAT20,W,,,x,0000H
+180002A0, CAN message event pointer 210,M_EVT210,R/W,,x,,Undefined
+180002A1, CAN message event pointer 211,M_EVT211,R/W,,x,,Undefined
+1800022A, CAN message event pointer 212,M_EVT212,R/W,,x,,Undefined
+180002A3, CAN message event pointer 213,M_EVT213,R/W,,x,,Undefined
+180002A4, CAN message data length register 21,M_DLC21,R/W,,x,,Undefined
+180002A5, CAN message control register 21,M_CTRL21,R/W,,x,,Undefined
+180002A6, CAN message time stamp register 21,M_TIME21,R/W,,,x,Undefined
+180002A8, CAN message data register 210,M_DATA210,R/W,,x,,Undefined
+180002A9, CAN message data register 211,M_DATA211,R/W,,x,,Undefined
+180002AA, CAN message data register 212,M_DATA212,R/W,,x,,Undefined
+180002AB, CAN message data register 213,M_DATA213,R/W,,x,,Undefined
+180002AC, CAN message data register 214,M_DATA214,R/W,,x,,Undefined
+180002AD, CAN message data register 215,M_DATA215,R/W,,x,,Undefined
+180002AE, CAN message data register 216,M_DATA216,R/W,,x,,Undefined
+180002AF, CAN message data register 217,M_DATA217,R/W,,x,,Undefined
+180002B0, CAN message ID register L21,M_IDL21,R/W,,,x,Undefined
+180002B2, CAN message ID register H21,M_IDH21,R/W,,,x,Undefined
+180002B4, CAN message configuration register 21,M_CONF21,R/W,,x,,Undefined
+180002B5, CAN message status register 21,M_STAT21,R,,x,,Undefined
+180002B6, CAN status set/cancel register 21,SC_STAT21,W,,,x,0000H
+180002C0, CAN message event pointer 220,M_EVT220,R/W,,x,,Undefined
+180002C1, CAN message event pointer 221,M_EVT221,R/W,,x,,Undefined
+180002C2, CAN message event pointer 222,M_EVT222,R/W,,x,,Undefined
+180002C3, CAN message event pointer 223,M_EVT223,R/W,,x,,Undefined
+180002C4, CAN message data length register 22,M_DLC22,R/W,,x,,Undefined
+180002C5, CAN message control register 22,M_CTRL22,R/W,,x,,Undefined
+180002C6, CAN message time stamp register 22,M_TIME22,R/W,,,x,Undefined
+180002C8, CAN message data register 220,M_DATA220,R/W,,x,,Undefined
+180002C9, CAN message data register 221,M_DATA221,R/W,,x,,Undefined
+180002CA, CAN message data register 222,M_DATA222,R/W,,x,,Undefined
+180002CB, CAN message data register 223,M_DATA223,R/W,,x,,Undefined
+180002CC, CAN message data register 224,M_DATA224,R/W,,x,,Undefined
+180002CD, CAN message data register 225,M_DATA225,R/W,,x,,Undefined
+180002CE, CAN message data register 226,M_DATA226,R/W,,x,,Undefined
+180002CF, CAN message data register 227,M_DATA227,R/W,,x,,Undefined
+180002D0, CAN message ID register L22,M_IDL22,R/W,,,x,Undefined
+180002D2, CAN message ID register H22,M_IDH22,R/W,,,x,Undefined
+180002D4, CAN message configuration register 22,M_CONF22,R/W,,x,,Undefined
+180002D5, CAN message status register 22,M_STAT22,R,,x,,Undefined
+180002D6, CAN status set/cancel register 22,SC_STAT22,W,,,x,0000H
+180002E0, CAN message event pointer 230,M_EVT230,R/W,,x,,Undefined
+180002E1, CAN message event pointer 231,M_EVT231,R/W,,x,,Undefined
+180002E2, CAN message event pointer 232,M_EVT232,R/W,,x,,Undefined
+180002E3, CAN message event pointer 233,M_EVT233,R/W,,x,,Undefined
+180002E4, CAN message data length register 23,M_DLC23,R/W,,x,,Undefined
+180002E5, CAN message control register 23,M_CTRL23,R/W,,x,,Undefined
+180002E6, CAN message time stamp register 23,M_TIME23,R/W,,,x,Undefined
+180002E8, CAN message data register 230,M_DATA230,R/W,,x,,Undefined
+180002E9, CAN message data register 231,M_DATA231,R/W,,x,,Undefined
+180002EA, CAN message data register 232,M_DATA232,R/W,,x,,Undefined
+180002EB, CAN message data register 233,M_DATA233,R/W,,x,,Undefined
+180002EC, CAN message data register 234,M_DATA234,R/W,,x,,Undefined
+180002ED, CAN message data register 235,M_DATA235,R/W,,x,,Undefined
+180002EE, CAN message data register 236,M_DATA236,R/W,,x,,Undefined
+180002EF, CAN message data register 237,M_DATA237,R/W,,x,,Undefined
+180002F0, CAN message ID register L23,M_IDL23,R/W,,,x,Undefined
+180002F2, CAN message ID register H23,M_IDH23,R/W,,,x,Undefined
+180002F4, CAN message configuration register 23,M_CONF23,R/W,,x,,Undefined
+180002F5, CAN message status register 23,M_STAT23,R,,x,,Undefined
+180002F6, CAN status set/cancel register 23,SC_STAT23,W,,,x,0000H
+18000300, CAN message event pointer 240,M_EVT240,R/W,,x,,Undefined
+18000301, CAN message event pointer 241,M_EVT241,R/W,,x,,Undefined
+18000302, CAN message event pointer 242,M_EVT242,R/W,,x,,Undefined
+18000303, CAN message event pointer 243,M_EVT243,R/W,,x,,Undefined
+18000304, CAN message data length register 24,M_DLC24,R/W,,x,,Undefined
+18000305, CAN message control register 24,M_CTRL24,R/W,,x,,Undefined
+18000306, CAN message time stamp register 24,M_TIME24,R/W,,,x,Undefined
+18000308, CAN message data register 240,M_DATA240,R/W,,x,,Undefined
+18000309, CAN message data register 241,M_DATA241,R/W,,x,,Undefined
+1800030A, CAN message data register 242,M_DATA242,R/W,,x,,Undefined
+1800030B, CAN message data register 243,M_DATA243,R/W,,x,,Undefined
+1800030C, CAN message data register 244,M_DATA244,R/W,,x,,Undefined
+1800030D, CAN message data register 245,M_DATA245,R/W,,x,,Undefined
+1800030E, CAN message data register 246,M_DATA246,R/W,,x,,Undefined
+1800030F, CAN message data register 247,M_DATA247,R/W,,x,,Undefined
+18000310, CAN message ID register L24,M_IDL24,R/W,,,x,Undefined
+18000312, CAN message ID register H24,M_IDH24,R/W,,,x,Undefined
+18000314, CAN message configuration register 24,M_CONF24,R/W,,x,,Undefined
+18000315, CAN message status register 24,M_STAT24,R,,x,,Undefined
+18000316, CAN status set/cancel register 24,SC_STAT24,W,,,x,0000H
+18000320, CAN message event pointer 250,M_EVT250,R/W,,x,,Undefined
+18000321, CAN message event pointer 251,M_EVT251,R/W,,x,,Undefined
+18000322, CAN message event pointer 252,M_EVT252,R/W,,x,,Undefined
+18000323, CAN message event pointer 253,M_EVT253,R/W,,x,,Undefined
+18000324, CAN message data length register 25,M_DLC25,R/W,,x,,Undefined
+18000325, CAN message control register 25,M_CTRL25,R/W,,x,,Undefined
+18000326, CAN message time stamp register 25,M_TIME25,R/W,,,x,Undefined
+18000328, CAN message data register 250,M_DATA250,R/W,,x,,Undefined
+18000329, CAN message data register 251,M_DATA251,R/W,,x,,Undefined
+1800032A, CAN message data register 252,M_DATA252,R/W,,x,,Undefined
+1800032B, CAN message data register 253,M_DATA253,R/W,,x,,Undefined
+1800032C, CAN message data register 254,M_DATA254,R/W,,x,,Undefined
+1800032D, CAN message data register 255,M_DATA255,R/W,,x,,Undefined
+1800032E, CAN message data register 256,M_DATA256,R/W,,x,,Undefined
+1800032F, CAN message data register 257,M_DATA257,R/W,,x,,Undefined
+18000330, CAN message ID register L25,M_IDL25,R/W,,,x,Undefined
+18000332, CAN message ID register H25,M_IDH25,R/W,,,x,Undefined
+18000334, CAN message configuration register 25,M_CONF25,R/W,,x,,Undefined
+18000335, CAN message status register 25,M_STAT25,R,,x,,Undefined
+18000336, CAN status set/cancel register 25,SC_STAT25,W,,,x,0000H
+18000340, CAN message event pointer 260,M_EVT260,R/W,,x,,Undefined
+18000341, CAN message event pointer 261,M_EVT261,R/W,,x,,Undefined
+18000342, CAN message event pointer 262,M_EVT262,R/W,,x,,Undefined
+18000343, CAN message event pointer 263,M_EVT263,R/W,,x,,Undefined
+18000344, CAN message data length register 26,M_DLC26,R/W,,x,,Undefined
+18000345, CAN message control register 26,M_CTRL26,R/W,,x,,Undefined
+18000346, CAN message time stamp register 26,M_TIME26,R/W,,,x,Undefined
+18000348, CAN message data register 260,M_DATA260,R/W,,x,,Undefined
+18000349, CAN message data register 261,M_DATA261,R/W,,x,,Undefined
+1800034A, CAN message data register 262,M_DATA262,R/W,,x,,Undefined
+1800034B, CAN message data register 263,M_DATA263,R/W,,x,,Undefined
+1800034C, CAN message data register 264,M_DATA264,R/W,,x,,Undefined
+1800034D, CAN message data register 265,M_DATA265,R/W,,x,,Undefined
+1800034E, CAN message data register 266,M_DATA266,R/W,,x,,Undefined
+1800034F, CAN message data register 267,M_DATA267,R/W,,x,,Undefined
+18000350, CAN message ID register L26,M_IDL26,R/W,,,x,Undefined
+18000352, CAN message ID register H26,M_IDH26,R/W,,,x,Undefined
+18000354, CAN message configuration register 26,M_CONF26,R/W,,x,,Undefined
+18000355, CAN message status register 26,M_STAT26,R,,x,,Undefined
+18000356, CAN status set/cancel register 26,SC_STAT26,W,,,x,0000H
+18000360, CAN message event pointer 270,M_EVT270,R/W,,x,,Undefined
+18000361, CAN message event pointer 271,M_EVT271,R/W,,x,,Undefined
+18000362, CAN message event pointer 272,M_EVT272,R/W,,x,,Undefined
+18000363, CAN message event pointer 273,M_EVT273,R/W,,x,,Undefined
+18000364, CAN message data length register 27,M_DLC27,R/W,,x,,Undefined
+18000365, CAN message control register 27,M_CTRL27,R/W,,x,,Undefined
+18000366, CAN message time stamp register 27,M_TIME27,R/W,,,x,Undefined
+18000368, CAN message data register 270,M_DATA270,R/W,,x,,Undefined
+18000369, CAN message data register 271,M_DATA271,R/W,,x,,Undefined
+1800036A, CAN message data register 272,M_DATA272,R/W,,x,,Undefined
+1800036B, CAN message data register 273,M_DATA273,R/W,,x,,Undefined
+1800036C, CAN message data register 274,M_DATA274,R/W,,x,,Undefined
+1800036D, CAN message data register 275,M_DATA275,R/W,,x,,Undefined
+1800036E, CAN message data register 276,M_DATA276,R/W,,x,,Undefined
+1800036F, CAN message data register 277,M_DATA277,R/W,,x,,Undefined
+18000370, CAN message ID register L27,M_IDL27,R/W,,,x,Undefined
+18000372, CAN message ID register H27,M_IDH27,R/W,,,x,Undefined
+18000374, CAN message configuration register 27,M_CONF27,R/W,,x,,Undefined
+18000375, CAN message status register 27,M_STAT27,R,,x,,Undefined
+18000376, CAN status set/cancel register 27,SC_STAT27,W,,,x,0000H
+18000380, CAN message event pointer 280,M_EVT280,R/W,,x,,Undefined
+18000381, CAN message event pointer 281,M_EVT281,R/W,,x,,Undefined
+18000382, CAN message event pointer 282,M_EVT282,R/W,,x,,Undefined
+18000383, CAN message event pointer 283,M_EVT283,R/W,,x,,Undefined
+18000384, CAN message data length register 28,M_DLC28,R/W,,x,,Undefined
+18000385, CAN message control register 28,M_CTRL28,R/W,,x,,Undefined
+18000386, CAN message time stamp register 28,M_TIME28,R/W,,,x,Undefined
+18000388, CAN message data register 280,M_DATA280,R/W,,x,,Undefined
+18000389, CAN message data register 281,M_DATA281,R/W,,x,,Undefined
+1800038A, CAN message data register 282,M_DATA282,R/W,,x,,Undefined
+1800038B, CAN message data register 283,M_DATA283,R/W,,x,,Undefined
+1800038C, CAN message data register 284,M_DATA284,R/W,,x,,Undefined
+1800038D, CAN message data register 285,M_DATA285,R/W,,x,,Undefined
+1800038E, CAN message data register 286,M_DATA286,R/W,,x,,Undefined
+1800038F, CAN message data register 287,M_DATA287,R/W,,x,,Undefined
+18000390, CAN message ID register L28,M_IDL28,R/W,,,x,Undefined
+18000392, CAN message ID register H28,M_IDH28,R/W,,,x,Undefined
+18000394, CAN message configuration register 28,M_CONF28,R/W,,x,,Undefined
+18000395, CAN message status register 28,M_STAT28,R,,x,,Undefined
+18000396, CAN status set/cancel register 28,SC_STAT28,W,,,x,0000H
+180003A0, CAN message event pointer 290,M_EVT290,R/W,,x,,Undefined
+180003A1, CAN message event pointer 291,M_EVT291,R/W,,x,,Undefined
+180003A2, CAN message event pointer 292,M_EVT292,R/W,,x,,Undefined
+180003A3, CAN message event pointer 293,M_EVT293,R/W,,x,,Undefined
+180003A4, CAN message data length register 29,M_DLC29,R/W,,x,,Undefined
+180003A5, CAN message control register 29,M_CTRL29,R/W,,x,,Undefined
+180003A6, CAN message time stamp register 29,M_TIME29,R/W,,,x,Undefined
+180003A8, CAN message data register 290,M_DATA290,R/W,,x,,Undefined
+180003A9, CAN message data register 291,M_DATA291,R/W,,x,,Undefined
+180003AA, CAN message data register 292,M_DATA292,R/W,,x,,Undefined
+180003AB, CAN message data register 293,M_DATA293,R/W,,x,,Undefined
+180003AC, CAN message data register 294,M_DATA294,R/W,,x,,Undefined
+180003AD, CAN message data register 295,M_DATA295,R/W,,x,,Undefined
+180003AE, CAN message data register 296,M_DATA296,R/W,,x,,Undefined
+180003AF, CAN message data register 297,M_DATA297,R/W,,x,,Undefined
+180003B0, CAN message ID register L29,M_IDL29,R/W,,,x,Undefined
+180003B2, CAN message ID register H29,M_IDH29,R/W,,,x,Undefined
+180003B4, CAN message configuration register 29,M_CONF29,R/W,,x,,Undefined
+180003B5, CAN message status register 29,M_STAT29,R,,x,,Undefined
+180003B6, CAN status set/cancel register 29,SC_STAT29,W,,,x,0000H
+180003C0, CAN message event pointer 300,M_EVT300,R/W,,x,,Undefined
+180003C1, CAN message event pointer 301,M_EVT301,R/W,,x,,Undefined
+180003C2, CAN message event pointer 302,M_EVT302,R/W,,x,,Undefined
+180003C3, CAN message event pointer 303,M_EVT303,R/W,,x,,Undefined
+180003C4, CAN message data length register 30,M_DLC30,R/W,,x,,Undefined
+180003C5, CAN message control register 30,M_CTRL30,R/W,,x,,Undefined
+180003C6, CAN message time stamp register 30,M_TIME30,R/W,,,x,Undefined
+180003C8, CAN message data register 300,M_DATA300,R/W,,x,,Undefined
+180003C9, CAN message data register 301,M_DATA301,R/W,,x,,Undefined
+180003CA, CAN message data register 302,M_DATA302,R/W,,x,,Undefined
+180003CB, CAN message data register 303,M_DATA303,R/W,,x,,Undefined
+180003CC, CAN message data register 304,M_DATA304,R/W,,x,,Undefined
+180003CD, CAN message data register 305,M_DATA305,R/W,,x,,Undefined
+180003CE, CAN message data register 306,M_DATA306,R/W,,x,,Undefined
+180003CF, CAN message data register 307,M_DATA307,R/W,,x,,Undefined
+180003D0, CAN message ID register L30,M_IDL30,R/W,,,x,Undefined
+180003D2, CAN message ID register H30,M_IDH30,R/W,,,x,Undefined
+180003D4, CAN message configuration register 30,M_CONF30,R/W,,x,,Undefined
+180003D5, CAN message status register 30,M_STAT30,R,,x,,Undefined
+180003D6, CAN status set/cancel register 30,SC_STAT30,W,,,x,0000H
+180003E0, CAN message event pointer 310,M_EVT310,R/W,,x,,Undefined
+180003E1, CAN message event pointer 311,M_EVT311,R/W,,x,,Undefined
+180003E2, CAN message event pointer 312,M_EVT312,R/W,,x,,Undefined
+180003E3, CAN message event pointer 313,M_EVT313,R/W,,x,,Undefined
+180003E4, CAN message data length register 31,M_DLC31,R/W,,x,,Undefined
+180003E5, CAN message control register 31,M_CTRL31,R/W,,x,,Undefined
+180003E6, CAN message time stamp register 31,M_TIME31,R/W,,,x,Undefined
+180003E8, CAN message data register 310,M_DATA310,R/W,,x,,Undefined
+180003E9, CAN message data register 311,M_DATA311,R/W,,x,,Undefined
+180003EA, CAN message data register 312,M_DATA312,R/W,,x,,Undefined
+180003EB, CAN message data register 313,M_DATA313,R/W,,x,,Undefined
+180003EC, CAN message data register 314,M_DATA314,R/W,,x,,Undefined
+180003ED, CAN message data register 315,M_DATA315,R/W,,x,,Undefined
+180003EE, CAN message data register 316,M_DATA316,R/W,,x,,Undefined
+180003EF, CAN message data register 317,M_DATA317,R/W,,x,,Undefined
+180003FC, CAN message ID register L31,M_IDL31,R/W,,,x,Undefined
+180003F2, CAN message ID register H31,M_IDH31,R/W,,,x,Undefined
+180003F4, CAN message configuration register 31,M_CONF31,R/W,,x,,Undefined
+180003F5, CAN message status register 31,M_STAT31,R,,x,,Undefined
+180003F7, CAN status set/cancel register 31,SC_STAT31,W,,,x,0000H
+18001000, CAN stop register ,CSTOP,R/(W),,R,x,0000H
+18001004, CAN interrupt pending register,CCINTP,R,,x,x,0000H
+18001010, CAN global status register ,CGST,R/(W),,R,x,0100H
+18001012, CAN global interrupt enable register ,CGIE,R/(W),,R,x,0A00H
+18001014, CAN main clock select register,CGCS,R/W,,x,x,7F05H
+18001016, CAN timer event enable register,CGTEN,R/W,,x,x,0000H
+18001018, CAN time stop count register,CGTSC,R,,x,x,0000H
+1800101A, CAN message find start register,CGMSS,W,,,x,0000H
+1800101A, CAN message find result register,CGMSR,R,,,x,0000H
+1800101C, CAN test bus register,CTBR,R/W,,x,x,0000H
+1800101D, CAN Macro Version Register,CGREV,R,,x,x,Revision
+1800101E, CAN Macro Revision Register,CGVER,R,,x,x,Version
+1800101F, CAN Macro Revision Register,CGVER,R,,x,x,Version
+18001020, CAN global interrupt pending register ,CGINTP,R/(W),,R,x,00H
+18001022, CAN local interrupt pending register 1,C1INTP,R/W,,x,x,00H
+18001024, CAN local interrupt pending register 2,C2INTP,R/W,,x,x,00H
+18001026, CAN local interrupt pending register 3,C3INTP,R/W,,x,x,00H
+18001028, CAN local interrupt pending register 4,C4INTP,R/W,,x,x,00H
+18001040, CAN1 address mask register L0,C1MASKL0,R/W,,x,x,Undefined
+18001042, CAN1 address mask register H0,C1MASKH0,R/W,,x,x,Undefined
+18001044, CAN1 address mask register L1,C1MASKL1,R/W,,x,x,Undefined
+18001046, CAN1 address mask register H1,C1MASKH1,R/W,,x,x,Undefined
+18001048, CAN1 address mask register L2,C1MASKL2,R/W,,x,x,Undefined
+1800104A, CAN1 address mask register H2,C1MASKH2,R/W,,x,x,Undefined
+1800104C, CAN1 address mask register L3,C1MASKL3,R/W,,x,x,Undefined
+1800104E, CAN1 address mask register H3,C1MASKH3,R/W,,x,x,Undefined
+18001050, CAN1 control register ,C1CTRL,R/(W),,R,x,0101H
+18001052, CAN1 definition register ,C1DEF,R/(W),,R,x,0000H
+18001054, CAN1 information register,C1LAST,R,,x,x,00FFH
+18001056, CAN1 error counter register,C1ERC,R,,x,x,0000H
+18001058, CAN1 interrupt enable register ,C1IE,R/(W),,R,x,0000H
+1800105A, CAN1 bus active register,C1BA,R,,x,x,00FFH
+1800105C, CAN1 bit rate prescaler register,C1BRP,R/W,,x,x,0000H
+1800105D, CAN1 bus diagnostic information register,C1DINF,R,,x,x,0000H
+1800105E, CAN1 synchronization control register,C1SYNC,R/W,,x,x,0218H
+18001080, CAN2 address mask register L0,C2MASKL0,R/W,,x,x,Undefined
+18001082, CAN2 address mask register H0,C2MASKH0,R/W,,x,x,Undefined
+18001084, CAN2 address mask register L1,C2MASKL1,R/W,,x,x,Undefined
+18001086, CAN2 address mask register H1,C2MASKH1,R/W,,x,x,Undefined
+18001088, CAN2 address mask register L2,C2MASKL2,R/W,,x,x,Undefined
+1800108A, CAN2 address mask register H2,C2MASKH2,R/W,,x,x,Undefined
+1800108C, CAN2 address mask register L3,C2MASKL3,R/W,,x,x,Undefined
+1800108E, CAN2 address mask register H3,C2MASKH3,R/W,,x,x,Undefined
+18001090, CAN2 control register ,C2CTRL,R/(W),,R,x,0101H
+18001092, CAN2 definition register ,C2DEF,R/(W),,R,x,0000H
+18001094, CAN2 information register,C2LAST,R,,x,x,00FFH
+18001096, CAN2 error counter register,C2ERC,R,,x,x,0000H
+18001098, CAN2 interrupt enable register ,C2IE,R/(W),,R,x,0000H
+1800109A, CAN2 bus active register,C2BA,R,,x,x,00FFH
+1800109C, CAN2 bit rate prescaler register,C2BRP,R/W,,x,x,0000H
+1800109D, CAN2 bus diagnostic information register,C2DINF,R,,x,x,0000H
+1800109E, CAN2 synchronization control register,C2SYNC,R/W,,x,x,0218H
+180010C0, CAN3 address mask register L0,C3MASKL0,R/W,,x,x,Undefined
+180010C2, CAN3 address mask register H0,C3MASKH0,R/W,,x,x,Undefined
+180010C4, CAN3 address mask register L1,C3MASKL1,R/W,,x,x,Undefined
+180010C6, CAN3 address mask register H1,C3MASKH1,R/W,,x,x,Undefined
+180010C8, CAN3 address mask register L2,C3MASKL2,R/W,,x,x,Undefined
+180010CA, CAN3 address mask register H2,C3MASKH2,R/W,,x,x,Undefined
+180010CC, CAN3 address mask register L3,C3MASKL3,R/W,,x,x,Undefined
+180010CE, CAN3 address mask register H3,C3MASKH3,R/W,,x,x,Undefined
+180010D0, CAN3 control register,C3CTRL,R/(W),,R,x,0101H
+180010D2, CAN3 definition register,C3DEF,R/(W),,R,x,0000H
+180010D4, CAN3 information register ,C3LAST,R,,x,x,00FFH
+180010D6, CAN3 error counter register,C3ERC,R,,x,x,0000H
+180010D8, CAN3 interrupt enable register,C3IE,R/(W),,R,x,0000H
+180010DA, CAN3 bus active register ,C3BA,R,,x,x,00FFH
+180010DC, CAN3 bit rate prescaler register ,C3BRP,R/W,,x,x,0000H
+180010DD, CAN3 bus diagnostic information register, C3DINF,R,,x,x,0000H
+180010DE, CAN3 synchronization control register ,C3SYNC,R/W,,x,x,0218H
+18001100, CAN4 address mask register L0 ,C4MASKL0,R/W,,x,x,Undefined
+180011C2, CAN4 address mask register H0 ,C4MASKH0,R/W,,x,x,Undefined
+180011C4, CAN4 address mask register L1 ,C4MASKL1,R/W,,x,x,Undefined
+180011C6, CAN4 address mask register H1 ,C4MASKH1,R/W,,x,x,Undefined
+180011C8, CAN4 address mask register L2 ,C4MASKL2,R/W,,x,x,Undefined
+180011CA, CAN4 address mask register H2 ,C4MASKH2,R/W,,x,x,Undefined
+180011CC, CAN4 address mask register L3 ,C4MASKL3,R/W,,x,x,Undefined
+180011CE, CAN4 address mask register H3 ,C4MASKH3,R/W,,x,x,Undefined
+180011D0, CAN4 control register,C4CTRL,R/(W),,R,x,0101H
+180011D2, CAN4 definition register,C4DEF,R/(W),,R,x,0000H
+180011D4, CAN4 information register,C4LAST,R,,x,x,00FFH
+180011D6, CAN4 error counter register,C4ERC,R,,x,x,0000H
+180011D8, CAN4 interrupt enable register, C4IE,R/(W),,R,x,0000H
+180011DA, CAN4 bus active register ,C4BA,R,,x,x,00FFH
+180011DC, CAN4 bit rate prescaler register,C4BRP,R/W,,x,x,0000H
+180011DD, CAN4 bus diagnostic information register,C4DINF,R,,x,x,0000H
+180011DE, CAN4 synchronization control register,C4SYNC,R/W,,x,x,0218H

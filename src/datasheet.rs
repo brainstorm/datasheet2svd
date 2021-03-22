@@ -1,6 +1,4 @@
 /// This class contains highly specific parsing for datasheet tables (in this case, for Renesas V850 IC)
-
-//use std::fs;
 use std::error::Error;
 use std::process::{ Command, Output };
 
@@ -27,26 +25,37 @@ struct InterruptDatasheetColumn {
     interrupt_exception_source: String,
 }
 
+// pub struct DataSheetSections {
+//     pub interrupts: Result<Peripherals, Box<dyn Error>>,
+//     pub peripherals: Result<Peripherals, Box<dyn Error>>,
+// }
 
 /// Runs tabula PDF OCR or uses a precomputed CSV file (cached=true)
 /// tabula.jar:
 // wget https://github.com/tabulapdf/tabula-java/releases/download/v1.0.4/tabula-1.0.4-jar-with-dependencies.jar
 pub fn parse_datasheet(datasheet: &str, page_range: &str, cached: bool) -> Output {
     let output;
-    if cached {
+    if !cached {
         output = Command::new("java")
                     .args(&["-jar", "bin/tabula.jar", "-p", page_range, datasheet])
                     .output()
                     .expect("Fail");
     } else {
+        //dbg!("Getting CSV instead of PDF");
         output = Command::new("cat")
-                    .args(&[format!("build/{}.csv", page_range)])
+                    .args(&[format!("datasheets/renesas/v850/csv/{}.csv", page_range)])
                     .output()
                     .expect("Fail");
         // output = fs::read_to_string("build/peripherals.csv")
         //                 .expect("Something went wrong reading the file");
         // TODO: types... Output vs String...
     }
+
+    // TODO: Shall I pre-filter here with grep?
+    // output = Command::new("grep")
+    //                 .args()
+    //                 .output()
+    //                 .expect("Fail");
 
     // TODO: Error ctrl
     //println!("status: {}", output.status);
@@ -55,22 +64,29 @@ pub fn parse_datasheet(datasheet: &str, page_range: &str, cached: bool) -> Outpu
     return output;
 }
 
-pub fn clean_datasheet_sections(sections: Vec<std::process::Output>) -> Vec<Peripherals>{
+/// Dispatch heterogeneous CSV data cleaning functions
+pub fn clean_datasheet_sections(sections: Vec<std::process::Output>) -> Vec<Peripherals> {
     let interrupts = clean_interrupts(sections[0].clone());
-    let peripherals = clean_peripherals(sections[1].clone());
+    let _mmio = clean_peripherals(sections[1].clone());
 
-    return vec!(interrupts.unwrap(), peripherals.unwrap());
+    //return vec!(interrupts.unwrap(), mmio.unwrap());
+    return vec!(interrupts.unwrap());
 }
 
 pub fn clean_interrupts(section: Output) -> Result<Peripherals, Box<dyn Error>> {
     let mut rdr = Reader::from_reader(&*section.stdout);
-    //rdr.seek(pos: Position);
     rdr.set_headers(StringRecord::from(vec!["address", "interrupt_exception_source"]));
 
     let mut peripherals_vec: Vec<Peripheral> = Vec::new();
     let mut registers_vec: Vec<Register> = Vec::new();
 
     for result in rdr.deserialize() {
+        // TODO: Skip invalid text prelude before the table
+        // TODO: Better types and error control here
+        // let record: InterruptDatasheetColumn = match result {
+        //     Ok(res) => res,
+        //     Err(_) => break
+        // };
         let record: InterruptDatasheetColumn = result?;
 
         let mut addr = record.address;

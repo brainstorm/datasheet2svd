@@ -1,0 +1,265 @@
+address, description, name, mode, manip_1_bit, manip_8_bit, manip_16_bit, reset_value
+FFFFF002,Port AH,PAH,R/W,×,×,,00H
+FFFFF008,Port CS,PCS,R/W,×,×,,undefined
+FFFFF00A,Port CT,PCT,R/W,×,×,,undefined
+FFFFF00C,Port CM,PCM,R/W,×,×,,undefined
+FFFFF022,Port AH mode,PMAH,R/W,×,×,,0000H
+FFFFF028,Port CS mode,PMCS,R/W,×,×,,18H
+FFFFF02A,Port CT mode,PMCT,R/W,×,×,,13H
+FFFFF02C,Port CM mode,PMCM,R/W,×,×,,01H
+FFFFF042,Port AH mode control,PMCAH,R/W,×,×,,FFH
+FFFFF048,Port CS mode control,PMCCS,R/W,×,×,,01H
+FFFFF04A,Port CT mode control,PMCCT,R/W,×,×,,10H
+FFFFF04C,Port CM mode control,PMCCM,R/W,×,×,,01H
+FFFFF060,CPU: Chip Area Select Control register 0,CSC0,R/W,,,×,2C11H
+FFFFF062,CPU: Chip Area Select Control register 1,CSC1,R/W,,,×,2C11H
+FFFFF064,CPU: Peripheral Area Select Control register,BPC,R/W,,,×,0FFFH
+FFFFF066,CPU: Bus Size Configuration register,BSC,R/W,,,×,5555H
+FFFFF068,CPU: Endian Configuration register,BEC,R/W,,,×,0000H
+FFFFF06A,CPU: Cache Configuration register,BHC,R/W,,,×,0000H
+FFFFF06E,CPU: VPB Strobe Wait Control register,VSWC,R/W,×,×,,77H
+FFFFF070,Instruction Cache Control Register,ICC,R/W,,,×,0003H
+FFFFF072,Instruction Cache Index Register,ICI,R/W,,,×,FFFFH
+FFFFF074,Instruction Cache Data Configuration,ICD,R/W,,,×,undefined
+FFFFF080,DMA source address register 0L,DSAL0,R/W,,,×,undefined
+FFFFF082,DMA source address register 0H,DSAH0,R/W,,,×,undefined
+FFFFF084,DMA destination address register 0L,DDAL0,R/W,,,×,undefined
+FFFFF086,DMA destination address register 0H,DDAH0,R/W,,,×,undefined
+FFFFF088,DMA source address register 1L,DSAL1,R/W,,,×,undefined
+FFFFF08A,DMA source address register 1H,DSAH1,R/W,,,×,undefined
+FFFFF08C,DMA destination address register 1L,DDAL1,R/W,,,×,undefined
+FFFFF08E,DMA destination address register 1H,DDAH1,R/W,,,×,undefined
+FFFFF090,DMA source address register 2L,DSAL2,R/W,,,×,undefined
+FFFFF092,DMA source address register 2H,DSAH2,R/W,,,×,undefined
+FFFFF094,DMA destination address register 2L,DDAL2,R/W,,,×,undefined
+FFFFF096,DMA destination address register 2H,DDAH2,R/W,,,×,undefined
+FFFFF098,DMA source address register 3L,DSAL3,R/W,,,×,undefined
+FFFFF09A,DMA source address register 3H,DSAH3,R/W,,,×,undefined
+FFFFF09C,DMA destination address register 3L,DDAL3,R/W,,,×,undefined
+FFFFF09E,DMA destination address register 3H,DDAH3,R/W,,,×,undefined
+FFFFF0C0,DMA transfer count register 0,DBC0,R/W,,,×,undefined
+FFFFF0C2,DMA transfer count register 1,DBC1,R/W,,,×,undefined
+FFFFF0C4,DMA transfer count register 2,DBC2,R/W,,,×,undefined
+FFFFF0C6,DMA transfer count register 3,DBC3,R/W,,,×,undefined
+FFFFF0D0,DMA addressing control register 0,DADC0,R/W,,,×,0000H
+FFFFF0D2,DMA addressing control register 1,DADC1,R/W,,,×,0000H
+FFFFF0D4,DMA addressing control register 2,DADC2,R/W,,,×,0000H
+FFFFF0D6,DMA addressing control register 3,DADC3,R/W,,,×,0000H
+FFFFF0E0,DMA channel control register 0,DCHC0,R/W,×,×,,00H
+FFFFF0E2,DMA channel control register 1,DCHC1,R/W,×,×,,00H
+FFFFF0E4,DMA channel control register 2,DCHC2,R/W,×,×,,00H
+FFFFF0E6,DMA channel control register 3,DCHC3,R/W,×,×,,00H
+FFFFF0F0,DMA disable status register,DDIS,R,×,×,,00H
+FFFFF0F2,DMA restart register,DRST,R/W,×,×,,00H
+FFFFF100,Interrupt Mask register 0,IMR0,R/W,×,,×,FFFFH
+FFFFF102,Interrupt Mask register 1,IMR1,R/W,×,,×,FFFFH
+FFFFF104,Interrupt Mask register 2,IMR2,R/W,×,,×,FFFFH
+FFFFF106,Interrupt Mask register 3,IMR3,R/W,×,,×,FFFFH
+FFFFF110,Interrupt control register 0,WTIC,R/W,×,×,,47H
+FFFFF112,Interrupt control register 1,TMD0IC,R/W,×,×,,47H
+FFFFF114,Interrupt control register 2,TMD1IC,R/W,×,×,,47H
+FFFFF116,Interrupt control register 3,WTIIC,R/W,×,×,,47H
+FFFFF118,Interrupt control register 4,P0IC,R/W,×,×,,47H
+FFFFF11A,Interrupt control register 5,P1IC,R/W,×,×,,47H
+FFFFF11C,Interrupt control register 6,P2IC,R/W,×,×,,47H
+FFFFF11E,Interrupt control register 7,P3IC,R/W,×,×,,47H
+FFFFF120,Interrupt control register 8,P4IC,R/W,×,×,,47H
+FFFFF122,Interrupt control register 9,P5IC,R/W,×,×,,47H
+FFFFF124,Interrupt control register 10,TMG00IC,R/W,×,×,,47H
+FFFFF126,Interrupt control register 11,TMG01IC,R/W,×,×,,47H
+FFFFF128,Interrupt control register 12,CCG00 IC,R/W,×,×,,47H
+FFFFF12A,Interrupt control register 13,CCG01IC,R/W,×,×,,47H
+FFFFF12C,Interrupt control register 14,CCG02IC,R/W,×,×,,47H
+FFFFF12E,Interrupt control register 15,CCG03IC,R/W,×,×,,47H
+FFFFF130,Interrupt control register 16,CCG04IC,R/W,×,×,,47H
+FFFFF132,Interrupt control register 17,CCG05IC,R/W,×,×,,47H
+FFFFF134,Interrupt control register 18,TMG10IC,R/W,×,×,,47H
+FFFFF136,Interrupt control register 19,TMG11IC,R/W,×,×,,47H
+FFFFF138,Interrupt control register 20,CCG10 IC,R/W,×,×,,47H
+FFFFF13A,Interrupt control register 21,CCG11IC,R/W,×,×,,47H
+FFFFF13C,Interrupt control register 22,CCG12IC,R/W,×,×,,47H
+FFFFF13E,Interrupt control register 23,CCG13IC,R/W,×,×,,47H
+FFFFF140,Interrupt control register 24,CCG14IC,R/W,×,×,,47H
+FFFFF142,Interrupt control register 25,CCG15IC,R/W,×,×,,47H
+FFFFF144,Interrupt control register 26,TMC0IC,R/W,×,×,,47H
+FFFFF146,Interrupt control register 27,CCC0 IC,R/W,×,×,,47H
+FFFFF148,Interrupt control register 28,CCC1IC,R/W,×,×,,47H
+FFFFF14A,Interrupt control register 29,ADIC,R/W,×,×,,47H
+FFFFF14C,Interrupt control register 30,MACIC,R/W,×,×,,47H
+FFFFF14E,Interrupt control register 31,FC1RXIC,R/W,×,×,,47H
+FFFFF150,Interrupt control register 32,FC1TXIC,R/W,×,×,,47H
+FFFFF152,Interrupt control register 33,FC1ERIC,R/W,×,×,,47H
+FFFFF154,Interrupt control register 34,FC2RXIC,R/W,×,×,,47H
+FFFFF156,Interrupt control register 35,FC2TXIC,R/W,×,×,,47H
+FFFFF158,Interrupt control register 36,FC2ERIC,R/W,×,×,,47H
+FFFFF15A,Interrupt control register 37,FC3RXIC,R/W,×,×,,47H
+FFFFF15C,Interrupt control register 38,FC3TXIC,R/W,×,×,,47H
+FFFFF15E,Interrupt control register 39,FC3ERIC,R/W,×,×,,47H
+FFFFF160,Interrupt control register 40,FC4RXIC,R/W,×,×,,47H
+FFFFF162,Interrupt control register 41,FC4TXIC,R/W,×,×,,47H
+FFFFF164,Interrupt control register 42,FC4ERIC,R/W,×,×,,47H
+FFFFF166,Interrupt control register 43,CSI0IC,R/W,×,×,,47H
+FFFFF168,Interrupt control register 44,CSI1IC,R/W,×,×,,47H
+FFFFF16A,Interrupt control register 45,CSI2IC,R/W,×,×,,47H
+FFFFF16C,Interrupt control register 46,SER0IC,R/W,×,×,,47H
+FFFFF16E,Interrupt control register 47,SR0IC,R/W,×,×,,47H
+FFFFF170,Interrupt control register 48,ST0IC,R/W,×,×,,47H
+FFFFF172,Interrupt control register 49,SER1IC,R/W,×,×,,47H
+FFFFF174,Interrupt control register 50,SR1IC,R/W,×,×,,47H
+FFFFF176,Interrupt control register 51,ST1IC,R/W,×,×,,47H
+FFFFF178,Interrupt control register 52,DMA0IC,R/W,×,×,,47H
+FFFFF17A,Interrupt control register 53,DMA1IC,R/W,×,×,,47H
+FFFFF17C,Interrupt control register 54,DMA2IC,R/W,×,×,,47H
+FFFFF17E,Interrupt control register 55,DMA3IC,R/W,×,×,,47H
+FFFFF180,Interrupt control register 56,DOVFIC,R/W,×,×,,47H
+FFFFF182,Interrupt control register 57,P00IC,R/W,×,×,,47H
+FFFFF184,Interrupt control register 58,P05IC,R/W,×,×,,47H
+FFFFF186,Interrupt control register 59,P10IC,R/W,×,×,,47H
+FFFFF188,Interrupt control register 60,P15IC,R/W,×,×,,47H
+FFFFF18A,Interrupt control register 61,P20IC,R/W,×,×,,47H
+FFFFF18C,Interrupt control register 62,P21IC,R/W,×,×,,47H
+FFFFF18E,Interrupt control register 63,Reserved,R/W,×,×,,47H
+FFFFF1FA,In-service Priority register,ISPR,R,×,×,,00H
+FFFFF1FC,Command register,PRCMD,W,,×,,undefined
+FFFFF1FE,Power Save Control register,PSC,R/W,×,×,,00H
+FFFFF200,A/D converter mode register,ADM,R/W,×,×,,00H
+FFFFF201,A/D Select Register,ADS,R/W,×,×,,00H
+FFFFF202,A/D Conversion Result Register,ADCR,R,×,×,×,undefined
+FFFFF203,A/D Conversion Result Register H,ADCRH,R,×,×,,undefined
+FFFFF400,Port 1,P1,R/W,×,×,,undefined
+FFFFF402,Port 2,P2,R/W,×,×,,undefined
+FFFFF404,Port 3,P3,R/W,×,×,,undefined
+FFFFF406,Port 4,P4,R/W,×,×,,undefined
+FFFFF408,Port 5,P5,R/W,×,×,,undefined
+FFFFF40A,Port 6,P6,R/W,×,×,,undefined
+FFFFF40C,Port 7,P7,R,×,×,,undefined
+FFFFF40C,Port 7/Port 8,P78,R,,,×,undefined
+FFFFF40E,Port 9,P9,R/W,×,×,,undefined
+FFFFF420,Port 1 mode,PM1,R/W,×,×,,FFH
+FFFFF422,Port 2 mode,PM2,R/W,×,×,,FFH
+FFFFF424,Port 3 mode,PM3,R/W,×,×,,3FH
+FFFFF426,Port 4 mode,PM4,R/W,×,×,,3FH
+FFFFF428,Port 5 mode,PM5,R/W,×,×,,7FH
+FFFFF42A,Port 6 mode,PM6,R/W,×,×,,FFH
+FFFFF42E,Port 9 mode,PM9,R/W,×,×,,FFH
+FFFFF440,Port 1 mode control,PMC1,R/W,×,×,,00H
+FFFFF442,Port 2 mode control,PMC2,R/W,×,×,,00H
+FFFFF444,Port 3 mode control,PMC3,R/W,×,×,,00H
+FFFFF446,Port 4 mode control,PMC4,R/W,×,×,,00H
+FFFFF448,Port 5 mode control,PMC5,R/W,×,×,,00H
+FFFFF44A,Port 6 mode control,PMC6,R/W,×,×,,00H
+FFFFF480,MEMC: Bus Cycle Type Control register 0,BCT0,R/W,,,×,8888H
+FFFFF482,MEMC: Bus Cycle Type Control register 1,BCT1,R/W,,,×,8888H
+FFFFF484,MEMC: Data Wait Control register 0,DWC0,R/W,,,×,7777H
+FFFFF486,MEMC: Data Wait Control register 1,DWC1,R/W,,,×,7777H
+FFFFF488,MEMC: Bus Cycle Control register,BCC,R/W,,,×,FFFFH
+FFFFF48A,MEMC: Address Setup Wait Control Reg.,ASC,R/W,,,×,FFFFH
+FFFFF49A,MEMC: Page-ROM Configuration register,PRC,R/W,,,×,7000H
+FFFFF540,Timer D0 counter,TMD0,R,,,×,0000H
+FFFFF542,Timer D0 compare register,CMD0,R/W,,,×,0000H
+FFFFF544,Timer D0 Control register,TMCD0,R/W,×,×,,00H
+FFFFF550,Timer D1 counter,TMD1,R,,,×,0000H
+FFFFF552,Timer D1 compare register,CMD1,R/W,,,×,0000H
+FFFFF554,Timer D1 Control register,TMCD1,R/W,×,×,,00H
+FFFFF560,Watch timer mode register,WTM,R/W,×,×,,00H
+FFFFF571,Watchdog timer time select register,WDCS,R/W,×,×,,00H
+FFFFF572,Watchdog timer mode register,WDTM,R/W,×,×,,00H
+FFFFF580,Watchdog Timer command register,WCMD,W,,×,,undefined
+FFFFF582,Watchdog Timer command status register,WPHS,R/W,×,×,,00H
+FFFFF600,Timer C0 timer counter register,TMC0,R,,,×,0000H
+FFFFF602,Timer C0 capture compare register 0,CCC00,R/W,,,×,0000H
+FFFFF604,Timer C0 capture compare register 1,CCC01,R/W,,,×,0000H
+FFFFF606,Timer C0 control register 0,TMCC00,R/W,×,×,,00H
+FFFFF608,Timer C0 control register 1,TMCC01,R/W,×,×,,20H
+FFFFF609,Timer C0 signal edge select register,SESC0,R/W,×,×,,00H
+FFFFF640,Timer mode register,TMGM0,R/W,×,×,×,0000H
+FFFFF640,Timer mode register,TMGM0L,R/W,×,×,,00H
+FFFFF641,Timer mode register, TMGM0H,R/W,×,×,,00H
+FFFFF642,Channel mode register,TMGCM0,R/W,×,×,×,0000H
+FFFFF642,Channel mode register,TMGCM0L,R/W,×,×,,00H
+FFFFF643,Channel mode register,TMGCM0H,R/W,×,×,,00H
+FFFFF644,Output control register,OCTLG0,R/W,×,×,×,0000H
+FFFFF644,Output control register,OCTLG0L,R/W,×,×,,00H
+FFFFF645,Output control register,OCTLG0H,R/W,×,×,,00H
+FFFFF646,State register,TMGST0,R,×,×,,00H
+FFFFF648,Timer Count Register 0,TMG00,R,,,×,0000H
+FFFFF64A,Timer Count Register 1,TMG01,R,,,×,0000H
+FFFFF64C,Capture/Compare register 0,GCC00,R/W,,,×,0000H
+FFFFF64E,Capture/Compare register 1,GCC01,R/W,,,×,0000H
+FFFFF650,Capture/Compare register 2,GCC02,R/W,,,×,0000H
+FFFFF652,Capture/Compare register 3,GCC03,R/W,,,×,0000H
+FFFFF654,Capture/Compare register 4,GCC04,R/W,,,×,0000H
+FFFFF656,Capture/Compare register 5,GCC05,R/W,,,×,0000H
+FFFFF680,Timer mode register,TMGM1,R/W,×,×,×,0000H
+FFFFF680,Timer mode register,TMGM1L,R/W,×,×,,00H
+FFFFF681,Timer mode register,TMGM1H,R/W,×,×,,00H
+FFFFF682,Channel mode register,TMGCM1,R/W,×,×,×,0000H
+FFFFF683,Channel mode register,TMGCM1L,R/W,×,×,,00H
+FFFFF683,Channel mode register,TMGCM1H,R/W,×,×,,00H
+FFFFF684,Output control register,OCTLG1,R/W,×,×,×,0000H
+FFFFF684,Output control register,OCTLG1L,R/W,×,×,,00H
+FFFFF685,Output control register, OCTLG1H,R/W,×,×,,00H
+FFFFF686,State register,TMGST1,R,×,×,,00H
+FFFFF688,Timer Count Register 0,TMG10,R,,,×,0000H
+FFFFF68A,Timer Count Register 1,TMG11,R,,,×,0000H
+FFFFF68C,Capture/Compare register 0,GCC10,R/W,,,×,0000H
+FFFFF68E,Capture/Compare register 1,GCC11,R/W,,,×,0000H
+FFFFF690,Capture/Compare register 2,GCC12,R/W,,,×,0000H
+FFFFF692,Capture/Compare register 3,GCC13,R/W,,,×,0000H
+FFFFF694,Capture/Compare register 4,GCC14,R/W,,,×,0000H
+FFFFF696,Capture/Compare register 5,GCC15,R/W,,,×,0000H
+FFFFF800,Peripheral command register,PHCMD,W,,×,,undefined
+FFFFF802,Peripheral status register,PHS,R/W,×,×,,00H
+FFFFF820,Power save mode register,PSM,R/W,×,×,,00H
+FFFFF822,Clock control register,CKC,R/W,×,×,,00H
+FFFFF824,Clock generator status register,CGSTAT,R,×,×,,00H
+FFFFF826,Watch dog clock control register,WCC,R/W,×,×,,00H
+FFFFF828,Processor clock control register,PCC,R/W,×,×,,00H
+FFFFF82A,Frequency modulation control register,SCFMC,R/W,×,×,,0AH
+FFFFF82C,Frequency control 0,SCFC0,R/W,×,×,,3FH
+FFFFF82E,Frequency control 1,SCFC1,R/W,×,×,,40H
+FFFFF830,Reset source monitor register,RSM,R/W,×,×,,00H/01H
+FFFFF840,DMA trigger source select register 0,DTFR0,R/W,×,×,,00H
+FFFFF842,DMA trigger source select register 1,DTFR1,R/W,×,×,,00H
+FFFFF844,DMA trigger source select register 2,DTFR2,R/W,×,×,,00H
+FFFFF846,DMA trigger source select register 3,DTFR3,R/W,×,×,,00H
+FFFFF880,Interrupt Mode Control Register 0,INTM0,R/W,×,×,,00H
+FFFFF882,Interrupt Mode Control Register 1,INTM1,R/W,×,×,,00H
+FFFFF884,Interrupt Mode Control Register 2,INTM2,R/W,×,×,,00H
+FFFFF886,Interrupt Mode Control Register 3,INTM3,R/W,×,×,,00H
+FFFFFA00,UART operation mode register,ASIM0,R/W,×,×,,01H
+FFFFFA02,Reception buffer register,RXB0,R,,×,"RXB_ASIS0",FFH
+FFFFFA03,UART reception error status register,ASIS0,R,,×,,00H
+FFFFFA04,Transmission buffer register,TXB0,R/W,,×,,FFH
+FFFFFA05,UART transmission error status register,ASIF0,R,,×,,00H
+FFFFFA06,Clock selection register,CHKSR0,R/W,×,×,"CHKSR_BRGC0",00H
+FFFFFA07,Baudrate definition register,BRGC0,R/W,×,×,,FFH
+FFFFFA40,UART operation mode register,ASIM1,R/W,×,×,,01H
+FFFFFA42,Reception buffer register,RXB1,R,,×,"RXB_ASIS1",FFH
+FFFFFA43,UART reception error status register,ASIS1,R,,×,,00H
+FFFFFA44,Transmission buffer register,TXB1,R/W,,×,,FFH
+FFFFFA45,UART transmission error status register,ASIF1,R,,×,,00H
+FFFFFA46,Clock selection register,CHKSR1,R/W,×,×,"CHKSR_BRGC1",00H
+FFFFFA47,Baudrate definition register,BRGC1,R/W,×,×,,FFH
+FFFFFD00,CSI operation mode register,CSIM0,R/W,×,×,"CSIM_CSIC0",00H
+FFFFFD01,Clock selection register,CSIC0,R/W,×,×,,00H
+FFFFFD02,Reception data buffer register,"SIRB0/SIRBL0",R/O,,×,×,0000H/00H
+FFFFFD04,Transmission data buffer register,"SOTB0/SOTBL0",R/W,,×,×,"0000H/00H"
+FFFFFD08,First transmission data buffer register,"SOTBF0/SOTBFL0",R/W,,×,×,"0000H/00H"
+FFFFFD0A,Shift register,"SIO0/SIOL0",R/O,,×,×,"0000H/00H"
+FFFFFD40,CSI operation mode register,CSIM1,R/W,×,×,"CSIM_CSIC1",00H
+FFFFFD41,Clock selection register,CSIC1,R/W,×,×,,00H
+FFFFFD42,Reception data buffer register,"SIRB1/SIRBL1",R/O,,×,×,"0000H/00H"
+FFFFFD44,Transmission data buffer register,"SOTB1/SOTBL1",R/W,,×,×,"0000H/00H"
+FFFFFD48,First transmission data buffer register,"SOTBF1/SOTBFL1",R/W,,×,×,"0000H/00H"
+FFFFFD4A,Shift register,"SIO1/SIOL1",R/O,,×,×,"0000H/00H"
+FFFFFD80,CSI operation mode register,CSIM2,R/W,×,×,"CSIM_CSIC2",00H
+FFFFFD81,Clock selection register,CSIC2,R/W,×,×,,00H
+FFFFFD82,Reception data buffer register,"SIRB2/SIRBL2",R/O,,×,×,"0000H/00H"
+FFFFFD84,Transmission data buffer register,"SOTB2/SOTBL2",R/W,,×,×,"0000H/00H"
+FFFFFD88,First transmission data buffer register,"SOTBF2/SOTBFL2",R/W,,×,×,"0000H/00H"
+FFFFFD8A,Shift register,"SIO2/SIOL2",R/O,,×,×,"0000H/00H"
+FFFFFDC0,BRG0 Prescaler mode register,PRSM0,R/W,×,×,,00H
+FFFFFDC1,BRG0 Prescaler compare register,PRSCM0,R/W,×,×,,00H
+FFFFFDE0,BRG1 Prescaler mode register,PRSM1,R/W,×,×,,00H
+FFFFFDE1,BRG1 Prescaler compare register,PRSCM1,R/W,×,×,,00H
