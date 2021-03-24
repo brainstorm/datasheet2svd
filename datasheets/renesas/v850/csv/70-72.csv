@@ -14,22 +14,22 @@
 000000F0,P64
 00000100,P52
 00000110,P53
-00000120,Time base 0 Overflow
-00000130,Time base 1 Overflow
-00000140,CC coincidence Channel 0
-00000150,CC coincidence Channel 1
-00000160,CC coincidence Channel 2
-00000170,CC coincidence Channel 3
-00000180,CC coincidence Channel 4
-00000190,CC coincidence Channel 5
-000001A0,Time base 0 Overflow
-000001B0,Time base 1 Overflow
-000001C0,CC coincidence Channel 0
-000001D0,CC coincidence Channel 1
-000001E0,CC coincidence Channel 2
-000001F0,CC coincidence Channel 3
-00000200,CC coincidence Channel 4
-00000210,CC coincidence Channel 5
+00000120,Time base 0 Overflow (0x120)
+00000130,Time base 1 Overflow (0x130)
+00000140,CC coincidence Channel 0 (0x140)
+00000150,CC coincidence Channel 1 (0x150)
+00000160,CC coincidence Channel 2 (0x160)
+00000170,CC coincidence Channel 3 (0x170)
+00000180,CC coincidence Channel 4 (0x180)
+00000190,CC coincidence Channel 5 (0x190)
+000001A0,Time base 0 Overflow (0x1A0)
+000001B0,Time base 1 Overflow (0x1B0)
+000001C0,CC coincidence Channel 0 (0x1C0)
+000001D0,CC coincidence Channel 1 (0x1D0)
+000001E0,CC coincidence Channel 2 (0x1E0)
+000001F0,CC coincidence Channel 3 (0x1F0)
+00000200,CC coincidence Channel 4 (0x200)
+00000210,CC coincidence Channel 5 (0x210)
 00000220,Time base Overflow
 00000230,CC coincidence Channel 0
 00000240,CC coincidence Channel 1

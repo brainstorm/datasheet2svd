@@ -379,10 +379,10 @@ address, description, register, mode, manip_1_bit, manip_8_bit, manip_16_bit, in
 18000254, CAN message configuration register 18,M_CONF18,R/W,,x,,Undefined
 18000255, CAN message status register 18,M_STAT18,R,,x,,Undefined
 18000256, CAN status set/cancel register 18,SC_STAT18,W,,,x,0000H
-18000260, CAN message event pointer 260,M_EVT260,R/W,,x,,Undefined
-18000261, CAN message event pointer 261,M_EVT261,R/W,,x,,Undefined
-18000262, CAN message event pointer 262,M_EVT262,R/W,,x,,Undefined
-18000263, CAN message event pointer 263,M_EVT263,R/W,,x,,Undefined
+18000260, CAN message event pointer 260 (0x260),M_EVT260,R/W,,x,,Undefined
+18000261, CAN message event pointer 261 (0x261),M_EVT261,R/W,,x,,Undefined
+18000262, CAN message event pointer 262 (0x262),M_EVT262,R/W,,x,,Undefined
+18000263, CAN message event pointer 263 (0x263),M_EVT263,R/W,,x,,Undefined
 18000264, CAN message data length register 19,M_DLC19,R/W,,x,,Undefined
 18000265, CAN message control register 19,M_CTRL19,R/W,,x,,Undefined
 18000266, CAN message time stamp register 19,M_TIME19,R/W,,,x,Undefined
@@ -519,10 +519,10 @@ address, description, register, mode, manip_1_bit, manip_8_bit, manip_16_bit, in
 18000334, CAN message configuration register 25,M_CONF25,R/W,,x,,Undefined
 18000335, CAN message status register 25,M_STAT25,R,,x,,Undefined
 18000336, CAN status set/cancel register 25,SC_STAT25,W,,,x,0000H
-18000340, CAN message event pointer 260,M_EVT260,R/W,,x,,Undefined
-18000341, CAN message event pointer 261,M_EVT261,R/W,,x,,Undefined
-18000342, CAN message event pointer 262,M_EVT262,R/W,,x,,Undefined
-18000343, CAN message event pointer 263,M_EVT263,R/W,,x,,Undefined
+18000340, CAN message event pointer 260 (0x340),M_EVT260,R/W,,x,,Undefined
+18000341, CAN message event pointer 261 (0x341),M_EVT261,R/W,,x,,Undefined
+18000342, CAN message event pointer 262 (0x342),M_EVT262,R/W,,x,,Undefined
+18000343, CAN message event pointer 263 (0x343),M_EVT263,R/W,,x,,Undefined
 18000344, CAN message data length register 26,M_DLC26,R/W,,x,,Undefined
 18000345, CAN message control register 26,M_CTRL26,R/W,,x,,Undefined
 18000346, CAN message time stamp register 26,M_TIME26,R/W,,,x,Undefined
@@ -650,8 +650,8 @@ address, description, register, mode, manip_1_bit, manip_8_bit, manip_16_bit, in
 1800101A, CAN message find result register,CGMSR,R,,,x,0000H
 1800101C, CAN test bus register,CTBR,R/W,,x,x,0000H
 1800101D, CAN Macro Version Register,CGREV,R,,x,x,Revision
-1800101E, CAN Macro Revision Register,CGVER,R,,x,x,Version
-1800101F, CAN Macro Revision Register,CGVER,R,,x,x,Version
+1800101E, CAN Macro Revision Register (0x101E),CGVER,R,,x,x,Version
+1800101F, CAN Macro Revision Register (0x101F),CGVER,R,,x,x,Version
 18001020, CAN global interrupt pending register ,CGINTP,R/(W),,R,x,00H
 18001022, CAN local interrupt pending register 1,C1INTP,R/W,,x,x,00H
 18001024, CAN local interrupt pending register 2,C2INTP,R/W,,x,x,00H
