@@ -46,20 +46,7 @@ pub fn parse_datasheet(datasheet: &str, page_range: &str, cached: bool) -> Outpu
                     .args(&[format!("datasheets/renesas/v850/csv/{}.csv", page_range)])
                     .output()
                     .expect("Fail");
-        // output = fs::read_to_string("build/peripherals.csv")
-        //                 .expect("Something went wrong reading the file");
-        // TODO: types... Output vs String...
     }
-
-    // TODO: Shall I pre-filter here with grep?
-    // output = Command::new("grep")
-    //                 .args()
-    //                 .output()
-    //                 .expect("Fail");
-
-    // TODO: Error ctrl
-    //println!("status: {}", output.status);
-    //io::stderr().write_all(&output.stderr).unwrap();
         
     return output;
 }
@@ -67,10 +54,10 @@ pub fn parse_datasheet(datasheet: &str, page_range: &str, cached: bool) -> Outpu
 /// Dispatch heterogeneous CSV data cleaning functions
 pub fn clean_datasheet_sections(sections: Vec<std::process::Output>) -> Vec<Peripherals> {
     let interrupts = clean_interrupts(sections[0].clone());
-    let _mmio = clean_peripherals(sections[1].clone());
+    let mmio = clean_mmio(sections[1].clone(), "mmio".to_string());
+    let prog_io = clean_mmio(sections[2].clone(), "pmmio".to_string());
 
-    //return vec!(interrupts.unwrap(), mmio.unwrap());
-    return vec!(interrupts.unwrap());
+    return vec!(interrupts.unwrap(), mmio.unwrap(), prog_io.unwrap());
 }
 
 pub fn clean_interrupts(section: Output) -> Result<Peripherals, Box<dyn Error>> {
@@ -113,14 +100,14 @@ pub fn clean_interrupts(section: Output) -> Result<Peripherals, Box<dyn Error>> 
     let addressblock = AddrBlock {
         offset: "0x0".to_string(), //addr.to_string(),
         size: "0x00000470".to_string(),
-        usage: "nvic".to_string()
+        usage: "irq".to_string()
     };
 
     let peripheral = Peripheral {
-        name: "NVIC".to_string(),
+        name: "irq".to_string(),
         version: "1.0".to_string(),
-        description: "Interrupt/Exception Table".to_string(),
-        groupname: "nvic".to_string(),
+        description: "Interrupts and exception table".to_string(),
+        groupname: "irq".to_string(),
         baseaddress: "0x00000000".to_string(),
         addressblock: addressblock,
         // size: 16,
@@ -139,7 +126,7 @@ pub fn clean_interrupts(section: Output) -> Result<Peripherals, Box<dyn Error>> 
     return Result::Ok(peripherals);
 }
 
-pub fn clean_peripherals(section: Output) -> Result<Peripherals, Box<dyn Error>> {
+pub fn clean_mmio(section: Output, groupname: String) -> Result<Peripherals, Box<dyn Error>> {
     let mut rdr = Reader::from_reader(&*section.stdout);
     rdr.set_headers(StringRecord::from(vec!["address", "description", "name", "mode", 
                                             "manip_1_bit", "manip_8_bit", "manip_16_bit",
@@ -218,10 +205,10 @@ pub fn clean_peripherals(section: Output) -> Result<Peripherals, Box<dyn Error>>
     };
 
     let peripheral = Peripheral {
-        name: "MMIO".to_string(),
+        name: groupname.clone(),
         version: "1.0".to_string(),
-        description: "Non-io programmable peripherals (static)".to_string(),
-        groupname: "mmio".to_string(),
+        description: "Memory Mapped IO, peripherals".to_string(),
+        groupname: groupname.clone(),
         baseaddress: "0xFFFFF000".to_string(),
         addressblock: addressblock,
         // size: 16,

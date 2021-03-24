@@ -1,4 +1,3 @@
-address, description, register, mode, manip_1_bit, manip_8_bit, manip_16_bit, initial_value
 18000000, CAN message event pointer 000, M_EVT000,R/W,,x,,Undefined
 18000001, CAN message event pointer 001, M_EVT001,R/W,,x,,Undefined
 18000002, CAN message event pointer 002, M_EVT002,R/W,,x,,Undefined

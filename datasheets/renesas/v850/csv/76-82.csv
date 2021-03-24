@@ -1,4 +1,3 @@
-address, description, name, mode, manip_1_bit, manip_8_bit, manip_16_bit, reset_value
 FFFFF002,Port AH,PAH,R/W,×,×,,00H
 FFFFF008,Port CS,PCS,R/W,×,×,,undefined
 FFFFF00A,Port CT,PCT,R/W,×,×,,undefined
