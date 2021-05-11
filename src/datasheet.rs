@@ -1,6 +1,4 @@
 /// This class contains highly specific parsing for datasheet tables (in this case, for Renesas V850 IC)
-
-//use std::fs;
 use std::error::Error;
 use std::process::{ Command, Output };
 
@@ -10,7 +8,7 @@ use serde::{ Serialize, Deserialize };
 use crate::svd::{ AddrBlock, Register, Registers, Peripheral, Peripherals };
 
 #[derive(Debug, Serialize, Deserialize)]
-struct Record {
+struct PeripheralDatasheetColumn {
     address: String,
     description: String,
     name: String,
@@ -21,35 +19,115 @@ struct Record {
     reset_value: String,
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+struct InterruptDatasheetColumn {
+    address: String,
+    interrupt_exception_source: String,
+}
+
+// pub struct DataSheetSections {
+//     pub interrupts: Result<Peripherals, Box<dyn Error>>,
+//     pub peripherals: Result<Peripherals, Box<dyn Error>>,
+// }
+
 /// Runs tabula PDF OCR or uses a precomputed CSV file (cached=true)
 /// tabula.jar:
 // wget https://github.com/tabulapdf/tabula-java/releases/download/v1.0.4/tabula-1.0.4-jar-with-dependencies.jar
-pub fn run_tabula(datasheet: &str, page_range: &str, cached: bool) -> Output {
+pub fn parse_datasheet(datasheet: &str, page_range: &str, cached: bool) -> Output {
     let output;
-    if cached {
+    if !cached {
         output = Command::new("java")
                     .args(&["-jar", "bin/tabula.jar", "-p", page_range, datasheet])
                     .output()
                     .expect("Fail");
     } else {
+        //dbg!("Getting CSV instead of PDF");
         output = Command::new("cat")
-                    .args(&["build/peripherals.csv"])
+                    .args(&[format!("datasheets/renesas/v850/csv/{}.csv", page_range)])
                     .output()
                     .expect("Fail");
-        // output = fs::read_to_string("build/peripherals.csv")
-        //                 .expect("Something went wrong reading the file");
-        // TODO: types... Output vs String...
     }
-
-    // TODO: Error ctrl
-    //println!("status: {}", output.status);
-    //io::stderr().write_all(&output.stderr).unwrap();
         
     return output;
 }
 
-pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>> {
-    let mut rdr = Reader::from_reader(&*csv_data.stdout);
+/// Dispatch heterogeneous CSV data cleaning functions
+pub fn clean_datasheet_sections(sections: Vec<std::process::Output>) -> Vec<Peripherals> {
+    let interrupts = clean_interrupts(sections[0].clone());
+    let mmio = clean_mmio(sections[1].clone(), "mmio".to_string());
+    let prog_io = clean_mmio(sections[2].clone(), "pmmio".to_string());
+
+    return vec!(interrupts.unwrap(), mmio.unwrap(), prog_io.unwrap());
+}
+
+pub fn clean_interrupts(section: Output) -> Result<Peripherals, Box<dyn Error>> {
+    let mut rdr = Reader::from_reader(&*section.stdout);
+    rdr.set_headers(StringRecord::from(vec!["address", "interrupt_exception_source"]));
+
+    let mut peripherals_vec: Vec<Peripheral> = Vec::new();
+    let mut registers_vec: Vec<Register> = Vec::new();
+
+    for result in rdr.deserialize() {
+        // TODO: Skip invalid text prelude before the table
+        // TODO: Better types and error control here
+        // let record: InterruptDatasheetColumn = match result {
+        //     Ok(res) => res,
+        //     Err(_) => break
+        // };
+        let record: InterruptDatasheetColumn = result?;
+
+        let mut addr = record.address;
+        let interrupt = record.interrupt_exception_source;
+
+        // Full address, i.e: FFFF EEEE to 0xFFFFEEEE
+        addr.retain(|ch| !ch.is_whitespace());
+        addr = String::from("0x") + &addr;
+
+        let register = Register {
+            name: interrupt.clone(),
+            description: interrupt.clone(),
+            addressoffset: addr.clone(),
+            size: 0x10,
+            access: "read-write".to_string(),
+            resetvalue: 0x0,
+            resetmask: "0xFFFFFFFF".to_string(),
+            fields: vec![] // TODO: Not bothering about bitfields for now
+        };
+
+        registers_vec.push(register);
+    }
+
+    let addressblock = AddrBlock {
+        offset: "0x0".to_string(), //addr.to_string(),
+        size: "0x00000470".to_string(),
+        usage: "irq".to_string()
+    };
+
+    let peripheral = Peripheral {
+        name: "irq".to_string(),
+        version: "1.0".to_string(),
+        description: "Interrupts and exception table".to_string(),
+        groupname: "irq".to_string(),
+        baseaddress: "0x00000000".to_string(),
+        addressblock: addressblock,
+        // size: 16,
+        // access: mode.to_string(),
+        registers: Registers { registers: registers_vec }
+    };
+
+    // Accumulate peripheral entries
+    peripherals_vec.push(peripheral);
+
+    // Wrap on struct before shipping
+    let peripherals = Peripherals {
+        peripheral: peripherals_vec
+    };
+
+    return Result::Ok(peripherals);
+}
+
+pub fn clean_mmio(section: Output, groupname: String) -> Result<Peripherals, Box<dyn Error>> {
+    let mut rdr = Reader::from_reader(&*section.stdout);
     rdr.set_headers(StringRecord::from(vec!["address", "description", "name", "mode", 
                                             "manip_1_bit", "manip_8_bit", "manip_16_bit",
                                             "reset_value"]));
@@ -59,7 +137,7 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
     let mut manipsize = 8;
 
     for result in rdr.deserialize() {
-        let record: Record = result?;
+        let record: PeripheralDatasheetColumn = result?;
 
         let mut addr = record.address;
         let descr = record.description;
@@ -127,10 +205,10 @@ pub fn clean_peripherals(csv_data: Output) -> Result<Peripherals, Box<dyn Error>
     };
 
     let peripheral = Peripheral {
-        name: "MMIO".to_string(),
+        name: groupname.clone(),
         version: "1.0".to_string(),
-        description: "Non-io programmable peripherals (static)".to_string(),
-        groupname: "mmio".to_string(),
+        description: "Memory Mapped IO, peripherals".to_string(),
+        groupname: groupname.clone(),
         baseaddress: "0xFFFFF000".to_string(),
         addressblock: addressblock,
         // size: 16,

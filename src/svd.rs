@@ -1,5 +1,43 @@
 use yaserde_derive::YaSerialize;
 
+pub fn generate_svd(peripherals: Vec<Peripherals>) -> Result<String, String> {
+    let cpu_def = CpuDef {
+        name: "V850".to_string(),
+        revision: "r1".to_string(),
+        endian: "LE".to_string(), // TODO: enum {LE, BE, ME}?
+        mpupresent: false,
+        fpupresent: false,
+        nvicpriobits: 32,
+        vendorsystickconfig: false    
+    };
+
+    let dev = Device {  
+        vendor: "Renesas".to_string(),
+        vendor_id: "Renesas".to_string(),
+        name: "V850".to_string(),
+        series: "E1/E2/CA2".to_string(),
+        version: "1.2".to_string(),
+        description: "NEC/Renesas V850 automotive grade ICs".to_string(),
+        //licensetext: "GPLv3".to_string(),
+        cpu: cpu_def,
+        addressunitbits: 8,
+        width: 32,
+        size: 0x6, // TODO: Determine what this size parm does vs BlockAddress at reg level.
+        access: "read-write".to_string(),
+        resetvalue: 0x0,
+        resetmask: "0xFFFFFFFF".to_string(),
+        peripherals: peripherals
+    };
+
+    // Return pretty printed XML
+    let yaserde_cfg = yaserde::ser::Config{
+        perform_indent: true,
+        .. Default::default()
+    };
+
+    return yaserde::ser::to_string_with_config(&dev, &yaserde_cfg);
+}
+
 #[derive(Default, PartialEq, Debug, YaSerialize)]
 pub struct CpuDef {
     #[yaserde(child)]
@@ -139,5 +177,5 @@ pub struct Device {
     #[yaserde(child)]
     pub resetmask: String,
     #[yaserde(child)]
-    pub peripherals: Peripherals
+    pub peripherals: Vec<Peripherals>
 }

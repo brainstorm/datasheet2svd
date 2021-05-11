@@ -1,0 +1,70 @@
+00000000,RESET input
+00000010,P60 NMI Input
+00000020,Watchdog timer
+00000040,TRAP instruction (0x40)
+00000050,TRAP instruction (0x50)
+00000060,Illegal opcode/DBTRAP instruction
+00000080,Real Time Clock Divider Tick
+00000090,Compare Match (0x90)
+000000A0,Compare Match (0xA0)
+000000B0,Interval time
+000000C0,P61
+000000D0,P62
+000000E0,P63
+000000F0,P64
+00000100,P52
+00000110,P53
+00000120,Time base 0 Overflow (0x120)
+00000130,Time base 1 Overflow (0x130)
+00000140,CC coincidence Channel 0 (0x140)
+00000150,CC coincidence Channel 1 (0x150)
+00000160,CC coincidence Channel 2 (0x160)
+00000170,CC coincidence Channel 3 (0x170)
+00000180,CC coincidence Channel 4 (0x180)
+00000190,CC coincidence Channel 5 (0x190)
+000001A0,Time base 0 Overflow (0x1A0)
+000001B0,Time base 1 Overflow (0x1B0)
+000001C0,CC coincidence Channel 0 (0x1C0)
+000001D0,CC coincidence Channel 1 (0x1D0)
+000001E0,CC coincidence Channel 2 (0x1E0)
+000001F0,CC coincidence Channel 3 (0x1F0)
+00000200,CC coincidence Channel 4 (0x200)
+00000210,CC coincidence Channel 5 (0x210)
+00000220,Time base Overflow
+00000230,CC coincidence Channel 0
+00000240,CC coincidence Channel 1
+00000250,A/D conversion end
+00000260,MAC Interrupt CGINTP 1 to 2
+00000270,CAN1 Receive Interrupt
+00000280,CAN1 Transmit Interrupt
+00000290,CAN1 Error Interrupt
+000002A0,CAN2 Receive Interrupt
+000002B0,CAN2 Transmit Interrupt
+000002C0,CAN2 Error Interrupt
+000002D0,CAN3 Receive Interrupt
+000002E0,CAN3 Transmit Interrupt
+000002F0,CAN3 Error Interrupt
+00000300,CAN4 Receive Interrupt
+00000310,CAN4 Transmit Interrupt
+00000320,CAN4 Error Interrupt
+00000330,Transmission Reception Completion CSI0
+00000340,Transmission Reception Completion CSI1
+00000350,Transmission Reception Completion CSI2
+00000360,Reception Error UART50
+00000370,Reception Completion UART50
+00000380,Transmission Completion UART50
+00000390,Reception Error UART51
+000003A0,Reception Completion UART51
+000003B0,Transmission Completion UART51
+000003C0,DMA Channel 0 transfer completed
+000003D0,DMA Channel 1 transfer completed
+000003E0,DMA Channel 2 transfer completed
+000003F0,DMA Channel 3 transfer completed
+00000400,DMA Overflow
+00000410,P30
+00000420,P35
+00000430,P40
+00000440,P45
+00000450,P54
+00000460,P55
+00000470,reserved
