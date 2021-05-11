@@ -1,21 +1,24 @@
 # Description
 
-This is the missing piece between IC manufacturers that just publish datasheets without SVDs and [svd2rust][svd2rust].
-
-It can also be seen as the ideal companion for reverse engineering tools such as Radare2 or Ghidra SVD loaders. 
-
-# Quickstart
-
 WIP! WIP! WIP!
 
-But when finished this tool will generate a correct SVD definition ready to be loaded into either radare2, Ghidra and/or generate a HAL or PAC via svd2rust.
+This is the missing piece between IC manufacturers that just publish datasheets without SVDs and [svd2rust][svd2rust]. It uses [tabula](https://tabula.technology/), an specialised OCR that recognises tables in PDFs. 
 
-TODO:
+This can also be used as the ideal companion for reverse engineering tools such as [Radare2](https://github.com/radareorg/radare2-extras/tree/master/r2svd) or [Ghidra SVD loaders](https://github.com/leveldown-security/SVD-Loader-Ghidra).
+
+Also, rust-embeeded's SVD crates might want to check out how SerDe and XML work beautifully in this repo.
+
+Last but not least, it would be awesome to generate a PAC for the Renesas V850, but LLVM does not have such a backend and GCC-Rust is still WIP-ing at this point in time.
+
+But at least we have a SVD for it now, that's a start :)
+
+
+## TODO
 
 * [x]: Finish up the parsing and cleaning of the tabula peripherals IO CSV file.
 * [x]: Identify other parts of the datasheet where @'s can be useful for the SVD.
 * [x]: Pass minimal validation through cmsis-svd python parser/model.py.
-* [x]: Validate more thoroughly via XSD with https://github.com/lumeohq/xsd-parser-rs ? WONTFIX: Current state of the art on this is horrible in Rust :/
+* [x]: Validate more thoroughly via XSD with https://github.com/lumeohq/xsd-parser-rs ? WONTFIX: Current state of the art on this is a bit immature in Rust :/
 * [x]: Make sure it loads well on radare2...
 * [ ]: ...and Ghidra's SVD-Loader.
 * [ ]: Collapse all the peripherals repetition into a single one and several registers inside it.
@@ -24,10 +27,10 @@ TODO:
 
 
 ```shell
-$ cargo run -q
+$ cargo run -q > v850.svd
 ```
 
-## Rust XML state of the nation
+## Rust XML state of the crates nation
 
 This blogpost from simplabs explains a few of the [pain points of XML with Rust in 2021](https://simplabs.com/blog/2020/12/31/xml-and-rust/). There's also a matrix of what's [supported and what is not on different crates](https://github.com/RazrFalcon/roxmltree#alternatives), which gives a more detailed idea on Rust's maturity w.r.t XML (de)serializing.
 
@@ -53,7 +56,10 @@ Unfortunately it lacks good examples.
 
 YaSerDe on the other hand, it's intuitive and just works. Every member of the struct gets labeled as either attribute or child [and it has good docs][yaserde_docs].
 
+There's also Rust embedded's [SVD parser](https://github.com/rust-embedded/svd) attempting to work with [Minicom XML](https://github.com/rust-embedded/svd/pull/138)... my very much non-expert opinion is that they [should take look at YaSerDe instead][yaserde_rfc_talk].
+
 [xml_prettyprint]: https://www.samltool.com/prettyprint.php
 [quickxml_serde_shortcomings]: https://github.com/tafia/quick-xml/issues/245
 [svd2rust]: https://github.com/rust-embedded/svd2rust
 [yaserde_docs]: https://github.com/media-io/yaserde/pull/106
+[yaserde_rfc_talk]: https://users.rust-lang.org/t/rfc-serde-xml-support/737
