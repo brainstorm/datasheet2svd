@@ -1,187 +1,79 @@
-address,register,description,mode,manip_1_bit,manip_8_bit,manip_16_bit,Symbol Name,Comment, OffsetNote, R/W 1 bit,8 bits,bits
-1004H CCINTP CAN interrupt pending register 467 R,× ×, CAN global interrupt pending R,× ×
-1020H CGINTP 468,
-register W,× bit-set function only
-R,× ×
-1022H C1INTP CAN1 interrupt pending register 470,
-W,× × bit-clear function only
-R,× ×
-1024H C2INTP CAN2 interrupt pending register 470,
-W,× × bit-clear function only
-R,× ×
-1026H C3INTP CAN3 interrupt pending register 470,
-W,× × bit-clear function only
-R,× ×
-1028H C4INTP CAN4 interrupt pending register 470,
-W,× × bit-clear function only
-1000H,CSTOP,CAN stop register,454,R/W,,×,×,
-1010H,CGST,CAN global status register,457,R,×,×,×,
-"",,,W,,,×,bit set/clear function,
-1012H,CGIE,"CAN global interrupt enable
-register",460,R,×,×,×,
-"",,,W,,,×,bit set/clear function,
-1014H,CGCS,CAN main clock select register,455,R,×,×,×,
-"",,,W,×,×,×,only if GOM bit = 0,
-1016H,CGTEN,CAN timer event enable register,462,R/W,×,×,×,
-1018H,CGTSC,CAN global time system counter,462,R,×,×,×,
-"",,,W,,,×,complete clear only,
-101AH,CGMSS,"CAN message search start
-register",464,W,,,×,write only
-CGMSR,"CAN message search result
-register",465,R,×,×,×,read only,
-101CH,CTBR,CAN test bus register,466,R/W,,×,×,
-"",Chapter 14 FCAN Interface Function,
-(4),CAN Module Registers Section,
-"",Access Type,
-Address,Ref.,
-"",Symbol Name,Comment
-OffsetNote2,Page,16
-"",R/W 1 bit,8 bits
-"",,bits
-"",1040H C1MASKL0 CAN1 mask 0 register L R/W,× × lower half-word
-"",1042H C1MASKH0 CAN1 mask 0 register H R/W,× × upper half-word
-"",1044H C1MASKL1 CAN1 mask 1 register L R/W,× × lower half-word
-"",1046H C1MASKH1 CAN1 mask 1 register H R/W,× × upper half-word
-"",485,
-"",1048H C1MASKL2 CAN1 mask 2 register L R/W,× × lower half-word
-"",104AH C1MASKH2 CAN1 mask 2 register H R/W,× × upper half-word
-104CH,C1MASKL3 CAN1 mask 3 register L R/W,× × lower half-word
-"",104EH C1MASKH3 CAN1 mask 3 register H R/W,× × upper half-word
-"",R,× ×
-"",1050H C1CTRL CAN1 control register 487,
-"",W,× bit set/clear function
-"",R,× ×
-"",1052H C1DEF CAN1 definition register 492,
-"",W,× bit set/clear function
-"",1054H C1LAST CAN1 information register 496 R,× × read only
-"",1056H C1ERC CAN1 error counter register 497 R,× × read only
-"",R,× ×
-"",1058H C1IE CAN1 interrupt enable register 498,
-"",W,× bit set/clear function
-"",R,× ×
-"",105AH C1BA CAN1 bus activity register 501,
-"",W,× bit set/clear function
-"",R,× ×
-"",C1BRP CAN1 bit rate prescaler register 503,in initialisation state
-"",W,× ×
-105CH,,only (ISTAT = 1)
-"",CAN1 bus diagnostic,in diagnostic mode
-"",C1DINF 508 R,× ×
-"",information register,only
-"",CAN1 synchronization control R,× ×
-"",105EH C1SYNC 506,
-"",register W,× ×
-Notes: 1.,CAN module 3 and CAN module 4 are available in the derivatives μPD703129 (A) and,
-"",μPD703129 (A1) only.,
-"",2. The address of an interrupt pending register is calculated according to the following for-,
-"",mula:,
-"",effective address = PP_BASE + address offset.,
-434,Preliminary User’s Manual U15839EE1V0UM00,
-"",Chapter 14 FCAN Interface Function,,
-"",Table 14-6: Relative Addresses of CAN Module 2 Registers,,
-"",Access Type,,
-Address,Ref.,,
-"",Symbol Name,Comment,
-OffsetNote,Page,16,
-"",R/W 1 bit,8 bits,
-"",,bits,
-1080H,C2MASKL0 CAN2 mask 0 register L R/W,× × lower half-word,
-1082H,C2MASKH0 CAN2 mask 0 register H R/W,× × upper half-word,
-1084H,C2MASKL1 CAN2 mask 1 register L R/W,× × lower half-word,
-1086H,C2MASKH1 CAN2 mask 1 register H R/W,× × upper half-word,
-"",485,,
-1088H,C2MASKL2 CAN2 mask 2 register L R/W,× × lower half-word,
-108AH,C2MASKH2 CAN2 mask 2 register H R/W,× × upper half-word,
-108CH,C2MASKL3 CAN2 mask 3 register L R/W,× × lower half-word,
-108EH,C2MASKH3 CAN2 mask 3 register H R/W,× × upper half-word,
-"",R,× ×,
-1090H,C2CTRL CAN2 control register 487,,
-"",W,× bit set/clear function,
-"",R,× ×,
-1092H,C2DEF CAN2 definition register 492,,
-"",W,× bit set/clear function,
-1094H,C2LAST CAN2 information register 496 R,× × read only,
-1096H,C2ERC CAN2 error counter register 497 R,× × read only,
-"",R,× ×,
-1098H,C2IE CAN2 interrupt enable register 498,,
-"",W,× bit set/clear function,
-"",R,× ×,
-109AH,C2BA CAN2 bus activity register 501,,
-"",W,× bit-set/clear function,
-"",R,× ×,
-"",C2BRP CAN2 bit rate prescaler register 503,in initialisation state,
-"",W,× ×,
-109CH,,only (ISTAT bit = 1),
-"",CAN2 bus diagnostic,in diagnostic mode,
-"",C2DINF 508 R,× ×,
-"",information register,only,
-"",CAN2 synchronization control R,× ×,
-109EH,C2SYNC 506,,
-"",register W,× ×,
-Note: The address of a CAN module 2 register is calculated according to the following formula:,,,
-effective address = PP_BASE + address offset,,,
-"",Preliminary User’s Manual U15839EE1V0UM00,,435
-"Address
-OffsetNote2",Symbol,Name,"Ref.
-Page",Access Type,Comment,,,
-"",,,,R/W,1bit,8 bits,"16
-bits",
-10C0H,C3MASKL0,CAN3 mask 0 register L,485,R/W,,×,×,lower half-word
-10C2H,C3MASKH0,CAN3 mask 0 register H,R/W,,×,×,upper half-word,
-10C4H,C3MASKL1,CAN3 mask 1 register L,R/W,,×,×,lower half-word,
-10C6H,C3MASKH1,CAN3 mask 1 register H,R/W,,×,×,upper half-word,
-10C8H,C3MASKL2,CAN3 mask 2 register L,R/W,,×,×,lower half-word,
-10CAH,C3MASKH2,CAN3 mask 2 register H,R/W,,×,×,upper half-word,
-10CCH,C3MASKL3,CAN3 mask 3 register L,R/W,,×,×,lower half-word,
-10CEH,C3MASKH3,CAN3 mask 3 register H,R/W,,×,×,upper half-word,
-10D0H,C3CTRL,CAN3 control register,487,R,,×,×,
-"",,,,W,,,×,bit set/clear function
-10D2H,C3DEF,CAN3 definition register,492,R,,×,×,
-"",,,,W,,,×,bit set/clear function
-10D4H,C3LAST,CAN3 information register,496,R,,×,×,read only
-10D6H,C3ERC,CAN3 error counter register,497,R,,×,×,read only
-10D8H,C3IE,CAN3 interrupt enable register,498,R,,×,×,
-"",,,,W,,,×,bit set/clear function
-10DAH,C3BA,CAN3 bus activity register,501,R,,×,×,
-"",,,,W,,,×,bit set/clear function
-10DCH,C3BRP,CAN3 bit rate prescaler register,503,R,,×,×,
-"",,,,W,,×,×,"in initialisation state
-only (ISTAT bit = 1)"
-"",C3DINF,"CAN3 bus diagnostic
-information register",508,R,,×,×,"in diagnostic mode
-only"
-10DEH,C3SYNC,"CAN3 synchronization control
-register",506,R,,×,×,
-W,,×,×,,,,,
-"Address
-OffsetNote2",Symbol,Name,"Ref.
-Page",Access Type,Comment,,,
-"",,,,R/W,1bit,8 bits,"16
-bits",
-1100H,C4MASKL0,CAN4 mask 0 register L,485,R/W,,×,×,lower half-word
-1102H,C4MASKH0,CAN4 mask 0 register H,R/W,,×,×,upper half-word,
-1104H,C4MASKL1,CAN4 mask 1 register L,R/W,,×,×,lower half-word,
-1106H,C4MASKH1,CAN4 mask 1 register H,R/W,,×,×,upper half-word,
-1108H,C4MASKL2,CAN4 mask 2 register L,R/W,,×,×,lower half-word,
-110AH,C4MASKH2,CAN4 mask 2 register H,R/W,,×,×,upper half-word,
-110CH,C4MASKL3,CAN4 mask 3 register L,R/W,,×,×,lower half-word,
-110EH,C4MASKH3,CAN4 mask 3 register H,R/W,,×,×,upper half-word,
-1110H,C4CTRL,CAN4 control register,487,R,,×,×,
-"",,,,W,,,×,bit set/clear function
-1112H,C4DEF,CAN4 definition register,492,R,,×,×,
-"",,,,W,,,×,bit set/clear function
-1114H,C4LAST,CAN4 information register,496,R,,×,×,read only
-1116H,C4ERC,CAN4 error counter register,497,R,,×,×,read only
-1118H,C4IE,CAN4 interrupt enable register,498,R,,×,×,
-"",,,,W,,,×,bit set/clear function
-111AH,C4BA,CAN4 bus activity register,501,R,,×,×,
-"",,,,W,,,×,bit set/clear function
-111CH,C4BRP,CAN4 bit rate prescaler register,503,R,,×,×,
-"",,,,W,,×,×,"in initialisation state
-only (ISTAT bit = 1)"
-"",C4DINF,"CAN4 bus diagnostic
-information register",508,R,,×,×,"in diagnostic mode
-only"
-111EH,C4SYNC,"CAN4 synchronization control
-register",506,R,,×,×,
-W,,×,×,,,,,
+1004H,CCINTP,CAN interrupt pending register
+1020H,CGINTP,CAN global interrupt pending register
+1022H,C1INTP,CAN1 interrupt pending register
+1022H,C1INTP,CAN1 interrupt pending register
+1024H,C2INTP,CAN2 interrupt pending register
+1026H,C3INTP,CAN3 interrupt pending register
+1028H,C4INTP,CAN4 interrupt pending register
+1000H,CSTOP,CAN stop register
+1010H,CGST,CAN global status register
+1012H,CGIE,CAN global interrupt enable
+1014H,CGCS,CAN main clock select register
+1016H,CGTEN,CAN timer event enable register
+1018H,CGTSC,CAN global time system counter
+101AH,CGMSS_CGMSR,CAN message search start
+101CH,CTBR,CAN test bus register
+1040H,C1MASKL0,CAN1 mask 0 register L
+1042H,C1MASKH0,CAN1 mask 0 register H
+1044H,C1MASKL1,CAN1 mask 1 register L
+1046H,C1MASKH1,CAN1 mask 1 register H
+1048H,C1MASKL2,CAN1 mask 2 register L
+104AH,C1MASKH2,CAN1 mask 2 register H
+104CH,C1MASKL3,CAN1 mask 3 register L
+104EH,C1MASKH3,CAN1 mask 3 register H
+1050H,C1CTRL,CAN1 control register
+1052H,C1DEF,CAN1 definition register
+1054H,C1LAST,CAN1 information register
+1056H,C1ERC,CAN1 error counter register
+1058H,C1IE,CAN1 interrupt enable register
+105AH,C1BA,CAN1 bus activity register
+105CH,C1BRP_C1DINF,CAN1 bit rate prescaler register
+105EH,C1SYNC,CAN1 synchronization control register
+1080H,C2MASKL0,CAN2 mask 0 register L
+1082H,C2MASKH0,CAN2 mask 0 register H
+1084H,C2MASKL1,CAN2 mask 1 register L
+1086H,C2MASKH1,CAN2 mask 1 register H
+1088H,C2MASKL2,CAN2 mask 2 register L
+108AH,C2MASKH2,CAN2 mask 2 register H
+108CH,C2MASKL3,CAN2 mask 3 register L
+108EH,C2MASKH3,CAN2 mask 3 register H
+1090H,C2CTRL,CAN2 control register
+1092H,C2DEF,CAN2 definition register
+1094H,C2LAST,CAN2 information register
+1096H,C2ERC,CAN2 error counter register
+1098H,C2IE,CAN2 interrupt enable register
+109AH,C2BA,CAN2 bus activity register
+109CH,C2BRP_C2DINF,CAN2 bit rate prescaler register
+109EH,C2SYNC,CAN2 synchronization control register
+10C0H,C3MASKL0,CAN3 mask 0 register L
+10C2H,C3MASKH0,CAN3 mask 0 register H
+10C4H,C3MASKL1,CAN3 mask 1 register L
+10C6H,C3MASKH1,CAN3 mask 1 register H
+10C8H,C3MASKL2,CAN3 mask 2 register L
+10CAH,C3MASKH2,CAN3 mask 2 register H
+10CCH,C3MASKL3,CAN3 mask 3 register L
+10CEH,C3MASKH3,CAN3 mask 3 register H
+10D0H,C3CTRL,CAN3 control register
+10D2H,C3DEF,CAN3 definition register
+10D4H,C3LAST,CAN3 information register
+10D6H,C3ERC,CAN3 error counter register
+10D8H,C3IE,CAN3 interrupt enable register
+10DAH,C3BA,CAN3 bus activity register
+10DCH,C3BRP_C3DINF,CAN3 bit rate prescaler register
+10DEH,C3SYNC,CAN3 synchronization control
+1100H,C4MASKL0,CAN4 mask 0 register L
+1102H,C4MASKH0,CAN4 mask 0 register H
+1104H,C4MASKL1,CAN4 mask 1 register L
+1106H,C4MASKH1,CAN4 mask 1 register H
+1108H,C4MASKL2,CAN4 mask 2 register L
+110AH,C4MASKH2,CAN4 mask 2 register H
+110CH,C4MASKL3,CAN4 mask 3 register L
+110EH,C4MASKH3,CAN4 mask 3 register H
+1110H,C4CTRL,CAN4 control register
+1112H,C4DEF,CAN4 definition register
+1114H,C4LAST,CAN4 information register
+1116H,C4ERC,CAN4 error counter register
+1118H,C4IE,CAN4 interrupt enable register
+111AH,C4BA,CAN4 bus activity register
+111CH,C4BRP,CAN4 bit rate prescaler register
+111EH,C4SYNC,CAN4 synchronization control
