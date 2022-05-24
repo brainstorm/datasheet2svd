@@ -5,11 +5,9 @@ authors = ["Roman Valls Guimera <brainstorm@nopcode.org>"]
 edition = "2018"
 
 [dependencies]
-#yaserde = { version = "0.6.0", path = "../../yaserde/yaserde" }
-#yaserde_derive = { version = "0.6.0", path = "../../yaserde/yaserde_derive" }
-yaserde = { version = "*" }
-yaserde_derive = { version = "*" }
-serde = { version = "1.0.123", features = ["derive"] }
-xml-rs = "0.8.3"
+yaserde = { version = "0.8" }
+yaserde_derive = { version = "0.8" }
+serde = { version = "1", features = ["derive"] }
+xml-rs = "0.8"
 log = "0.4"
-csv = "1.1.5"
+csv = "1"
