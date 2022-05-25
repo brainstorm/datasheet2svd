@@ -1,6 +1,6 @@
 use yaserde_derive::YaSerialize;
 
-pub fn generate_svd(peripherals: Vec<Peripherals>) -> Result<String, String> {
+pub fn generate_svd(peripherals: Peripherals) -> Result<String, String> {
     let cpu_def = CpuDef {
         name: "V850".to_string(),
         revision: "r1".to_string(),
@@ -26,7 +26,7 @@ pub fn generate_svd(peripherals: Vec<Peripherals>) -> Result<String, String> {
         access: "read-write".to_string(),
         resetvalue: 0x0,
         resetmask: "0xFFFFFFFF".to_string(),
-        peripherals: peripherals
+        peripherals
     };
 
     // Return pretty printed XML
@@ -45,7 +45,7 @@ pub struct CpuDef {
     #[yaserde(child)]
     pub revision: String,
     #[yaserde(child)]
-    pub endian: String, // TODO: enum {LE, BE, ME}
+    pub endian: String,
     #[yaserde(child)]
     pub mpupresent: bool,
     #[yaserde(child)]
@@ -68,7 +68,6 @@ pub struct Field {
 }
 
 #[derive(Default, PartialEq, Debug, YaSerialize)]
-#[yaserde(rename = "register")]
 pub struct Register {
     #[yaserde(child)]
     pub name: String,
@@ -119,9 +118,14 @@ pub struct Peripheral {
 }
 
 #[derive(Default, PartialEq, Debug, YaSerialize)]
-#[yaserde(rename = "peripheral")]
 pub struct Peripherals {
-    pub peripheral: Vec<Peripheral>,
+    pub peripherals: Vec<Peripheral>,
+}
+
+impl Peripherals {
+    pub fn add(self, peripherals: Vec<Peripheral>) -> Peripherals {
+        Peripherals { peripherals }
+    }
 }
 
 #[derive(Default, PartialEq, Debug, YaSerialize)]
@@ -177,5 +181,6 @@ pub struct Device {
     #[yaserde(child)]
     pub resetmask: String,
     #[yaserde(child)]
-    pub peripherals: Vec<Peripherals>
+    pub peripherals: Peripherals
+//    pub peripherals: Vec<Peripheral>
 }

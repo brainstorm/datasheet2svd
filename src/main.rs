@@ -16,6 +16,6 @@ fn main() {
     let clean_datasheet = clean_datasheet_sections(datasheet_sections);
 
     // Serialize it into a (hopefully) well-formed SVD
-    let svd_res = generate_svd(clean_datasheet);
+    let svd_res = generate_svd(clean_datasheet.unwrap());
     println!("{}", &svd_res.ok().unwrap());
 }

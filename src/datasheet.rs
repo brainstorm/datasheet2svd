@@ -47,20 +47,24 @@ pub fn parse_datasheet(datasheet: &str, page_range: &str, cached: bool) -> Outpu
                     .output()
                     .expect("Fail");
     }
-        
+
     return output;
 }
 
 /// Dispatch heterogeneous CSV data cleaning functions
-pub fn clean_datasheet_sections(sections: Vec<std::process::Output>) -> Vec<Peripherals> {
-    let interrupts = clean_interrupts(sections[0].clone());
-    let mmio = clean_mmio(sections[1].clone(), "mmio".to_string());
-    let prog_io = clean_mmio(sections[2].clone(), "pmmio".to_string());
+pub fn clean_datasheet_sections(sections: Vec<std::process::Output>) -> Result<Peripherals, Box<dyn Error>> {
+    let peripherals = Peripherals::default();
+    
+    let interrupts = clean_interrupts(sections[0].clone())?;
+    let mmio = clean_mmio(sections[1].clone(), "mmio".to_string())?;
+    let prog_io = clean_mmio(sections[2].clone(), "pmmio".to_string())?;
 
-    return vec!(interrupts.unwrap(), mmio.unwrap(), prog_io.unwrap());
+    Ok(peripherals.add(interrupts)
+                  .add(mmio)
+                  .add(prog_io))
 }
 
-pub fn clean_interrupts(section: Output) -> Result<Peripherals, Box<dyn Error>> {
+pub fn clean_interrupts(section: Output) -> Result<Vec<Peripheral>, Box<dyn Error>> {
     let mut rdr = Reader::from_reader(&*section.stdout);
     rdr.set_headers(StringRecord::from(vec!["address", "interrupt_exception_source"]));
 
@@ -117,16 +121,11 @@ pub fn clean_interrupts(section: Output) -> Result<Peripherals, Box<dyn Error>> 
 
     // Accumulate peripheral entries
     peripherals_vec.push(peripheral);
+    Ok(peripherals_vec)
 
-    // Wrap on struct before shipping
-    let peripherals = Peripherals {
-        peripheral: peripherals_vec
-    };
-
-    return Result::Ok(peripherals);
 }
 
-pub fn clean_mmio(section: Output, groupname: String) -> Result<Peripherals, Box<dyn Error>> {
+pub fn clean_mmio(section: Output, groupname: String) -> Result<Vec<Peripheral>, Box<dyn Error>> {
     let mut rdr = Reader::from_reader(&*section.stdout);
     rdr.set_headers(StringRecord::from(vec!["address", "description", "name", "mode", 
                                             "manip_1_bit", "manip_8_bit", "manip_16_bit",
@@ -219,56 +218,5 @@ pub fn clean_mmio(section: Output, groupname: String) -> Result<Peripherals, Box
     // Accumulate peripheral entries
     peripherals_vec.push(peripheral);
 
-    // Wrap on struct before shipping
-    let peripherals = Peripherals {
-        peripheral: peripherals_vec
-    };
-
-    return Result::Ok(peripherals);
+    Ok(peripherals_vec)
 }
-
-// fn debug_parse_peripherals() {
-//     // Handle multi-row descriptions for registers
-//     // TODO: Handle shifting of values even more gracefully, i.e:
-//     //
-//     // FFFF F640,Timer mode register,TMGM0,R/W,×,×,×,0000H
-//     // "",,TMGM0L,R/W,×,×,,00H
-//     // FFFF F641,TMGM0H,R/W,×,×,,00H,   <--- Detect this and remember previous record
-//     // FFFF F642,Channel mode register,TMGCM0,R/W,×,×,×,0000H
-//     // "",,TMGCM0L,R/W,×,×,,00H
-//     // FFFF F643,TMGCM0H,R/W,×,×,,00H,
-//     //
-
-//     if &addr == "" {
-//         if &name == "" { continue; } // beginning of table, discard
-//         dbg!("WARNING: Multi-row register definition");
-//         dbg!(&name);
-//         dbg!(&descr);
-//         dbg!(&mode);
-//         dbg!(&reset_value);
-//         continue;
-//     }
-
-//     dbg!(&addr);
-//     dbg!(&name); // TODO: Disambiguate cases like "SIRB2/ SIRBL2" ... why two regs in one row?
-                    // Also it messes up later on with the XML:
-                    //    </peripherals>
-                    //    <peripherals>
-                    //      SIRBL0</name>IRB0/   <---- !!!
-                    //    <version>1.0</version>
-//     dbg!(&descr);
-
-//     // TODO: Turn mode field into static' str...
-//     // error: implementation of `datasheet::_::_serde::Deserialize` is not general enough
-//     //     = note: `Record` must implement `datasheet::_::_serde::Deserialize<'0>`, for any lifetime `'0`...
-//     // = note: ...but `Record` actually implements `datasheet::_::_serde::Deserialize<'1>`, for some specific lifetime `'1`
-//     //
-//     // let mode = match mode {
-//     //     "R/W" => "read-write",
-//     //     "R/O" => "read-only",
-//     //     "W" => "write-only"
-//     // };
-
-//     dbg!(&mode);
-//     dbg!(&reset_value); // TODO: Disambiguate cases like "00H/01H" ... what does that mean?
-// }

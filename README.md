@@ -2,27 +2,20 @@
 
 WIP! WIP! WIP!
 
-This is the missing piece between IC manufacturers that just publish datasheets without SVDs and [svd2rust][svd2rust]. It uses [tabula](https://tabula.technology/), an specialised OCR that recognises tables in PDFs. 
+This is the missing piece between IC manufacturers that just publish datasheets without SVDs and [svd2rust][svd2rust]. It uses [tabula](https://tabula.technology/), an specialised OCR that recognises tables in PDFs.
 
 This can also be used as the ideal companion for reverse engineering tools such as [Radare2](https://github.com/radareorg/radare2-extras/tree/master/r2svd) or [Ghidra SVD loaders](https://github.com/leveldown-security/SVD-Loader-Ghidra).
 
-Also, rust-embeeded's SVD crates might want to check out how SerDe and XML work beautifully in this repo.
-
-Last but not least, it would be awesome to generate a PAC for the Renesas V850, but LLVM does not have such a backend and GCC-Rust is still WIP-ing at this point in time.
+Future goal(s) are generating a PAC for the Renesas V850, but LLVM does not have such a backend and GCC-Rust is still WIP-ing at this point in time.
 
 But at least we have a SVD for it now, that's a start :)
 
-
 ## TODO
 
-* [x]: Finish up the parsing and cleaning of the tabula peripherals IO CSV file.
-* [x]: Identify other parts of the datasheet where @'s can be useful for the SVD.
-* [x]: Pass minimal validation through cmsis-svd python parser/model.py.
-* [x]: Validate more thoroughly via XSD with https://github.com/lumeohq/xsd-parser-rs ? WONTFIX: Current state of the art on this is a bit immature in Rust :/
 * [x]: Make sure it loads well on radare2...
 * [ ]: ...and Ghidra's SVD-Loader.
 * [ ]: Collapse all the peripherals repetition into a single one and several registers inside it.
-* [ ]: Cleanup/generalize for other ICs (RL78, Espressif ICs, etc...)
+* [ ]: Cleanup/generalize for other ICs (RL78, V810, etc...)
 * [ ]: I should have used https://crates.io/crates/xml-schema-derive instead of manual structs, maybe?
 
 
