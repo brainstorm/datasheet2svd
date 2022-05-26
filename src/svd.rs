@@ -1,6 +1,6 @@
 use yaserde_derive::YaSerialize;
 
-pub fn generate_svd(peripherals: Peripherals) -> Result<String, String> {
+pub fn generate_svd(peripherals: Vec<Peripheral>) -> Result<String, String> {
     let cpu_def = CpuDef {
         name: "V850".to_string(),
         revision: "r1".to_string(),
@@ -123,8 +123,13 @@ pub struct Peripherals {
 }
 
 impl Peripherals {
-    pub fn add(self, peripherals: Vec<Peripheral>) -> Peripherals {
-        Peripherals { peripherals }
+    pub fn new(inner: Vec<Peripheral>) -> Self {
+        Peripherals { peripherals: inner }
+    }
+
+    pub fn add(mut self, peripherals: Vec<Peripheral>) -> Peripherals {
+        self.peripherals.extend(peripherals);
+        self
     }
 }
 
@@ -181,6 +186,6 @@ pub struct Device {
     #[yaserde(child)]
     pub resetmask: String,
     #[yaserde(child)]
-    pub peripherals: Peripherals
-//    pub peripherals: Vec<Peripheral>
+//    pub peripherals: Peripherals
+    pub peripherals: Vec<Peripheral>
 }

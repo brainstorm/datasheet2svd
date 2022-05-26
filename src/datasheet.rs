@@ -25,11 +25,6 @@ struct InterruptDatasheetColumn {
     interrupt_exception_source: String,
 }
 
-// pub struct DataSheetSections {
-//     pub interrupts: Result<Peripherals, Box<dyn Error>>,
-//     pub peripherals: Result<Peripherals, Box<dyn Error>>,
-// }
-
 /// Runs tabula PDF OCR or uses a precomputed CSV file (cached=true)
 /// tabula.jar:
 // wget https://github.com/tabulapdf/tabula-java/releases/download/v1.0.4/tabula-1.0.4-jar-with-dependencies.jar
@@ -52,15 +47,13 @@ pub fn parse_datasheet(datasheet: &str, page_range: &str, cached: bool) -> Outpu
 }
 
 /// Dispatch heterogeneous CSV data cleaning functions
-pub fn clean_datasheet_sections(sections: Vec<std::process::Output>) -> Result<Peripherals, Box<dyn Error>> {
-    let peripherals = Peripherals::default();
-    
+pub fn clean_datasheet_sections(sections: Vec<Output>) -> Result<Peripherals, Box<dyn Error>> {
     let interrupts = clean_interrupts(sections[0].clone())?;
     let mmio = clean_mmio(sections[1].clone(), "mmio".to_string())?;
     let prog_io = clean_mmio(sections[2].clone(), "pmmio".to_string())?;
 
-    Ok(peripherals.add(interrupts)
-                  .add(mmio)
+    let peripherals = Peripherals::new(interrupts);
+    Ok(peripherals.add(mmio)
                   .add(prog_io))
 }
 
